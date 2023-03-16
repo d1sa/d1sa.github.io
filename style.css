@@ -38,12 +38,14 @@ main {
 
 section.content {
   padding: 20px;
+  order: 2;
 }
 
 aside.sidebar {
   background-color: var(--color-canvas-overlay);
   padding: 40px;
   border-radius: 20px;
+  order: 1;
 }
 
 footer {
@@ -60,11 +62,11 @@ footer {
   }
 
   section.content {
-    order: 2;
+    order: 1;
   }
 
   aside.sidebar {
-    order: 1;
+    order: 2;
   }
 }
 
