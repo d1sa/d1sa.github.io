@@ -1,17 +1,25 @@
 /* Общие стили */
 * {
   box-sizing: border-box;
+
+  --color-fg-default: #adbac7;
+  --color-fg-muted: #768390;
+  --color-fg-subtle: #636e7b;
+  --color-canvas-default: #22272e;
+  --color-canvas-overlay: #2d333b;
 }
 
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-color: var(--color-canvas-default);
+  color: var(--color-fg-default);
 }
 
 header {
-  background-color: #333;
-  color: #fff;
+  background-color: var(--color-canvas-default);
+  color: var(--color-fg-default);
   padding: 20px;
 }
 
@@ -26,18 +34,17 @@ main {
 }
 
 section.content {
-  background-color: #eee;
   padding: 20px;
 }
 
 aside.sidebar {
-  background-color: #ccc;
+  background-color: var(--color-canvas-overlay);
   padding: 20px;
 }
 
 footer {
-  background-color: #333;
-  color: #fff;
+  background-color: var(--color-canvas-default);
+  color: var(--color-fg-default);
   padding: 20px;
   text-align: center;
 }
@@ -47,4 +54,17 @@ footer {
   main {
     grid-template-columns: 2fr 1fr;
   }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color-fg-default);
+}
+
+p {
+  color: var(--color-fg-muted);
 }
