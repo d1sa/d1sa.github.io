@@ -14,7 +14,7 @@ body {
   padding: 0;
   font-family: sans-serif;
   background-color: var(--color-canvas-default);
-  color: var(--color-fg-default);
+  color: var(--color-fg-muted);
 }
 
 header {
