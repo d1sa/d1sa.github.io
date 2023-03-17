@@ -89,3 +89,26 @@ p {
   border-radius: 50%;
   border: 3px solid var(--color-canvas-default);
 }
+
+.tags {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin-top: 30px;
+}
+
+.tag {
+	padding: 8px 16px;
+	margin: 5px;
+	background-color: #ffffff;
+	color: #22272e;
+	border-radius: 20px;
+	font-size: 12px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.tag:hover {
+	background-color: #005fa3;
+}
