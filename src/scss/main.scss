@@ -2,23 +2,25 @@
 // Main SCSS File
 // ==========================================================================
 
-// 1. Abstracts
-@use "abstracts" as *;
+// 1. Abstracts (must be first to make variables and mixins available)
+@import "abstracts/functions";
+@import "abstracts/variables";
+@import "abstracts/mixins";
 
 // 2. Base
-@use "base";
+@import "base/reset";
+@import "base/typography";
 
 // 3. Layout
-@use "layout";
+@import "layout/container";
+@import "layout/header";
+@import "layout/footer";
 
 // 4. Components
-@use "components";
+@import "components/buttons";
+@import "components/forms";
 
 // 5. Pages
-@use "pages";
-
-// 6. Utilities (if needed)
-// @use 'utilities';
-
-// 7. Vendors (third-party libraries)
-// @use 'vendors';
+@import "pages/hero";
+@import "pages/advantages";
+@import "pages/profile-comparison";
