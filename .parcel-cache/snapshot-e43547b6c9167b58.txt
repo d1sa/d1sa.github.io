@@ -22,7 +22,7 @@
 90C:\Users\d1sa_\Documents\Projects\Okna\d1sa.github.io\src\styles\sections\_services-2.scss133971800016296533 0
 88C:\Users\d1sa_\Documents\Projects\Okna\d1sa.github.io\node_modules\node-addon-api\napi.h133971773574067699 0
 119C:\Users\d1sa_\Documents\Projects\Okna\d1sa.github.io\node_modules\caniuse-lite\data\features\css-background-offsets.js133971773577269394 0
-64C:\Users\d1sa_\Documents\Projects\Okna\d1sa.github.io\.gitignore133971803615651013 0
+64C:\Users\d1sa_\Documents\Projects\Okna\d1sa.github.io\.gitignore133971804963803240 0
 75C:\Users\d1sa_\Documents\Projects\Okna\d1sa.github.io\node_modules\escalade133971773573557199 1
 107C:\Users\d1sa_\Documents\Projects\Okna\d1sa.github.io\node_modules\lightningcss-win32-x64-msvc\package.json133971773571560634 0
 102C:\Users\d1sa_\Documents\Projects\Okna\d1sa.github.io\node_modules\caniuse-lite\data\features\http3.js133971773579954301 0
@@ -41,7 +41,7 @@
 80C:\Users\d1sa_\Documents\Projects\Okna\d1sa.github.io\src\styles\_functions.scss133971771781992482 0
 98C:\Users\d1sa_\Documents\Projects\Okna\d1sa.github.io\node_modules\weak-lru-cache\rollup.config.js133971773572698137 0
 110C:\Users\d1sa_\Documents\Projects\Okna\d1sa.github.io\node_modules\caniuse-lite\data\features\web-animation.js133971773582955620 0
-58C:\Users\d1sa_\Documents\Projects\Okna\d1sa.github.io\dist133971804494851308 1
+58C:\Users\d1sa_\Documents\Projects\Okna\d1sa.github.io\dist133971805087202964 1
 107C:\Users\d1sa_\Documents\Projects\Okna\d1sa.github.io\node_modules\caniuse-lite\data\features\pdf-viewer.js133971773581498648 0
 96C:\Users\d1sa_\Documents\Projects\Okna\d1sa.github.io\node_modules\@parcel\profiler\src\types.js133971773574021665 0
 76C:\Users\d1sa_\Documents\Projects\Okna\d1sa.github.io\node_modules\is-number133971773572144420 1
@@ -2856,7 +2856,7 @@
 100C:\Users\d1sa_\Documents\Projects\Okna\d1sa.github.io\node_modules\caniuse-lite\data\features\aac.js133971773571793643 0
 103C:\Users\d1sa_\Documents\Projects\Okna\d1sa.github.io\node_modules\caniuse-lite\data\features\stream.js133971773582213997 0
 112C:\Users\d1sa_\Documents\Projects\Okna\d1sa.github.io\node_modules\caniuse-lite\data\features\abortcontroller.js133971773572167883 0
-90C:\Users\d1sa_\Documents\Projects\Okna\d1sa.github.io\dist\d1sa.github.io.cc7f786e.css.map133971804494851308 0
+90C:\Users\d1sa_\Documents\Projects\Okna\d1sa.github.io\dist\d1sa.github.io.cc7f786e.css.map133971805087192461 0
 87C:\Users\d1sa_\Documents\Projects\Okna\d1sa.github.io\node_modules\ansi-regex\readme.md133971782123380521 0
 104C:\Users\d1sa_\Documents\Projects\Okna\d1sa.github.io\node_modules\caniuse-lite\data\features\ac3-ec3.js133971773572494722 0
 117C:\Users\d1sa_\Documents\Projects\Okna\d1sa.github.io\node_modules\caniuse-lite\data\features\alternate-stylesheet.js133971773574902573 0
@@ -4749,5 +4749,5 @@
 82C:\Users\d1sa_\Documents\Projects\Okna\d1sa.github.io\node_modules\.bin\rimraf.cmd133971782125090871 0
 76C:\Users\d1sa_\Documents\Projects\Okna\d1sa.github.io\node_modules\.bin\sass133971773583679759 0
 98C:\Users\d1sa_\Documents\Projects\Okna\d1sa.github.io\node_modules\.bin\update-browserslist-db.ps1133971773583699764 0
-86C:\Users\d1sa_\Documents\Projects\Okna\d1sa.github.io\dist\d1sa.github.io.cc7f786e.css133971804494777603 0
-69C:\Users\d1sa_\Documents\Projects\Okna\d1sa.github.io\dist\index.html133971804494777603 0
+86C:\Users\d1sa_\Documents\Projects\Okna\d1sa.github.io\dist\d1sa.github.io.cc7f786e.css133971805087132287 0
+69C:\Users\d1sa_\Documents\Projects\Okna\d1sa.github.io\dist\index.html133971805087122190 0
