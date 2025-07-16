@@ -7,8 +7,8 @@ pnpm-debug.log*
 
 # Build outputs
 # dist/
+# *.map
 .parcel-cache/
-*.map
 
 # Environment variables
 .env
@@ -86,7 +86,7 @@ jspm_packages/
 
 # Nuxt.js build / generate output
 .nuxt
-dist
+#dist
 
 # Gatsby files
 .cache/
