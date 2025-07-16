@@ -1,0 +1,56 @@
+{
+  "name": "okna-na-veka-website",
+  "version": "1.0.0",
+  "description": "Website for windows installation company in Kaluga",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npm-run-all --parallel dev:*",
+    "dev:sass": "sass --watch src/scss/main.scss:dist/css/style.css --style=expanded --source-map",
+    "dev:serve": "python3 -m http.server 3000",
+    "build": "npm-run-all build:*",
+    "build:sass": "sass src/scss/main.scss:dist/css/style.css --style=compressed --no-source-map",
+    "build:optimize": "npm run optimize:css",
+    "build:prod": "bash scripts/build.sh",
+    "optimize:css": "postcss dist/css/style.css --use autoprefixer cssnano --output dist/css/style.min.css",
+    "lint": "npm-run-all lint:*",
+    "lint:scss": "stylelint 'src/scss/**/*.scss' --fix",
+    "lint:html": "echo 'HTML linting not configured'",
+    "format": "npm-run-all format:*",
+    "format:scss": "prettier --write 'src/scss/**/*.scss'",
+    "format:html": "prettier --write '*.html'",
+    "clean": "rimraf dist/css/*",
+    "watch": "npm run dev:sass",
+    "start": "bash scripts/dev.sh",
+    "test": "npm run lint && npm run build",
+    "validate": "npm run lint && npm run build && echo 'All checks passed!'"
+  },
+  "keywords": [
+    "windows",
+    "installation",
+    "kaluga",
+    "pvc",
+    "veka",
+    "rehau",
+    "whs"
+  ],
+  "author": "Denis Tockiy",
+  "license": "MIT",
+  "devDependencies": {
+    "sass": "^1.69.5",
+    "postcss": "^8.4.32",
+    "postcss-cli": "^11.0.0",
+    "autoprefixer": "^10.4.16",
+    "cssnano": "^6.0.1",
+    "npm-run-all": "^4.1.5",
+    "stylelint": "^15.11.0",
+    "stylelint-config-standard-scss": "^11.1.0",
+    "stylelint-order": "^6.0.3",
+    "prettier": "^3.1.0",
+    "rimraf": "^5.0.5"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
