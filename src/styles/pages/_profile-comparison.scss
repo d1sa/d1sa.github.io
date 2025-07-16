@@ -1,0 +1,204 @@
+// ==========================================================================
+// Profile Comparison Section
+// ==========================================================================
+
+.profile-comparison-section {
+  background: $color-bg-primary;
+  @include section-spacing;
+
+  @include mobile {
+    padding: $spacing-4xl 0;
+  }
+}
+
+.profile-comparison-content {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: $spacing-2xl 0 $spacing-7xl 0;
+  @include flex-column;
+  gap: $spacing-5xl;
+
+  @include mobile {
+    padding: $spacing-xl 0 $spacing-4xl 0;
+    gap: $spacing-3xl;
+  }
+}
+
+.section-header {
+  @include flex-column;
+  align-items: center;
+  gap: $spacing-md;
+  text-align: center;
+}
+
+.profile-title {
+  font-family: $font-family-secondary;
+  font-size: $font-size-4xl;
+  font-weight: $font-weight-bold;
+  line-height: 130%;
+  color: $color-text-primary;
+  margin: 0;
+
+  @include mobile {
+    font-size: $font-size-3xl;
+  }
+}
+
+.profile-subtitle {
+  max-width: 849px;
+  font-family: $font-family-secondary;
+  font-size: $font-size-base;
+  font-weight: $font-weight-normal;
+  line-height: $line-height-spacious;
+  color: $color-text-primary;
+  margin: 0;
+}
+
+// Profile Cards
+// ==========================================================================
+.profile-cards {
+  display: flex;
+  gap: $spacing-2xl;
+  align-items: flex-start;
+
+  @include tablet {
+    flex-direction: column;
+    gap: $spacing-3xl;
+  }
+}
+
+.profile-card {
+  flex: 1;
+  @include flex-column;
+  gap: $spacing-sm;
+  padding-top: $spacing-lg;
+
+  @include tablet {
+    align-items: center;
+    text-align: center;
+  }
+}
+
+.profile-image-container {
+  position: relative;
+  height: 260px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: $spacing-lg;
+}
+
+.profile-shadow {
+  position: absolute;
+  width: 350px;
+  height: 205px;
+  background: radial-gradient(
+    28.67% 93.98% at 45.61% 94.22%,
+    #000 15.58%,
+    rgba(0, 0, 0, 0) 73.29%
+  );
+  transform: rotate(-1.666deg);
+  filter: blur(50px);
+  opacity: 0.3;
+  z-index: 0;
+}
+
+.profile-window {
+  position: relative;
+  width: 265px;
+  height: 265px;
+  object-fit: contain;
+  z-index: 1;
+}
+
+.profile-logo {
+  position: absolute;
+  z-index: 2;
+
+  &.veka-logo {
+    left: 9px;
+    top: 11px;
+    width: 60px;
+    height: 60px;
+  }
+
+  &.rehau-logo {
+    left: 12px;
+    top: 18px;
+    width: 83px;
+    height: 27px;
+  }
+
+  &:not(.veka-logo):not(.rehau-logo) {
+    left: 0px;
+    top: 15px;
+    width: 99px;
+    height: 41px;
+  }
+}
+
+.profile-card-title {
+  font-family: $font-family-secondary;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-normal;
+  line-height: 133.333%;
+  color: $color-text-primary;
+  margin: 0;
+}
+
+// Comparison Table
+// ==========================================================================
+.comparison-table {
+  @include flex-column;
+}
+
+.table-row {
+  @include table-row;
+
+  @include mobile {
+    flex-direction: column;
+    gap: $spacing-sm;
+  }
+}
+
+.table-label {
+  flex: 1;
+  color: $color-text-secondary;
+  font-family: $font-family-secondary;
+  font-size: $font-size-md;
+  font-weight: $font-weight-normal;
+  line-height: 114.286%;
+
+  @include mobile {
+    font-weight: $font-weight-medium;
+    color: $color-text-primary;
+  }
+}
+
+.table-cell {
+  flex: 1;
+  color: $color-text-primary;
+  font-family: $font-family-secondary;
+  font-size: $font-size-base;
+  font-weight: $font-weight-normal;
+  line-height: $line-height-spacious;
+}
+
+.table-actions {
+  display: flex;
+  gap: $spacing-2xl;
+  padding: $spacing-lg 0;
+
+  .btn {
+    flex: 1;
+  }
+
+  @include mobile {
+    flex-direction: column;
+    gap: $spacing-md;
+
+    .btn-outline {
+      min-width: 100%;
+    }
+  }
+}

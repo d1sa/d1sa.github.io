@@ -2,17 +2,13 @@
   "name": "okna-na-veka-website",
   "version": "1.0.0",
   "description": "Website for windows installation company in Kaluga",
-  "main": "index.html",
   "source": "src/index.html",
   "scripts": {
-    "dev": "parcel src/index.html --port 3000",
-    "build": "parcel build src/index.html --dist-dir dist --public-url ./",
-    "preview": "parcel serve dist --port 3000",
+    "dev": "parcel",
+    "build": "parcel build",
+    "preview": "parcel serve dist",
     "clean": "rm -rf dist .parcel-cache",
-    "start": "npm run dev",
-    "lint": "echo 'Linting not configured with Parcel'",
-    "format": "prettier --write 'src/**/*.{html,scss,css,js}'",
-    "test": "npm run build && echo 'Build test passed!'"
+    "start": "npm run dev"
   },
   "keywords": [
     "windows",
@@ -27,7 +23,6 @@
   "license": "MIT",
   "devDependencies": {
     "parcel": "^2.12.0",
-    "prettier": "^3.1.0",
     "@parcel/transformer-sass": "^2.12.0"
   },
   "browserslist": [

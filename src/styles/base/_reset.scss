@@ -1,0 +1,91 @@
+// ==========================================================================
+// Reset and base styles
+// ==========================================================================
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+  line-height: 1.5;
+  color: #000;
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Remove default button styles
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+// Remove default link styles
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+// Remove default list styles
+ul,
+ol {
+  list-style: none;
+}
+
+// Remove default form styles
+input,
+textarea,
+select {
+  font: inherit;
+  border: none;
+  outline: none;
+}
+
+// Images
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// SVG
+svg {
+  flex-shrink: 0;
+}
+
+// Tables
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+// Hidden elements
+[hidden] {
+  display: none !important;
+}
+
+// Focus styles
+:focus-visible {
+  outline: 2px solid #268ceb;
+  outline-offset: 2px;
+}

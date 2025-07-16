@@ -1,0 +1,53 @@
+// ==========================================================================
+// Advantages Section
+// ==========================================================================
+
+.advantages-section {
+  background: $color-bg-primary;
+  padding: $spacing-2xl 0 $spacing-7xl 0;
+}
+
+.advantages-card {
+  background: $color-bg-secondary;
+  border-radius: $border-radius-xl;
+  padding: $spacing-3xl;
+  @include flex-column;
+  gap: $spacing-6xl;
+}
+
+.section-title {
+  @include text-heading($font-size-2xl, $font-weight-medium);
+  line-height: $line-height-base;
+  max-width: 849px;
+}
+
+.advantages-grid {
+  @include grid(4, 250px);
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.advantage {
+  @include flex-column;
+  gap: $spacing-lg;
+  padding-right: $spacing-2xl;
+
+  @include tablet {
+    padding-right: 0;
+  }
+
+  &-icon {
+    @include icon-circle($spacing-6xl, $color-bg-primary);
+  }
+
+  p {
+    @include text-body;
+    max-width: 308px;
+  }
+}
