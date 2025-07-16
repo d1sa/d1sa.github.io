@@ -31,21 +31,10 @@ $color-blue-accent: #009adc;
 
 // Typography
 // ==========================================================================
-$font-family-primary:
-  "Inter",
-  -apple-system,
-  BlinkMacSystemFont,
-  "Segoe UI",
-  Roboto,
-  Helvetica,
-  Arial,
-  sans-serif;
-$font-family-secondary:
-  "Geologica",
-  -apple-system,
-  Roboto,
-  Helvetica,
-  sans-serif;
+$font-family-primary: "Geologica", -apple-system, BlinkMacSystemFont, "Segoe UI",
+  Roboto, Helvetica, Arial, sans-serif;
+$font-family-secondary: "Geologica", -apple-system, BlinkMacSystemFont,
+  "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
 $font-size-base: 16px;
 $font-size-xs: 12px;

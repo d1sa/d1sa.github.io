@@ -2,6 +2,9 @@
 // Header
 // ==========================================================================
 
+@use "../mixins" as *;
+@use "../variables" as *;
+
 .header {
   &-top {
     background: $color-bg-primary;

@@ -5,25 +5,22 @@
   "source": "src/index.html",
   "scripts": {
     "dev": "parcel --port 3000",
-    "build": "parcel build",
-    "preview": "parcel serve dist",
-    "clean": "rm -rf dist .parcel-cache",
+    "build": "rimraf dist && parcel build",
+    "preview": "parcel preview",
+    "clean": "rimraf dist .parcel-cache",
+    "clean:all": "rimraf dist .parcel-cache node_modules",
     "start": "npm run dev"
   },
   "keywords": [
-    "windows",
-    "installation",
-    "kaluga",
-    "pvc",
-    "veka",
-    "rehau",
-    "whs"
+    "oknanaveka",
+    "kaluga"
   ],
   "author": "Denis Tockiy",
   "license": "MIT",
   "devDependencies": {
-    "parcel": "^2.12.0",
-    "@parcel/transformer-sass": "^2.12.0"
+    "@parcel/transformer-sass": "^2.15.4",
+    "parcel": "^2.15.4",
+    "rimraf": "^5.0.5"
   },
   "browserslist": [
     "> 1%",

@@ -2,6 +2,9 @@
 // Advantages Section
 // ==========================================================================
 
+@use "../mixins" as *;
+@use "../variables" as *;
+
 .advantages-section {
   background: $color-bg-primary;
   padding: $spacing-2xl 0 $spacing-7xl 0;

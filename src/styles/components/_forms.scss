@@ -2,6 +2,9 @@
 // Forms
 // ==========================================================================
 
+@use "../mixins" as *;
+@use "../variables" as *;
+
 .contact-form {
   @include flex-column;
   gap: $spacing-lg;

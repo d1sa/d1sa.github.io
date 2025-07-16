@@ -2,6 +2,9 @@
 // Hero Section
 // ==========================================================================
 
+@use "../mixins" as *;
+@use "../variables" as *;
+
 .hero-section {
   background: $color-bg-primary;
   @include section-spacing;

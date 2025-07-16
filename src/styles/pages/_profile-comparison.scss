@@ -2,6 +2,9 @@
 // Profile Comparison Section
 // ==========================================================================
 
+@use "../mixins" as *;
+@use "../variables" as *;
+
 .profile-comparison-section {
   background: $color-bg-primary;
   @include section-spacing;

@@ -2,27 +2,25 @@
 // Main SCSS File - Simplified for Parcel
 // ==========================================================================
 
-// 1. Abstracts (must be first to make variables and mixins available)
-@import "abstracts/functions";
-@import "abstracts/variables";
-@import "abstracts/mixins";
-
-// 2. Base
-@import "base/reset";
-@import "base/typography";
+// 1. base (must be first to make variables and mixins available)
+@use "functions" as *;
+@use "variables" as *;
+@use "mixins" as *;
+@use "reset" as *;
+@use "typography" as *;
 
 // 3. Layout
-@import "layout/container";
-@import "layout/header";
-@import "layout/footer";
+@use "layout/container" as *;
 
 // 4. Components
-@import "components/buttons";
-@import "components/forms";
+@use "components/buttons" as *;
+@use "components/forms" as *;
+@use "components/header" as *;
+@use "components/footer" as *;
 
 // 5. Pages
-@import "pages/hero";
-@import "pages/advantages";
-@import "pages/profile-comparison";
-@import "pages/services";
-@import "pages/services-2";
+@use "pages/hero" as *;
+@use "pages/advantages" as *;
+@use "pages/profile-comparison" as *;
+@use "pages/services" as *;
+@use "pages/services-2" as *;
