@@ -4,7 +4,7 @@
   "description": "Website for windows installation company in Kaluga",
   "source": "src/index.html",
   "scripts": {
-    "dev": "parcel",
+    "dev": "parcel --port 3000",
     "build": "parcel build",
     "preview": "parcel serve dist",
     "clean": "rm -rf dist .parcel-cache",
