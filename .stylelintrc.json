@@ -1,0 +1,47 @@
+{
+  "extends": ["stylelint-config-standard-scss"],
+  "plugins": ["stylelint-order"],
+  "rules": {
+    "order/properties-alphabetical-order": true,
+    "scss/at-rule-no-unknown": null,
+    "scss/dollar-variable-pattern": "^[a-z][a-zA-Z0-9-]*$",
+    "scss/percent-placeholder-pattern": "^[a-z][a-zA-Z0-9-]*$",
+    "selector-class-pattern": "^[a-z][a-zA-Z0-9-]*(__[a-zA-Z0-9-]+)?(--[a-zA-Z0-9-]+)?$",
+    "function-no-unknown": [
+      true,
+      {
+        "ignoreFunctions": [
+          "rem",
+          "em",
+          "color-alpha",
+          "strip-unit",
+          "fluid-type"
+        ]
+      }
+    ],
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": [
+          "use",
+          "forward",
+          "include",
+          "mixin",
+          "function",
+          "return",
+          "if",
+          "else",
+          "each",
+          "for",
+          "while"
+        ]
+      }
+    ],
+    "scss/at-if-no-null": null,
+    "scss/at-mixin-pattern": "^[a-z][a-zA-Z0-9-]*$",
+    "scss/at-function-pattern": "^[a-z][a-zA-Z0-9-]*$",
+    "color-function-notation": "modern",
+    "alpha-value-notation": "number"
+  },
+  "ignoreFiles": ["dist/**/*", "node_modules/**/*"]
+}
