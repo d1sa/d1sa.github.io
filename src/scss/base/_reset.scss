@@ -16,10 +16,18 @@ html {
 }
 
 body {
-  font-family: $font-family-primary;
-  line-height: $line-height-spacious;
-  color: $color-text-primary;
-  background: $color-bg-primary;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+  line-height: 1.5;
+  color: #000;
+  background: #fff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
