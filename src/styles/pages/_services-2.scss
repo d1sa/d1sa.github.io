@@ -1,0 +1,142 @@
+// ==========================================================================
+// Services Section 2 - Based on Figma Design
+// ==========================================================================
+
+.services-section-2 {
+  padding: 24px 0 64px;
+  font-family:
+    "Geologica",
+    -apple-system,
+    "Roboto",
+    "Helvetica",
+    sans-serif;
+}
+
+.services-title-2 {
+  max-width: 849px;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text-text-1, #000);
+  margin-bottom: 48px;
+
+  @media (max-width: 768px) {
+    font-size: 32px;
+    margin-bottom: 32px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 28px;
+    margin-bottom: 24px;
+  }
+}
+
+.services-grid-2 {
+  display: grid;
+  height: 530px;
+  grid-template-rows: repeat(8, minmax(0, 1fr));
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 16px;
+  border-radius: 30px;
+  max-width: 1128px;
+
+  @media (max-width: 1200px) {
+    max-width: 100%;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    height: auto;
+    gap: 12px;
+  }
+}
+
+.service-card-2 {
+  background: var(--surface-secondary, #f2f5fa);
+  border-radius: 12px;
+  padding: 24px;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 28px;
+  color: var(--text-text-1, #000);
+  display: flex;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+    line-height: 24px;
+    padding: 20px;
+    grid-column: 1 !important;
+    grid-row: auto !important;
+    height: auto !important;
+    align-items: center !important;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+    line-height: 22px;
+    padding: 16px;
+  }
+}
+
+// Правая высокая карточка (Установка окон)
+.service-card-2--large-right {
+  grid-row: 1 / span 8;
+  grid-column: 9 / span 4;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+
+  div {
+    max-width: 320px;
+    align-self: stretch;
+  }
+}
+
+// Верхняя широкая карточка (Остекление балконов)
+.service-card-2--wide-top {
+  grid-row: 1 / span 4;
+  grid-column: 1 / span 8;
+  align-items: flex-start;
+  gap: 10px;
+
+  div {
+    max-width: 320px;
+    flex: 1 0 0;
+  }
+}
+
+// Нижняя левая карточка (Утепление лоджий)
+.service-card-2--small-bottom-left {
+  grid-row: 5 / span 4;
+  grid-column: 1 / span 4;
+  align-items: flex-start;
+  gap: 10px;
+
+  div {
+    max-width: 320px;
+    flex: 1 0 0;
+  }
+}
+
+// Нижняя центральная карточка (Отделка балкона)
+.service-card-2--medium-bottom-center {
+  grid-row: 5 / span 4;
+  grid-column: 5 / span 4;
+  align-items: flex-end;
+  gap: 10px;
+
+  div {
+    max-width: 320px;
+    flex: 1 0 0;
+  }
+}
