@@ -437,6 +437,275 @@ body {
   max-width: 308px;
 }
 
+/* Profile Comparison Section */
+.profile-comparison-section {
+  background: #fff;
+  padding: 64px 0;
+}
+
+.profile-comparison-content {
+  max-width: 1128px;
+  margin: 0 auto;
+  padding: 24px 0 64px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.section-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.profile-title {
+  font-family:
+    "Geologica",
+    -apple-system,
+    Roboto,
+    Helvetica,
+    sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 130%;
+  color: #000;
+  margin: 0;
+}
+
+.profile-subtitle {
+  max-width: 849px;
+  font-family:
+    "Geologica",
+    -apple-system,
+    Roboto,
+    Helvetica,
+    sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
+  color: #000;
+  margin: 0;
+}
+
+.profile-cards {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.profile-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 16px;
+}
+
+.profile-image-container {
+  position: relative;
+  height: 260px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.profile-shadow {
+  position: absolute;
+  width: 350px;
+  height: 205px;
+  background: radial-gradient(
+    28.67% 93.98% at 45.61% 94.22%,
+    #000 15.58%,
+    rgba(0, 0, 0, 0) 73.29%
+  );
+  transform: rotate(-1.666deg);
+  filter: blur(50px);
+  opacity: 0.3;
+  z-index: 0;
+}
+
+.profile-window {
+  position: relative;
+  width: 265px;
+  height: 265px;
+  object-fit: contain;
+  z-index: 1;
+}
+
+.profile-logo {
+  position: absolute;
+  z-index: 2;
+}
+
+.profile-logo.veka-logo {
+  left: 9px;
+  top: 11px;
+  width: 60px;
+  height: 60px;
+}
+
+.profile-logo.rehau-logo {
+  left: 12px;
+  top: 18px;
+  width: 83px;
+  height: 27px;
+}
+
+.profile-logo:not(.veka-logo):not(.rehau-logo) {
+  left: 0px;
+  top: 15px;
+  width: 99px;
+  height: 41px;
+}
+
+.profile-card-title {
+  font-family:
+    "Geologica",
+    -apple-system,
+    Roboto,
+    Helvetica,
+    sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 133.333%;
+  color: #000;
+  margin: 0;
+}
+
+.comparison-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.table-row {
+  display: flex;
+  padding: 16px 0;
+  gap: 24px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.table-label {
+  flex: 1;
+  color: rgba(0, 0, 0, 0.5);
+  font-family:
+    "Geologica",
+    -apple-system,
+    Roboto,
+    Helvetica,
+    sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 114.286%;
+}
+
+.table-cell {
+  flex: 1;
+  color: #000;
+  font-family:
+    "Geologica",
+    -apple-system,
+    Roboto,
+    Helvetica,
+    sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
+}
+
+.table-actions {
+  display: flex;
+  gap: 24px;
+  padding: 16px 0;
+}
+
+.table-actions .btn {
+  flex: 1;
+}
+
+.btn-outline {
+  background: #fff;
+  color: #000;
+  border: 1px solid #bac6d9;
+  min-width: 180px;
+  height: 52px;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-family:
+    "Geologica",
+    -apple-system,
+    Roboto,
+    Helvetica,
+    sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-outline:hover {
+  background: #f2f5fa;
+  border-color: #268ceb;
+}
+
+/* Responsive Design for Profile Comparison */
+@media (max-width: 991px) {
+  .profile-title {
+    font-size: 32px;
+  }
+
+  .profile-cards {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .profile-card {
+    align-items: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-comparison-section {
+    padding: 40px 0;
+  }
+
+  .profile-comparison-content {
+    padding: 20px 0 40px 0;
+    gap: 32px;
+  }
+
+  .profile-title {
+    font-size: 28px;
+  }
+
+  .table-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .table-label {
+    font-weight: 500;
+    color: #000;
+  }
+
+  .table-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .btn-outline {
+    min-width: 100%;
+  }
+}
+
 /* Footer */
 .footer {
   background: #f2f5fa;
