@@ -1,0 +1,24 @@
+// ==========================================================================
+// Main SCSS File
+// ==========================================================================
+
+// 1. Abstracts
+@use "abstracts" as *;
+
+// 2. Base
+@use "base";
+
+// 3. Layout
+@use "layout";
+
+// 4. Components
+@use "components";
+
+// 5. Pages
+@use "pages";
+
+// 6. Utilities (if needed)
+// @use 'utilities';
+
+// 7. Vendors (third-party libraries)
+// @use 'vendors';
