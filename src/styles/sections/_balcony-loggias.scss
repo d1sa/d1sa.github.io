@@ -1,0 +1,563 @@
+// ==========================================================================
+// Balcony and Loggias Section
+// ==========================================================================
+
+@use "../variables" as *;
+
+.balcony-loggias-section {
+  padding: $spacing-5xl 0 $spacing-7xl;
+  background: $color-bg-primary;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xl;
+  }
+
+  // Block 1: Header with title and images
+  .section-header-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-5xl;
+
+    .section-title {
+      font-family: $font-family-primary;
+      font-size: $font-size-4xl;
+      font-weight: $font-weight-bold;
+      line-height: $line-height-loose;
+      color: $color-text-primary;
+      text-align: center;
+      margin: 0;
+      max-width: 100%;
+    }
+
+    .images-grid {
+      display: flex;
+      height: 360px;
+      align-items: center;
+      gap: $spacing-sm;
+      align-self: stretch;
+      border-radius: $border-radius-xl;
+
+      .image-placeholder {
+        flex: 1;
+        height: 100%;
+        border-radius: $border-radius-md;
+        background: $color-bg-secondary;
+      }
+    }
+  }
+
+  // Block 2: Loggias block
+  .loggias-block {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-5xl;
+    padding: $spacing-7xl 0;
+
+    .content-section {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: $spacing-4xl;
+
+      .block-title {
+        font-family: $font-family-primary;
+        font-size: $font-size-4xl;
+        font-weight: $font-weight-bold;
+        line-height: $line-height-loose;
+        color: $color-text-primary;
+        margin: 0;
+
+        .highlight {
+          color: $color-primary;
+        }
+      }
+
+      .features-list {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: $spacing-sm;
+        align-self: stretch;
+        padding-right: $spacing-4xl;
+
+        .feature-item {
+          display: flex;
+          align-items: flex-start;
+          gap: $spacing-md;
+          align-self: stretch;
+
+          .check-icon {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+          }
+
+          .feature-text {
+            flex: 1;
+            font-family: $font-family-primary;
+            font-size: $font-size-base;
+            font-weight: $font-weight-light;
+            line-height: $line-height-spacious;
+            color: $color-text-primary;
+            margin: 0;
+          }
+        }
+      }
+    }
+
+    .form-card {
+      display: flex;
+      height: 536px;
+      padding: $spacing-lg;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      flex: 1;
+      border-radius: $border-radius-xl;
+      background: $color-bg-secondary;
+
+      .card-inner {
+        display: flex;
+        padding: $spacing-3xl;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: $spacing-3xl;
+        align-self: stretch;
+        border-radius: $border-radius-lg;
+        background:
+          linear-gradient(0deg, $color-bg-primary 0%, $color-bg-primary 100%),
+          $color-bg-secondary;
+
+        .primary-button {
+          display: flex;
+          height: 72px;
+          min-width: 240px;
+          padding: $spacing-lg $spacing-3xl;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 4px;
+          align-self: stretch;
+          border-radius: $border-radius-md;
+          background: $color-primary;
+          border: none;
+          cursor: pointer;
+          transition: $transition-base;
+
+          &:hover {
+            background: $color-primary-hover;
+          }
+
+          .button-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            .button-text {
+              color: $color-text-white;
+              font-family: $font-family-primary;
+              font-size: $font-size-base;
+              font-weight: $font-weight-medium;
+              line-height: $line-height-spacious;
+            }
+
+            .button-icon {
+              width: 24px;
+              height: 24px;
+            }
+          }
+        }
+
+        .advantage-items {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: $spacing-md;
+          align-self: stretch;
+
+          .advantage-item {
+            display: flex;
+            align-items: center;
+            gap: $spacing-lg;
+            align-self: stretch;
+
+            .icon-circle {
+              display: flex;
+              padding: $spacing-sm;
+              align-items: center;
+              gap: 10px;
+              border-radius: 1000px;
+              background: $color-bg-primary;
+
+              .icon {
+                width: 32px;
+                height: 32px;
+              }
+            }
+
+            .advantage-text {
+              flex: 1;
+              font-family: $font-family-primary;
+              font-size: $font-size-base;
+              font-weight: $font-weight-light;
+              line-height: $line-height-spacious;
+              color: $color-text-primary;
+              margin: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Block 3: Verandas block
+  .verandas-block {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-5xl;
+    padding: $spacing-7xl 0;
+
+    .form-card {
+      display: flex;
+      height: 536px;
+      padding: $spacing-lg;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-start;
+      gap: 10px;
+      flex: 1;
+      border-radius: $border-radius-xl;
+      background: $color-bg-secondary;
+
+      .card-inner {
+        display: flex;
+        padding: $spacing-3xl;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: $spacing-3xl;
+        align-self: stretch;
+        border-radius: $border-radius-lg;
+        background:
+          linear-gradient(0deg, $color-bg-primary 0%, $color-bg-primary 100%),
+          $color-bg-secondary;
+
+        .primary-button {
+          display: flex;
+          height: 72px;
+          min-width: 240px;
+          padding: $spacing-lg $spacing-3xl;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 4px;
+          align-self: stretch;
+          border-radius: $border-radius-md;
+          background: $color-primary;
+          border: none;
+          cursor: pointer;
+          transition: $transition-base;
+
+          &:hover {
+            background: $color-primary-hover;
+          }
+
+          .button-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            .button-text {
+              color: $color-text-white;
+              font-family: $font-family-primary;
+              font-size: $font-size-base;
+              font-weight: $font-weight-medium;
+              line-height: $line-height-spacious;
+            }
+
+            .button-icon {
+              width: 24px;
+              height: 24px;
+            }
+          }
+        }
+      }
+    }
+
+    .content-section {
+      display: flex;
+      width: 551px;
+      height: 528px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: $spacing-4xl;
+      flex-shrink: 0;
+
+      .block-title {
+        align-self: stretch;
+        font-family: $font-family-primary;
+        font-size: $font-size-4xl;
+        font-weight: $font-weight-bold;
+        line-height: $line-height-loose;
+        color: $color-text-primary;
+        margin: 0;
+
+        .highlight {
+          color: $color-primary;
+        }
+      }
+
+      .features-list {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: $spacing-sm;
+        align-self: stretch;
+        padding-right: $spacing-4xl;
+
+        .feature-item {
+          display: flex;
+          align-items: flex-start;
+          gap: $spacing-md;
+          align-self: stretch;
+
+          .check-icon {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+          }
+
+          .feature-text {
+            flex: 1;
+            font-family: $font-family-primary;
+            font-size: $font-size-base;
+            font-weight: $font-weight-light;
+            line-height: $line-height-spacious;
+            color: $color-text-primary;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+
+  // Block 4: Order glazing CTA
+  .order-glazing-block {
+    display: flex;
+    max-width: $container-max-width;
+    padding: $spacing-7xl 0;
+    align-items: center;
+    gap: $spacing-2xl;
+    align-self: stretch;
+    border-radius: $border-radius-xl;
+
+    .content-section {
+      display: flex;
+      width: 552px;
+      padding: $spacing-3xl 0 $spacing-5xl;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+      gap: $spacing-5xl;
+
+      .section-header {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: $spacing-md;
+        align-self: stretch;
+
+        .section-tag {
+          align-self: stretch;
+          color: $color-primary;
+          font-family: $font-family-primary;
+          font-size: $font-size-sm;
+          font-weight: $font-weight-medium;
+          line-height: 16px;
+          letter-spacing: 1.3px;
+          text-transform: uppercase;
+        }
+
+        .section-title {
+          align-self: stretch;
+          color: $color-text-primary;
+          font-family: $font-family-primary;
+          font-size: $font-size-4xl;
+          font-weight: $font-weight-bold;
+          line-height: $line-height-loose;
+          margin: 0;
+        }
+
+        .section-subtitle {
+          align-self: stretch;
+          color: $color-text-primary;
+          font-family: $font-family-primary;
+          font-size: $font-size-base;
+          font-weight: $font-weight-light;
+          line-height: $line-height-spacious;
+          margin: 0;
+        }
+      }
+
+      .inner-content {
+        display: flex;
+        padding-right: $spacing-4xl;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: $spacing-3xl;
+        align-self: stretch;
+
+        .green-button {
+          display: flex;
+          height: 72px;
+          min-width: 240px;
+          padding: $spacing-lg $spacing-3xl;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 4px;
+          align-self: stretch;
+          border-radius: $border-radius-md;
+          background: $color-secondary;
+          border: none;
+          cursor: pointer;
+          transition: $transition-base;
+
+          &:hover {
+            background: $color-secondary-hover;
+          }
+
+          .button-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            .button-icon {
+              width: 24px;
+              height: 24px;
+            }
+
+            .button-text {
+              color: $color-text-white;
+              text-align: center;
+              font-family: $font-family-primary;
+              font-size: $font-size-base;
+              font-weight: $font-weight-medium;
+              line-height: $line-height-spacious;
+            }
+          }
+        }
+
+        .info-banner {
+          display: flex;
+          padding: $spacing-lg $spacing-xl;
+          align-items: center;
+          gap: $spacing-lg;
+          align-self: stretch;
+          border-radius: $border-radius-md;
+          background: #ebf3ff;
+
+          .banner-icon {
+            width: 40px;
+            height: 40px;
+          }
+
+          .banner-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            flex: 1;
+
+            .banner-title {
+              align-self: stretch;
+              color: $color-primary;
+              font-family: $font-family-primary;
+              font-size: $font-size-base;
+              font-weight: $font-weight-medium;
+              line-height: $line-height-spacious;
+              margin: 0;
+            }
+          }
+        }
+      }
+    }
+
+    .image-placeholder {
+      flex: 1;
+      align-self: stretch;
+      border-radius: $border-radius-md;
+      background: $color-bg-secondary;
+    }
+  }
+
+  // Responsive Design
+  @media (max-width: $breakpoint-lg) {
+    .loggias-block,
+    .verandas-block {
+      flex-direction: column;
+      gap: $spacing-3xl;
+
+      .content-section {
+        width: 100%;
+        height: auto;
+      }
+
+      .form-card {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    .order-glazing-block {
+      flex-direction: column;
+      gap: $spacing-3xl;
+
+      .content-section {
+        width: 100%;
+        align-items: flex-start;
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint-md) {
+    padding: $spacing-3xl 0;
+
+    .section-header-block {
+      gap: $spacing-3xl;
+
+      .section-title {
+        font-size: $font-size-3xl;
+      }
+
+      .images-grid {
+        height: 200px;
+        flex-direction: column;
+
+        .image-placeholder {
+          height: 100px;
+        }
+      }
+    }
+
+    .loggias-block,
+    .verandas-block {
+      padding: $spacing-3xl 0;
+
+      .content-section .block-title {
+        font-size: $font-size-3xl;
+      }
+    }
+
+    .order-glazing-block {
+      padding: $spacing-3xl 0;
+
+      .content-section .section-header .section-title {
+        font-size: $font-size-3xl;
+      }
+    }
+  }
+}
