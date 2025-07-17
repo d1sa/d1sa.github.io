@@ -2,8 +2,10 @@
 // Reviews Section
 // ==========================================================================
 
+@import "../variables";
+
 .reviews-section {
-  padding: $spacing-7xl 0;
+  padding: 64px 0;
   background: $color-bg-primary;
 
   .container {
