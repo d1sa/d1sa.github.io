@@ -1,0 +1,429 @@
+// ==========================================================================
+// Reviews Section
+// ==========================================================================
+
+.reviews-section {
+  padding: $spacing-7xl 0;
+  background: $color-bg-primary;
+
+  .container {
+    max-width: $container-max-width;
+    margin: 0 auto;
+    padding: 0 $container-padding;
+  }
+
+  // Reviews Content
+  .reviews-content {
+    margin-bottom: $spacing-8xl;
+
+    .section-header {
+      text-align: center;
+      margin-bottom: $spacing-5xl;
+
+      .section-title {
+        font-family: $font-family-primary;
+        font-size: $font-size-4xl;
+        font-weight: $font-weight-semibold;
+        line-height: $line-height-loose;
+        color: $color-text-primary;
+        margin: 0;
+        max-width: 849px;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  // Reviews Grid
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $grid-gutter;
+    align-items: flex-start;
+
+    @media (max-width: $breakpoint-lg) {
+      grid-template-columns: 1fr;
+      gap: $spacing-3xl;
+    }
+  }
+
+  // Review Card
+  .review-card {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+    padding-bottom: $spacing-sm;
+
+    .review-image-placeholder {
+      height: 360px;
+      background: $color-bg-secondary;
+      border-radius: $border-radius-md;
+      padding: $spacing-3xl;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: $spacing-lg;
+
+      @media (max-width: $breakpoint-md) {
+        height: 240px;
+        padding: $spacing-xl;
+      }
+    }
+
+    .review-bar {
+      display: flex;
+      align-items: center;
+      gap: $spacing-xl;
+      flex-wrap: wrap;
+
+      @media (max-width: $breakpoint-md) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: $spacing-lg;
+      }
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: $spacing-md;
+
+      .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: $color-bg-secondary;
+        flex-shrink: 0;
+      }
+
+      .user-details {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .user-label {
+          font-family: $font-family-primary;
+          font-size: $font-size-md;
+          font-weight: $font-weight-light;
+          line-height: 16px;
+          color: $color-text-secondary;
+          margin: 0;
+        }
+
+        .user-name {
+          font-family: $font-family-primary;
+          font-size: $font-size-base;
+          font-weight: $font-weight-light;
+          line-height: $line-height-spacious;
+          color: $color-text-primary;
+          margin: 0;
+        }
+      }
+    }
+
+    .review-meta {
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+      flex-wrap: wrap;
+
+      @media (max-width: $breakpoint-sm) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: $spacing-md;
+      }
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+
+      .meta-icon {
+        display: flex;
+        width: 40px;
+        height: 40px;
+        padding: 12px 0;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50px;
+        background: #ebf3ff;
+        flex-shrink: 0;
+
+        svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      .meta-details {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        .meta-label {
+          font-family: $font-family-primary;
+          font-size: $font-size-md;
+          font-weight: $font-weight-light;
+          line-height: 16px;
+          color: $color-text-secondary;
+          margin: 0;
+        }
+
+        .meta-value {
+          font-family: $font-family-primary;
+          font-size: $font-size-base;
+          font-weight: $font-weight-light;
+          line-height: $line-height-spacious;
+          color: $color-text-primary;
+          margin: 0;
+        }
+      }
+    }
+
+    .review-text {
+      display: flex;
+      padding: $spacing-sm $spacing-4xl $spacing-lg 52px;
+      justify-content: center;
+      align-items: flex-start;
+      gap: $spacing-md;
+      position: relative;
+
+      @media (max-width: $breakpoint-md) {
+        padding: $spacing-sm $spacing-xl $spacing-lg $spacing-3xl;
+      }
+
+      @media (max-width: $breakpoint-sm) {
+        padding: $spacing-sm $spacing-lg $spacing-lg $spacing-xl;
+      }
+
+      p {
+        flex: 1;
+        font-family: $font-family-primary;
+        font-size: $font-size-base;
+        font-weight: $font-weight-light;
+        line-height: $line-height-spacious;
+        color: $color-text-primary;
+        margin: 0;
+      }
+
+      .quote-icon {
+        position: absolute;
+        right: $spacing-md;
+        top: 10px;
+        flex-shrink: 0;
+
+        svg {
+          width: 24px;
+          height: 24px;
+        }
+
+        @media (max-width: $breakpoint-sm) {
+          position: static;
+          margin-top: $spacing-sm;
+        }
+      }
+    }
+  }
+
+  // Lead Form Section
+  .lead-form-section {
+    .section-header {
+      text-align: left;
+      margin-bottom: $spacing-6xl;
+
+      .section-title {
+        font-family: $font-family-primary;
+        font-size: $font-size-4xl;
+        font-weight: $font-weight-semibold;
+        line-height: $line-height-loose;
+        color: $color-text-primary;
+        margin: 0 0 $spacing-md 0;
+        max-width: 647px;
+
+        @media (max-width: $breakpoint-lg) {
+          font-size: $font-size-3xl;
+        }
+
+        @media (max-width: $breakpoint-md) {
+          font-size: $font-size-2xl;
+        }
+      }
+
+      .section-subtitle {
+        font-family: $font-family-primary;
+        font-size: $font-size-md;
+        font-weight: $font-weight-light;
+        line-height: $line-height-extra-spacious;
+        color: $color-text-primary;
+        margin: 0;
+        max-width: 712px;
+      }
+    }
+  }
+
+  // Review Lead Form
+  .review-lead-form {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xl;
+
+    .form-fields {
+      display: flex;
+      align-items: flex-end;
+      gap: $spacing-2xl;
+      padding: $spacing-4xl;
+      border-radius: $border-radius-xl;
+      border: 1px solid $color-border-table;
+      background: $color-bg-primary;
+
+      @media (max-width: $breakpoint-lg) {
+        flex-direction: column;
+        align-items: stretch;
+        gap: $spacing-xl;
+        padding: $spacing-3xl;
+      }
+
+      @media (max-width: $breakpoint-md) {
+        padding: $spacing-2xl;
+      }
+    }
+
+    .form-input {
+      display: flex;
+      height: 72px;
+      padding: $spacing-lg;
+      align-items: center;
+      gap: $spacing-md;
+      flex: 1;
+      border-radius: $border-radius-md;
+      background: #e8edf4;
+      border: none;
+      font-family: $font-family-primary;
+      font-size: $font-size-base;
+      font-weight: $font-weight-light;
+      line-height: $line-height-spacious;
+      color: $color-text-primary;
+      transition: $transition-base;
+
+      &::placeholder {
+        color: $color-text-secondary;
+      }
+
+      &:focus {
+        outline: none;
+        background: #dde4ed;
+        box-shadow: 0 0 0 2px rgba($color-primary, 0.2);
+      }
+
+      &.error {
+        border-color: #ff4444;
+        background: #ffebeb;
+      }
+
+      @media (max-width: $breakpoint-lg) {
+        height: 56px;
+        padding: $spacing-md;
+      }
+    }
+
+    .submit-button {
+      display: flex;
+      height: 72px;
+      min-width: 220px;
+      padding: $spacing-lg $spacing-3xl;
+      justify-content: center;
+      align-items: center;
+      border-radius: $border-radius-md;
+      background: $color-accent;
+      border: none;
+      cursor: pointer;
+      transition: $transition-base;
+      font-family: $font-family-primary;
+      font-size: $font-size-base;
+      font-weight: $font-weight-medium;
+      line-height: $line-height-spacious;
+      color: $color-text-white;
+
+      &:hover {
+        background: $color-accent-hover;
+        transform: translateY(-1px);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+
+      &:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      @media (max-width: $breakpoint-lg) {
+        height: 56px;
+        min-width: 180px;
+        padding: $spacing-md $spacing-2xl;
+      }
+
+      @media (max-width: $breakpoint-md) {
+        width: 100%;
+      }
+    }
+
+    .form-disclaimer {
+      text-align: center;
+      font-family: $font-family-primary;
+      font-size: $font-size-xs;
+      font-weight: $font-weight-normal;
+      line-height: 1.2;
+      color: $color-text-secondary;
+      margin: 0;
+
+      .privacy-link {
+        color: $color-primary;
+        text-decoration: none;
+        transition: $transition-base;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  // Success Message
+  .success-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-lg;
+    padding: $spacing-4xl;
+    border-radius: $border-radius-xl;
+    border: 1px solid $color-border-table;
+    background: $color-bg-primary;
+    text-align: center;
+
+    .success-title {
+      font-family: $font-family-primary;
+      font-size: $font-size-xl;
+      font-weight: $font-weight-semibold;
+      line-height: $line-height-relaxed;
+      color: $color-secondary;
+      margin: 0;
+    }
+
+    .success-text {
+      font-family: $font-family-primary;
+      font-size: $font-size-base;
+      font-weight: $font-weight-light;
+      line-height: $line-height-spacious;
+      color: $color-text-primary;
+      margin: 0;
+      max-width: 500px;
+    }
+
+    @media (max-width: $breakpoint-md) {
+      padding: $spacing-3xl;
+    }
+  }
+}
