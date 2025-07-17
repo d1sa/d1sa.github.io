@@ -2,6 +2,8 @@
 // Balcony and Loggias Section
 // ==========================================================================
 
+@use "../variables" as *;
+
 .balcony-loggias-section {
   padding: $spacing-5xl 0 $spacing-7xl;
   background: $color-bg-primary;
