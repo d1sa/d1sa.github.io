@@ -13,6 +13,10 @@
 .glazing-balconies-content {
   @include flex-column;
   gap: $spacing-5xl;
+
+  @include mobile {
+    gap: $spacing-4xl;
+  }
 }
 
 .glazing-title {
