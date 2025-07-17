@@ -33,8 +33,20 @@
 .empty-image-placeholder {
   height: 512px;
   border-radius: $border-radius-sm;
-  background: $color-bg-secondary;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
   border: 2px dashed rgba(0, 0, 0, 0.1);
+  position: relative;
+
+  &::after {
+    content: "Здесь будет изображение";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(0, 0, 0, 0.3);
+    font-size: $font-size-sm;
+    font-weight: $font-weight-light;
+  }
 
   @include tablet {
     height: 300px;
