@@ -54,9 +54,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const phoneValue = phoneInput.value;
 
-    // Basic validation
-    if (phoneValue.length < 6 || !phoneValue.startsWith('+7')) {
-      alert('Пожалуйста, введите корректный номер телефона');
+    // Basic validation - check for proper phone format
+    const phoneDigits = phoneValue.replace(/[^\d]/g, '');
+    if (phoneDigits.length < 11 || !phoneValue.startsWith('+7')) {
+      phoneInput.style.borderColor = '#ff4444';
+      phoneInput.style.background = '#ffebeb';
+
+      // Reset error styling after 3 seconds
+      setTimeout(() => {
+        phoneInput.style.borderColor = '';
+        phoneInput.style.background = '#e8edf4';
+      }, 3000);
+
+      alert('Пожалуйста, введите корректный номер телефона (+7 и 10 цифр)');
       return;
     }
 
@@ -67,6 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Show loading state
     submitBtn.textContent = 'Отправка...';
     submitBtn.disabled = true;
+    submitBtn.style.opacity = '0.7';
 
     // Simulate API call delay
     setTimeout(() => {
@@ -77,6 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
       // Reset button state (in case user wants to submit again)
       submitBtn.textContent = originalText;
       submitBtn.disabled = false;
+      submitBtn.style.opacity = '1';
 
       // Optional: Reset form after showing success
       setTimeout(() => {
