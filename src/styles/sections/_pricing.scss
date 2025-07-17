@@ -2,6 +2,9 @@
 // Pricing Section
 // ==========================================================================
 
+@use "../variables" as *;
+@use "../mixins" as *;
+
 .pricing-section {
   padding: $spacing-2xl 0 $spacing-7xl 0;
 
