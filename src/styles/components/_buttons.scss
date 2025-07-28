@@ -5,6 +5,26 @@
 @use "../mixins" as *;
 @use "../variables" as *;
 
+// Button base
+// ==========================================================================
+@mixin btn-base {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  padding: $spacing-md $spacing-2xl;
+  border: none;
+  border-radius: $border-radius-sm;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  cursor: pointer;
+  transition: all $transition-base;
+  text-decoration: none;
+  min-width: 180px;
+  min-height: 52px;
+  user-select: none;
+}
+
 .btn {
   @include btn-base;
 
@@ -22,9 +42,9 @@
   &-blue {
     background: $color-primary;
     color: $color-text-white;
-    width: 364px;
-    padding: $spacing-lg $spacing-2xl;
-    border-radius: $border-radius-md;
+    // width: 364px;
+    // padding: $spacing-lg $spacing-2xl;
+    // border-radius: $border-radius-md;
 
     &:hover {
       background: $color-primary-hover;
@@ -49,7 +69,6 @@
     color: $color-text-primary;
     border: 1px solid $color-border-default;
     min-width: 180px;
-    height: 52px;
     padding: $spacing-md $spacing-2xl;
     border-radius: $border-radius-sm;
     font-family: $font-family-secondary;
@@ -67,7 +86,9 @@
 
   // Button modifiers
   // ==========================================================================
-  &-call {
+  &-xl {
+    padding: $spacing-lg $spacing-2xl;
+    border-radius: $border-radius-md;
     gap: $spacing-2xl;
   }
 }
@@ -98,4 +119,27 @@
   font-weight: $font-weight-semibold;
   color: $color-text-white;
   line-height: $line-height-normal;
+}
+
+// Contact phone button
+// ==========================================================================
+.contact-phone-button {
+  @include btn-base;
+
+  border: 1px solid $color-border-default;
+  border-radius: $border-radius-sm;
+  background: $color-bg-primary;
+}
+
+.phone-icon {
+  @include icon-circle(
+    28px,
+    linear-gradient(0deg, $color-primary 0%, $color-primary 100%)
+  );
+}
+
+.phone-number {
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  color: $color-text-primary;
 }

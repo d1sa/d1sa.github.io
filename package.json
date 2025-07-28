@@ -5,7 +5,12 @@
   "source": "src/index.html",
   "scripts": {
     "dev": "parcel --port 3000",
+    "dev:log": "parcel --port 3000 --log-level verbose",
+    "dev:clean": "npm run clean && npm run dev",
     "build": "rimraf dist && parcel build",
+    "build:dev": "rimraf dist && cross-env PARCEL_MINIFY=false parcel build",
+    "build:clean": "npm run clean && npm run build",
+    "build:force": "rimraf dist .parcel-cache && parcel build",
     "preview": "parcel preview",
     "clean": "rimraf dist .parcel-cache",
     "clean:all": "rimraf dist .parcel-cache node_modules",
@@ -18,9 +23,14 @@
   "author": "Denis Tockiy",
   "license": "MIT",
   "devDependencies": {
+    "@parcel/optimizer-htmlnano": "^2.15.4",
+    "@parcel/optimizer-terser": "^2.15.4",
+    "@parcel/transformer-raw": "^2.15.4",
     "@parcel/transformer-sass": "^2.15.4",
+    "cross-env": "^10.0.0",
     "parcel": "^2.15.4",
-    "rimraf": "^5.0.5"
+    "rimraf": "^5.0.5",
+    "svgo": "^3.3.2"
   },
   "browserslist": [
     "> 1%",

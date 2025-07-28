@@ -108,11 +108,11 @@ $transition-base: 0.3s ease;
 
 // Breakpoints
 // ==========================================================================
-$breakpoint-sm: 576px;
-$breakpoint-md: 768px;
-$breakpoint-lg: 991px;
-$breakpoint-xl: 1200px;
-$breakpoint-2xl: 1400px;
+$breakpoint-mobile: 576px; // mobile
+$breakpoint-tablet: 768px; // tablet
+$breakpoint-desktop: 991px; // desktop
+$breakpoint-desktop-l: 1200px; // large desktop
+$breakpoint-desktop-xl: 1400px; // extra large desktop
 
 // Z-index
 // ==========================================================================

@@ -10,6 +10,10 @@
   max-width: $container-max-width;
   margin: 0 auto;
   padding: 0 $container-padding;
+
+  @include large-desktop {
+    padding: 0 0;
+  }
 }
 
 // Flexbox utilities
@@ -39,24 +43,6 @@
   gap: $gap;
 }
 
-// Button base
-// ==========================================================================
-@mixin btn-base {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: $spacing-sm;
-  padding: $spacing-md $spacing-2xl;
-  border: none;
-  border-radius: $border-radius-sm;
-  font-size: $font-size-base;
-  font-weight: $font-weight-medium;
-  cursor: pointer;
-  transition: all $transition-base;
-  text-decoration: none;
-  min-width: 180px;
-}
-
 // Typography
 // ==========================================================================
 @mixin text-heading($size: $font-size-2xl, $weight: $font-weight-medium) {
@@ -83,47 +69,30 @@
 // Responsive breakpoints
 // ==========================================================================
 @mixin mobile {
-  @media (max-width: $breakpoint-md - 1px) {
+  @media (max-width: #{$breakpoint-tablet - 1px}) {
     @content;
   }
 }
 
 @mixin tablet {
-  @media (max-width: $breakpoint-lg - 1px) {
+  @media (max-width: #{$breakpoint-desktop - 1px}) {
     @content;
   }
 }
 
 @mixin desktop {
-  @media (min-width: $breakpoint-lg) {
+  @media (min-width: $breakpoint-desktop) {
     @content;
   }
 }
 
 @mixin large-desktop {
-  @media (min-width: $breakpoint-xl) {
+  @media (min-width: $breakpoint-desktop-l) {
     @content;
   }
 }
 
-// Form elements
-// ==========================================================================
-@mixin form-input {
-  width: 100%;
-  padding: $spacing-lg;
-  border: 2px solid $color-bg-primary;
-  border-radius: $border-radius-sm;
-  background: $color-bg-primary;
-  box-shadow: $shadow-form;
-  font-size: $font-size-base;
-  font-weight: $font-weight-light;
-  line-height: $line-height-spacious;
-  color: $color-text-primary;
-
-  &::placeholder {
-    color: $color-text-muted;
-  }
-}
+// Form elements moved to _inputs.scss
 
 // Icon circle
 // ==========================================================================

@@ -309,7 +309,7 @@
 }
 
 // Responsive Design
-@media (max-width: $breakpoint-lg) {
+@media (max-width: $breakpoint-desktop) {
   .pricing-section {
     padding: $spacing-lg 0 $spacing-4xl 0;
   }
@@ -343,7 +343,7 @@
   }
 }
 
-@media (max-width: $breakpoint-md) {
+@media (max-width: $breakpoint-tablet) {
   .pricing-header {
     .pricing-title {
       font-size: $font-size-2xl;
@@ -379,7 +379,7 @@
   }
 }
 
-@media (max-width: $breakpoint-sm) {
+@media (max-width: $breakpoint-mobile) {
   .pricing-card {
     width: 220px;
 

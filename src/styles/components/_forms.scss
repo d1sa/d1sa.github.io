@@ -12,14 +12,18 @@
   justify-content: flex-end;
 }
 
+// Unified form styles for all form types
+.lead-form,
+.review-lead-form {
+  @extend .contact-form;
+}
+
 .form-fields {
   @include flex-column;
   gap: $spacing-xs;
 }
 
-.form-input {
-  @include form-input;
-}
+// Form input styles are now in _inputs.scss
 
 .form-disclaimer {
   font-size: $font-size-xs;
@@ -103,4 +107,140 @@
   font-weight: $font-weight-medium;
   line-height: $line-height-relaxed;
   color: $color-text-primary;
+}
+
+// ==========================================================================
+// Modal System Styles
+// ==========================================================================
+
+// Modal overlay
+.modal-form {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+// Modal container
+.modal-container {
+  background: transparent;
+  border-radius: $border-radius-2xl;
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  transform: scale(0.8);
+  transition: transform 0.3s ease;
+
+  .modal-form.show & {
+    transform: scale(1);
+  }
+
+  // Modal uses the same form-content styles as regular forms
+  .form-content {
+    margin: 0; // Override any margin
+  }
+}
+
+// Modal close button (X)
+.modal-close-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  z-index: 10;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 2px;
+    background: $color-text-secondary;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  &::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  &:hover {
+    &::before,
+    &::after {
+      background: $color-text-primary;
+    }
+  }
+}
+
+// Error container for all forms
+.errorsContainer {
+  background: #ffebee;
+  border: 1px solid #f44336;
+  border-radius: $border-radius-sm;
+  padding: $spacing-md;
+  margin-bottom: $spacing-lg;
+
+  .errorItem {
+    color: #d32f2f;
+    font-size: $font-size-sm;
+    margin-bottom: $spacing-xs;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Success page adjustments for modal
+.modal-form .form-header {
+  text-align: center;
+
+  h3 {
+    margin-bottom: $spacing-md;
+  }
+
+  p {
+    margin-bottom: $spacing-xl;
+    color: $color-text-secondary;
+  }
+}
+
+// Modal close button
+.modal-close-button {
+  width: 100%;
+
+  &.btn {
+    margin-top: $spacing-lg;
+  }
+}
+
+// Responsive design for modals
+@include mobile {
+  .modal-container {
+    width: 95%;
+    margin: $spacing-lg;
+  }
+
+  .modal-form .form-content {
+    padding: $spacing-2xl;
+  }
 }

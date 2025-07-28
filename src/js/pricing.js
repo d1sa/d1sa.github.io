@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function () {
             title: 'Двухстворчатое окно',
             price: 'от 9 700 ₽',
             profile: 'VEKA Evroline 58',
-            chambers: '3 камеры, 58 м��',
+            chambers: '3 камеры, 58 мм',
           },
           {
             title: 'Трехстворчатое окно',

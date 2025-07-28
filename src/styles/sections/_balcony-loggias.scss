@@ -128,8 +128,11 @@
         gap: $spacing-3xl;
         align-self: stretch;
         border-radius: $border-radius-lg;
-        background:
-          linear-gradient(0deg, $color-bg-primary 0%, $color-bg-primary 100%),
+        background: linear-gradient(
+            0deg,
+            $color-bg-primary 0%,
+            $color-bg-primary 100%
+          ),
           $color-bg-secondary;
 
         .primary-button {
@@ -241,8 +244,11 @@
         gap: $spacing-3xl;
         align-self: stretch;
         border-radius: $border-radius-lg;
-        background:
-          linear-gradient(0deg, $color-bg-primary 0%, $color-bg-primary 100%),
+        background: linear-gradient(
+            0deg,
+            $color-bg-primary 0%,
+            $color-bg-primary 100%
+          ),
           $color-bg-secondary;
 
         .primary-button {
@@ -495,7 +501,7 @@
   }
 
   // Responsive Design
-  @media (max-width: $breakpoint-lg) {
+  @media (max-width: $breakpoint-desktop) {
     .loggias-block,
     .verandas-block {
       flex-direction: column;
@@ -523,7 +529,7 @@
     }
   }
 
-  @media (max-width: $breakpoint-md) {
+  @media (max-width: $breakpoint-tablet) {
     padding: $spacing-3xl 0;
 
     .section-header-block {
