@@ -7,10 +7,10 @@
 
 .hero-section {
   background: $color-bg-primary;
-  @include section-spacing;
+  padding: $spacing-8xl 0 $spacing-2xl;
 
   @include mobile {
-    padding: $spacing-4xl 0;
+    padding: $spacing-4xl 0 $spacing-2xl;
   }
 }
 

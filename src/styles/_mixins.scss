@@ -18,6 +18,13 @@
 
 // Flexbox utilities
 // ==========================================================================
+
+@mixin flex-start {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 @mixin flex-center {
   display: flex;
   align-items: center;
@@ -33,6 +40,11 @@
 @mixin flex-column {
   display: flex;
   flex-direction: column;
+}
+
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
 }
 
 // Grid utilities
@@ -88,6 +100,18 @@
 
 @mixin large-desktop {
   @media (min-width: $breakpoint-desktop-l) {
+    @content;
+  }
+}
+
+@mixin pre-large-desktop {
+  @media (max-width: $breakpoint-desktop-l) {
+    @content;
+  }
+}
+
+@mixin pre-xlarge-desktop {
+  @media (max-width: $breakpoint-desktop-xl) {
     @content;
   }
 }

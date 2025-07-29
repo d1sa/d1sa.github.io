@@ -2,6 +2,8 @@
 @use "../variables" as *;
 
 section {
+  overflow-x: hidden;
+
   .section-header {
     display: flex;
     flex-direction: column;
@@ -50,11 +52,5 @@ section {
     //   @include tablet {
     //     font-size: $font-size-xl;
     //   }
-  }
-}
-
-.main-content {
-  section {
-    margin-top: $spacing-7xl;
   }
 }

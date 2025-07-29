@@ -18,6 +18,15 @@ $color-text-muted: rgba(0, 0, 0, 0.6);
 $color-text-white: #fff;
 $color-text-white-muted: rgba(255, 255, 255, 0.7);
 
+// Gray scale colors
+$color-gray-100: #f3f4f6;
+$color-gray-200: #e5e7eb;
+$color-gray-300: #e5e7eb;
+$color-gray-400: #d1d5dc;
+$color-gray-500: #6b7280;
+$color-gray-700: #374151;
+$color-gray-800: #1f2937;
+
 $color-bg-primary: #fff;
 $color-bg-secondary: #f2f5fa;
 $color-bg-tertiary: #ebf3ff;
@@ -27,8 +36,19 @@ $color-border-light: #eaedf2;
 $color-border-default: #bac6d9;
 $color-border-table: rgba(0, 0, 0, 0.08);
 
+$color-input-solid: #e8edf4;
+$color-input-solid-hover: #d8dfe8;
+
 $color-success: #1d8d00;
 $color-blue-accent: #009adc;
+
+// Toast notification colors
+$color-error: #ef4444;
+$color-error-light: #fef2f2;
+$color-success-toast: #22c55e;
+$color-success-light: #f0fdf4;
+$color-info: #3b82f6;
+$color-info-light: #eff6ff;
 
 // Typography
 // ==========================================================================
@@ -38,6 +58,7 @@ $font-family-secondary: "Geologica", -apple-system, BlinkMacSystemFont,
   "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
 $font-size-base: 16px;
+$font-size-xxs: 10px;
 $font-size-xs: 12px;
 $font-size-sm: 13px;
 $font-size-md: 14px;
@@ -63,6 +84,17 @@ $line-height-comfortable: 1.41;
 $line-height-spacious: 1.5;
 $line-height-extra-spacious: 1.71;
 
+$line-height-base: 20px;
+$line-height-xs: 14px;
+$line-height-sm: 16px;
+$line-height-md: 20px;
+$line-height-lg: 24px;
+$line-height-xl: 28px;
+$line-height-2xl: 32px;
+$line-height-3xl: 40px;
+$line-height-4xl: 58px;
+$line-height-5xl: 76px;
+
 // Spacing
 // ==========================================================================
 $spacing-xs: 4px;
@@ -83,6 +115,11 @@ $spacing-8xl: 96px;
 $container-max-width: 1128px;
 $container-padding: 20px;
 
+// Toast dimensions
+$toast-max-width: 500px;
+$toast-min-height: 56px;
+$toast-border-width: 4px;
+
 // Grid
 // ==========================================================================
 $grid-columns: 12;
@@ -101,11 +138,15 @@ $border-radius-full: 50px;
 // Shadows
 // ==========================================================================
 $shadow-form: 0px 4px 16px 0px rgba(0, 0, 0, 0.08);
+$shadow-toast: 0 8px 32px rgba(0, 0, 0, 0.16);
+$shadow-toast-hover: 0 12px 40px rgba(0, 0, 0, 0.22);
 
 // Transitions
 // ==========================================================================
 $transition-fast: 0.2s ease;
 $transition-base: 0.3s ease;
+$transition-bounce: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+$transition-smooth: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
 // Breakpoints
 // ==========================================================================
@@ -113,7 +154,7 @@ $breakpoint-mobile: 576px; // mobile
 $breakpoint-tablet: 768px; // tablet
 $breakpoint-desktop: 991px; // desktop
 $breakpoint-desktop-l: 1200px; // large desktop
-$breakpoint-desktop-xl: 1400px; // extra large desktop
+$breakpoint-desktop-xl: 1440px; // extra large desktop
 
 // Z-index
 // ==========================================================================
@@ -124,3 +165,4 @@ $z-index-modal-backdrop: 1040;
 $z-index-modal: 1050;
 $z-index-popover: 1060;
 $z-index-tooltip: 1070;
+$z-index-toast: 10000;

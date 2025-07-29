@@ -7,21 +7,26 @@
 
 .lead-collection-section {
   background: $color-bg-secondary;
+  padding: $spacing-8xl 0;
+
+  @include mobile {
+    padding: $spacing-4xl 0;
+  }
 }
 
 .lead-collection-content {
   display: flex;
   align-items: center;
-  gap: $spacing-2xl;
+  gap: $spacing-4xl;
 
   @include tablet {
     flex-direction: column;
-    gap: $spacing-4xl;
+    gap: $spacing-2xl;
   }
 }
 
 .lead-collection-left {
-  flex: 1;
+  flex: 6;
 
   @include tablet {
     order: 2;
@@ -29,34 +34,8 @@
   }
 }
 
-.empty-image-placeholder {
-  height: 512px;
-  border-radius: $border-radius-sm;
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-  border: 2px dashed rgba(0, 0, 0, 0.1);
-  position: relative;
-
-  &::after {
-    content: "Здесь будет изображение";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: rgba(0, 0, 0, 0.3);
-    font-size: $font-size-sm;
-    font-weight: $font-weight-light;
-  }
-
-  @include tablet {
-    height: 300px;
-  }
-
-  @include mobile {
-    height: 200px;
-  }
-}
-
 .lead-collection-right {
+  flex: 8;
   width: 648px;
   @include flex-column;
   gap: $spacing-3xl;
@@ -240,4 +219,30 @@
   @include text-body($font-size-base, $font-weight-light);
   margin: 0;
   color: $color-text-primary;
+}
+
+.empty-image-placeholder {
+  height: 512px;
+  border-radius: $border-radius-sm;
+  background: #fff;
+  position: relative;
+
+  &::after {
+    content: "Здесь будет изображение";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(0, 0, 0, 0.3);
+    font-size: $font-size-sm;
+    font-weight: $font-weight-light;
+  }
+
+  @include tablet {
+    height: 300px;
+  }
+
+  @include mobile {
+    height: 200px;
+  }
 }

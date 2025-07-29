@@ -2,9 +2,6 @@
 // Pricing Section JavaScript
 // ==========================================================================
 
-// Import check icon with ?url to get URL string
-import checkIconSrc from '../img/icon-check-white-blue-circle.svg?url';
-
 document.addEventListener('DOMContentLoaded', function () {
   // Responsive breakpoints for carousel
   const BREAKPOINTS = {
@@ -22,57 +19,32 @@ document.addEventListener('DOMContentLoaded', function () {
   const nextBtn = document.getElementById('nextBtn');
   let currentSlide = 0;
   let slidesToShow = 4; // Number of cards visible at once (responsive)
-  let totalSlides = 0; // Will be set dynamically based on current tab data
+  let totalSlides = 0; // Will be set dynamically based on visible cards
   let maxSlide = 0;
 
-  // Function to create a single card element
-  function createCardElement(profile) {
-    const card = document.createElement('div');
-    card.className = 'pricing-card';
-
-    card.innerHTML = `
-      <div class="card-image"></div>
-      <div class="card-header">
-        <h3 class="card-title">${profile.title}</h3>
-      </div>
-      <div class="card-info">
-        <div class="window-size">
-          <p class="size-label">Размер</p>
-          <p class="size-value">${profile.size}</p>
-        </div>
-        <div class="features-list">
-          <!-- Features will be populated by updateCardContent -->
-        </div>
-      </div>
-      <p class="card-price">${profile.price}</p>
-      <a class="order-button" href="/forma-obratnoj-svyaz">
-        <span class="button-text">Заказать</span>
-      </a>
-    `;
-
-    return card;
-  }
-
-  // Function to create all cards for current tab data
-  function createCardsForTab(tabType) {
-    const data = contentData[tabType];
-    if (!data || !data.profiles) return;
-
-    // Clear existing cards
-    pricingCards.innerHTML = '';
-
-    // Create cards only for existing data
-    data.profiles.forEach(profile => {
-      const cardElement = createCardElement(profile);
-      pricingCards.appendChild(cardElement);
+  // Function to show/hide cards based on selected tab
+  function switchTab(tabType) {
+    // Hide all cards
+    const allCards = document.querySelectorAll('.pricing-card');
+    allCards.forEach(card => {
+      card.style.display = 'none';
     });
 
-    // Update total slides count
-    totalSlides = data.profiles.length;
+    // Show cards for selected tab
+    const tabCards = document.querySelectorAll(
+      `.pricing-card[data-tab="${tabType}"]`
+    );
+    tabCards.forEach(card => {
+      card.style.display = 'flex';
+    });
+
+    // Update total slides count based on visible cards
+    totalSlides = tabCards.length;
     maxSlide = Math.max(0, totalSlides - slidesToShow);
 
     // Reset carousel position
     currentSlide = 0;
+    updateCarousel();
   }
 
   // Tab switching
@@ -84,19 +56,17 @@ document.addEventListener('DOMContentLoaded', function () {
       // Add active class to clicked tab
       this.classList.add('active');
 
-      // Get the tab type
+      // Get the tab type and switch
       const tabType = this.getAttribute('data-tab');
-
-      // Create cards for new tab and update content
-      createCardsForTab(tabType);
-      updateCardContent(tabType);
-      updateCarousel();
+      switchTab(tabType);
     });
   });
 
   // Helper function to get gap from CSS
   function getCarouselGap() {
-    const firstCard = pricingCards.querySelector('.pricing-card');
+    const firstCard = pricingCards.querySelector(
+      '.pricing-card[style*="flex"], .pricing-card:not([style*="none"])'
+    );
     if (!firstCard) return 24; // fallback
 
     const containerStyles = getComputedStyle(pricingCards);
@@ -105,7 +75,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Helper function to calculate how many slides actually fit
   function calculateActualSlidesToShow() {
-    const firstCard = pricingCards.querySelector('.pricing-card');
+    const firstCard = pricingCards.querySelector(
+      '.pricing-card[style*="flex"], .pricing-card:not([style*="none"])'
+    );
     if (!firstCard || totalSlides === 0)
       return Math.min(slidesToShow, totalSlides);
 
@@ -130,7 +102,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Carousel navigation
   function updateCarousel() {
-    const firstCard = pricingCards.querySelector('.pricing-card');
+    const firstCard = pricingCards.querySelector(
+      '.pricing-card[style*="flex"], .pricing-card:not([style*="none"])'
+    );
     if (!firstCard) return;
 
     // Use actual slides that fit instead of configured value
@@ -139,7 +113,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const cardWidth = firstCard.offsetWidth;
     const gap = getCarouselGap();
-    const carouselWidth = pricingCards.parentElement.offsetWidth;
 
     // Ensure currentSlide doesn't exceed the actual max
     if (currentSlide > actualMaxSlide) {
@@ -168,244 +141,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   prevBtn.addEventListener('click', () => navigateCarousel(-1));
   nextBtn.addEventListener('click', () => navigateCarousel(1));
-
-  // Pricing data for different profile types
-  const contentData = {
-    whs: {
-      brand: 'WHS',
-      profiles: [
-        {
-          title: 'Одностворчатое окно',
-          price: 'от 4 500 ₽',
-          profile: 'WHS Profile 60',
-          chambers: '3 камеры, 60 мм',
-          size: '600 × 1200 мм (0,72 м²)',
-          features: [
-            'Поворотно-откидная створка',
-            'Двухкамерный стеклопакет 24/32 мм',
-            'Энергосберегающее стекло',
-          ],
-        },
-        {
-          title: 'Двухстворчатое окно',
-          price: 'от 7 200 ₽',
-          profile: 'WHS Profile 60',
-          chambers: '3 камеры, 60 мм',
-          size: '1300 × 1400 мм (1,82 м²)',
-          features: [
-            'Одна поворотно-откидная, одна глухая створка',
-            'Двухкамерный стеклопакет 24/32 мм',
-            'Энергосберегающее стекло',
-          ],
-        },
-        {
-          title: 'Трехстворчатое окно',
-          price: 'от 10 800 ₽',
-          profile: 'WHS Profile 60',
-          chambers: '3 камеры, 60 мм',
-          size: '2100 × 1400 мм (2,94 м²)',
-          features: [
-            'Две поворотно-откидные, одна глухая створка',
-            'Двухкамерный стеклопакет 24/32 мм',
-            'Энергосберегающее стекло',
-          ],
-        },
-        {
-          title: 'Балконный блок',
-          price: 'от 12 500 ₽',
-          profile: 'WHS Profile 60',
-          chambers: '3 камеры, 60 мм',
-          size: '2100 × 2100 мм (4,41 м²)',
-          features: [
-            'Окно + балконная дверь',
-            'Двухкамерный стеклопакет 24/32 мм',
-            'Энергосберегающее стекло',
-          ],
-        },
-        {
-          title: 'Лоджия',
-          price: 'от 12 500 ₽',
-          profile: 'WHS Profile 60',
-          chambers: '3 камеры, 60 мм',
-          size: '3000 × 1400 мм (4,2 м²)',
-          features: [
-            'Панорамное остекление лоджии',
-            'Двухкамерный стеклопакет 24/32 мм',
-            'Энергосберегающее стекло',
-          ],
-        },
-      ],
-    },
-    rehau: {
-      brand: 'REHAU',
-      profiles: [
-        {
-          title: 'Одностворчатое окно',
-          price: 'от 8 000 ₽',
-          profile: 'REHAU Blitz',
-          chambers: '3 камеры, 60 мм',
-          size: '600 × 1200 мм (0,72 м²)',
-          features: [
-            'Поворотно-откидная створка',
-            'Двухкамерный стеклопакет 24/32 мм',
-            'Энергосберегающее i-стекло',
-          ],
-        },
-        {
-          title: 'Двухстворчатое окно',
-          price: 'от 12 700 ₽',
-          profile: 'REHAU Blitz',
-          chambers: '3 камеры, 60 мм',
-          size: '1300 × 1400 мм (1,82 м²)',
-          features: [
-            'Одна поворотно-откидная, одна глухая створка',
-            'Двухкамерный стеклопакет 24/32 мм',
-            'Энергосберегающее i-стекло',
-          ],
-        },
-        {
-          title: 'Трехстворчатое окно',
-          price: 'от 18 800 ₽',
-          profile: 'REHAU Blitz',
-          chambers: '3 камеры, 60 мм',
-          size: '2100 × 1400 мм (2,94 м²)',
-          features: [
-            'Две поворотно-откидные, одна глухая створка',
-            'Двухкамерный стеклопакет 24/32 мм',
-            'Энергосберегающее i-стекло',
-          ],
-        },
-        {
-          title: 'Балконный блок',
-          price: 'от 20 700 ₽',
-          profile: 'REHAU Blitz',
-          chambers: '3 камеры, 60 мм',
-          size: '2100 × 2100 мм (4,41 м²)',
-          features: [
-            'Окно + балконная дверь',
-            'Двухкамерный стеклопакет 24/32 мм',
-            'Энергосберегающее i-стекло',
-          ],
-        },
-        {
-          title: 'Лоджия',
-          price: 'от 20 700 ₽',
-          profile: 'REHAU Blitz',
-          chambers: '3 камеры, 60 мм',
-          size: '3000 × 1400 мм (4,2 м²)',
-          features: [
-            'Панорамное остекление лоджии',
-            'Двухкамерный стеклопакет 24/32 мм',
-            'Энергосберегающее i-стекло',
-          ],
-        },
-      ],
-    },
-    veka: {
-      brand: 'VEKA',
-      profiles: [
-        {
-          title: 'Одностворчатое окно',
-          price: 'от 6 000 ₽',
-          profile: 'VEKA Evroline 58',
-          chambers: '3 камеры, 58 мм',
-          size: '600 × 1200 мм (0,72 м²)',
-          features: [
-            'Поворотно-откидная створка',
-            'Двухкамерный стеклопакет 24/32 мм',
-            'Энергосберегающее стекло',
-          ],
-        },
-        {
-          title: 'Двухстворчатое окно',
-          price: 'от 9 700 ₽',
-          profile: 'VEKA Evroline 58',
-          chambers: '3 камеры, 58 мм',
-          size: '1300 × 1400 мм (1,82 м²)',
-          features: [
-            'Одна поворотно-откидная, одна глухая створка',
-            'Двухкамерный стеклопакет 24/32 мм',
-            'Энергосберегающее стекло',
-          ],
-        },
-        {
-          title: 'Трехстворчатое окно',
-          price: 'от 13 800 ₽',
-          profile: 'VEKA Evroline 58',
-          chambers: '3 камеры, 58 мм',
-          size: '2100 × 1400 мм (2,94 м²)',
-          features: [
-            'Две поворотно-откидные, одна глухая створка',
-            'Двухкамерный стеклопакет 24/32 мм',
-            'Энергосберегающее стекло',
-          ],
-        },
-        {
-          title: 'Балконный блок',
-          price: 'от 15 700 ₽',
-          profile: 'VEKA Evroline 58',
-          chambers: '3 камеры, 58 мм',
-          size: '2100 × 2100 мм (4,41 м²)',
-          features: [
-            'Окно + балконная дверь',
-            'Двухкамерный стеклопакет 24/32 мм',
-            'Энергосберегающее стекло',
-          ],
-        },
-        // {
-        //   title: 'Лоджия',
-        //   price: 'от 15 700 ₽',
-        //   profile: 'VEKA Evroline 58',
-        //   chambers: '3 камеры, 58 мм',
-        //   size: '3000 × 1400 мм (4,2 м²)',
-        //   features: [
-        //     'Панорамное остекление лоджии',
-        //     'Двухкамерный стеклопакет 24/32 мм',
-        //     'Энергосберегающее стекло',
-        //   ],
-        // },
-      ],
-    },
-  };
-
-  // Update card content based on selected tab
-  function updateCardContent(tabType) {
-    const cards = document.querySelectorAll('.pricing-card');
-    const data = contentData[tabType];
-
-    cards.forEach((card, index) => {
-      if (data.profiles[index]) {
-        const profile = data.profiles[index];
-
-        // Update features list
-        const featuresList = card.querySelector('.features-list');
-        if (featuresList) {
-          featuresList.innerHTML = '';
-
-          // Prepare complete features array with profile info
-          const allFeatures = [
-            profile.features[0], // First feature (створки)
-            `<span class="highlight">${profile.profile}:</span> ${profile.chambers}`, // Profile info
-            ...profile.features.slice(1), // Remaining features
-          ];
-
-          // Generate feature items dynamically
-          allFeatures.forEach(featureText => {
-            if (featureText) {
-              // Only add if feature exists
-              const featureItem = document.createElement('div');
-              featureItem.className = 'feature-item';
-              featureItem.innerHTML = `
-                <img src="/img/icon-check-white-blue-circle.svg" alt="check" class="check-icon" width="24" height="24">
-                <p class="feature-text">${featureText}</p>
-              `;
-              featuresList.appendChild(featureItem);
-            }
-          });
-        }
-      }
-    });
-  }
 
   // Touch/swipe functionality for mobile
   let startX = 0;
@@ -507,9 +242,8 @@ document.addEventListener('DOMContentLoaded', function () {
   // Initialize responsive layout
   handleResize();
 
-  // Initialize with default tab content (WHS - matches active tab)
-  createCardsForTab('whs');
-  updateCardContent('whs');
+  // Initialize with default tab (WHS - matches active tab in HTML)
+  switchTab('whs');
 
   // Initialize carousel
   updateCarousel();

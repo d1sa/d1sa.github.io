@@ -265,17 +265,104 @@ window.OknaApp = {
         setTimeout(updateBodyPadding, 200);
     });
 });
+// ==========================================================================
+// Mobile Menu Functionality
+// ==========================================================================
+/**
+ * Управление мобильным меню
+ */ document.addEventListener('DOMContentLoaded', function() {
+    const header = document.querySelector('.header');
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+    const navLinks = document.querySelectorAll('.nav-link');
+    if (!mobileMenuToggle || !header) return;
+    // Открытие/закрытие мобильного меню
+    function toggleMobileMenu() {
+        const isOpen = header.classList.contains('mobile-menu-open');
+        if (isOpen) closeMobileMenu();
+        else openMobileMenu();
+    }
+    // Открытие мобильного меню
+    function openMobileMenu() {
+        header.classList.add('mobile-menu-open');
+        document.body.style.overflow = 'hidden';
+        mobileMenuToggle.setAttribute('aria-expanded', 'true');
+        mobileMenuToggle.setAttribute('aria-label', "\u0417\u0430\u043A\u0440\u044B\u0442\u044C \u043C\u0435\u043D\u044E");
+        // Фокус на первую ссылку в меню
+        const firstNavLink = document.querySelector('.nav-link');
+        if (firstNavLink) setTimeout(()=>firstNavLink.focus(), 300);
+    }
+    // Закрытие мобильного меню
+    function closeMobileMenu() {
+        header.classList.remove('mobile-menu-open');
+        document.body.style.overflow = '';
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        mobileMenuToggle.setAttribute('aria-label', "\u041E\u0442\u043A\u0440\u044B\u0442\u044C \u043C\u0435\u043D\u044E");
+        // Возвращаем фокус на кнопку меню
+        mobileMenuToggle.focus();
+    }
+    // Обработчик клика по кнопке гамбургера
+    mobileMenuToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleMobileMenu();
+    });
+    // Обработчик клика по оверлею
+    if (mobileMenuOverlay) mobileMenuOverlay.addEventListener('click', function() {
+        closeMobileMenu();
+    });
+    // Закрытие меню при клике на ссылки навигации
+    navLinks.forEach((link)=>{
+        link.addEventListener('click', function() {
+            // Небольшая задержка для плавности
+            setTimeout(()=>{
+                closeMobileMenu();
+            }, 150);
+        });
+    });
+    // Закрытие меню при нажатии Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && header.classList.contains('mobile-menu-open')) closeMobileMenu();
+    });
+    // Закрытие меню при изменении размера экрана
+    window.addEventListener('resize', function() {
+        if (window.innerWidth >= 768) // tablet breakpoint
+        closeMobileMenu();
+    });
+    // Обработка фокуса для доступности
+    function trapFocus(container) {
+        const focusableElements = container.querySelectorAll('a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select');
+        const firstFocusableElement = focusableElements[0];
+        const lastFocusableElement = focusableElements[focusableElements.length - 1];
+        container.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                if (e.shiftKey) {
+                    if (document.activeElement === firstFocusableElement) {
+                        lastFocusableElement.focus();
+                        e.preventDefault();
+                    }
+                } else if (document.activeElement === lastFocusableElement) {
+                    firstFocusableElement.focus();
+                    e.preventDefault();
+                }
+            }
+        });
+    }
+    // Применяем trap focus к мобильному меню
+    const navWrapper = document.querySelector('.nav-and-actions-wrapper');
+    if (navWrapper) trapFocus(navWrapper);
+});
 
 },{}],"14dZ8":[function(require,module,exports,__globalThis) {
 // ==========================================================================
 // Forms Management System - Main File
 // ==========================================================================
-// ==========================================================================
-// Configuration
-// ==========================================================================
-// Telegram Bot Configuration
+// Import toast functions from separate module
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+// Re-export toast functions for backward compatibility
+parcelHelpers.export(exports, "showToast", ()=>(0, _toastJs.showToast));
+parcelHelpers.export(exports, "hideToast", ()=>(0, _toastJs.hideToast));
 // ==========================================================================
 // Form Registration & Initialization
 // ==========================================================================
@@ -288,6 +375,11 @@ parcelHelpers.defineInteropFlag(exports);
 /**
  * Initialize all form systems
  */ parcelHelpers.export(exports, "initializeForms", ()=>initializeForms);
+var _toastJs = require("./toast.js");
+// ==========================================================================
+// Configuration
+// ==========================================================================
+// Telegram Bot Configuration
 const TELEGRAM_CONFIG = {
     token1: '',
     token2: '',
@@ -440,7 +532,7 @@ const registeredForms = new Map();
         if (formType.type === FORM_TYPES.modal && typeof grecaptcha !== 'undefined') {
             const response = grecaptcha.getResponse();
             if (response.length === 0) {
-                alert("\u041F\u043E\u0436\u0430\u043B\u0443\u0439\u0441\u0442\u0430, \u043F\u043E\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u0435, \u0447\u0442\u043E \u0432\u044B \u043D\u0435 \u0440\u043E\u0431\u043E\u0442!");
+                (0, _toastJs.showToast)("\u041F\u043E\u0436\u0430\u043B\u0443\u0439\u0441\u0442\u0430, \u043F\u043E\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u0435, \u0447\u0442\u043E \u0432\u044B \u043D\u0435 \u0440\u043E\u0431\u043E\u0442!", 'error', 8000);
                 return false;
             }
         }
@@ -463,22 +555,24 @@ const registeredForms = new Map();
         for (let [key, value] of formData.entries()){
             if (key === 'g-recaptcha-response') continue;
             const trimmedValue = value.trim();
-            if (!trimmedValue) continue;
-            // Validation
-            if (key === 'tel') {
-                if (!validatePhone(trimmedValue)) {
-                    validation.isValid = false;
-                    validation.errors.push("\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u044B\u0439 \u0442\u0435\u043B\u0435\u0444\u043E\u043D");
-                }
-            }
+            // Validation for required fields
             if (key === 'name') {
-                if (trimmedValue.length < 2) {
+                if (!trimmedValue || trimmedValue.length < 2) {
                     validation.isValid = false;
                     validation.errors.push("\u0418\u043C\u044F \u043D\u0435 \u043C\u043E\u0436\u0435\u0442 \u0431\u044B\u0442\u044C \u043F\u0443\u0441\u0442\u044B\u043C");
                 }
             }
-            // Add to message
-            message += `<i>${getFieldName(key)}</i>: <b>${trimmedValue}</b>\n`;
+            if (key === 'tel') {
+                if (!trimmedValue || trimmedValue === '+7' || trimmedValue === '+7 ') {
+                    validation.isValid = false;
+                    validation.errors.push("\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043D\u043E\u043C\u0435\u0440 \u0442\u0435\u043B\u0435\u0444\u043E\u043D\u0430");
+                } else if (!validatePhone(trimmedValue)) {
+                    validation.isValid = false;
+                    validation.errors.push("\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u044B\u0439 \u0442\u0435\u043B\u0435\u0444\u043E\u043D");
+                }
+            }
+            // Add to message only if field has value
+            if (trimmedValue) message += `<i>${getFieldName(key)}</i>: <b>${trimmedValue}</b>\n`;
         }
         message += `\n\n<i>${textName ? `(${textName})` : ''}</i>`;
         // Handle validation errors
@@ -493,67 +587,51 @@ const registeredForms = new Map();
         });
     };
 /**
- * Show form validation errors
+ * Show form validation errors as toast notifications
  * @param {Object} validation - Validation result
  * @param {Object} formType - Form type
  */ const showFormErrors = (validation, formType)=>{
+    // Show each error as a separate toast
+    validation.errors.forEach((error, index)=>{
+        // Stagger toast appearances slightly
+        setTimeout(()=>{
+            (0, _toastJs.showToast)(error, 'error', 12000);
+        }, index * 200);
+    });
+    // Remove old inline error containers if they exist
     const { modal } = formType;
     const mainForm = modal.nodeName === 'FORM' ? modal : modal.querySelector('.contact-form');
-    let errorsContainer = mainForm.querySelector('.errorsContainer');
-    if (!errorsContainer) {
-        errorsContainer = document.createElement('div');
-        errorsContainer.className = 'errorsContainer';
-        // Insert before form fields
-        const formFields = mainForm.querySelector('.form-fields');
-        if (formFields) mainForm.insertBefore(errorsContainer, formFields);
-        else mainForm.appendChild(errorsContainer);
-    }
-    errorsContainer.innerHTML = '';
-    validation.errors.forEach((error)=>{
-        const errorEl = document.createElement('div');
-        errorEl.className = 'errorItem';
-        errorEl.textContent = error;
-        errorsContainer.appendChild(errorEl);
-    });
+    const errorsContainer = mainForm.querySelector('.errorsContainer');
+    if (errorsContainer) errorsContainer.remove();
 };
 /**
  * Handle successful form submission
  * @param {Object} formType - Form type
  */ const handleSubmissionSuccess = (formType)=>{
     const { type, modal } = formType;
-    const successTemplates = {
-        [FORM_TYPES.modal]: `
-      <div class='form-header'>
-        <h3>\u{417}\u{430}\u{44F}\u{432}\u{43A}\u{430} \u{443}\u{441}\u{43F}\u{435}\u{448}\u{43D}\u{43E} \u{43E}\u{442}\u{43F}\u{440}\u{430}\u{432}\u{43B}\u{435}\u{43D}\u{430}</h3>
-        <p>\u{411}\u{43B}\u{430}\u{433}\u{43E}\u{434}\u{430}\u{440}\u{438}\u{43C} \u{432}\u{430}\u{441} \u{437}\u{430} \u{443}\u{441}\u{43F}\u{435}\u{448}\u{43D}\u{443}\u{44E} \u{43E}\u{442}\u{43F}\u{440}\u{430}\u{432}\u{43A}\u{443} \u{437}\u{430}\u{44F}\u{432}\u{43A}\u{438}! \u{41C}\u{44B} \u{441}\u{432}\u{44F}\u{436}\u{435}\u{43C}\u{441}\u{44F} \u{441} \u{432}\u{430}\u{43C}\u{438} \u{432} \u{441}\u{430}\u{43C}\u{43E}\u{435} \u{431}\u{43B}\u{438}\u{436}\u{430}\u{439}\u{448}\u{435}\u{435} \u{432}\u{440}\u{435}\u{43C}\u{44F}.</p>
-      </div>
-      <button class='btn btn-blue modal-close-button'>\u{417}\u{430}\u{43A}\u{440}\u{44B}\u{442}\u{44C}</button>
-    `,
-        [FORM_TYPES.registered]: `
-      <div class='form-header'>
-        <h3>\u{417}\u{430}\u{44F}\u{432}\u{43A}\u{430} \u{443}\u{441}\u{43F}\u{435}\u{448}\u{43D}\u{43E} \u{43E}\u{442}\u{43F}\u{440}\u{430}\u{432}\u{43B}\u{435}\u{43D}\u{430}</h3>
-        <p>\u{41C}\u{44B} \u{441}\u{432}\u{44F}\u{436}\u{435}\u{43C}\u{441}\u{44F} \u{441} \u{432}\u{430}\u{43C}\u{438} \u{432} \u{441}\u{430}\u{43C}\u{43E}\u{435} \u{431}\u{43B}\u{438}\u{436}\u{430}\u{439}\u{448}\u{435}\u{435} \u{432}\u{440}\u{435}\u{43C}\u{44F}.</p>
-      </div>
-    `,
-        default: `
-      <div class='form-header'>
-        <h3>\u{417}\u{430}\u{44F}\u{432}\u{43A}\u{430} \u{443}\u{441}\u{43F}\u{435}\u{448}\u{43D}\u{43E} \u{43E}\u{442}\u{43F}\u{440}\u{430}\u{432}\u{43B}\u{435}\u{43D}\u{430}</h3>
-        <p>\u{41C}\u{44B} \u{441}\u{432}\u{44F}\u{436}\u{435}\u{43C}\u{441}\u{44F} \u{441} \u{432}\u{430}\u{43C}\u{438} \u{432} \u{441}\u{430}\u{43C}\u{43E}\u{435} \u{431}\u{43B}\u{438}\u{436}\u{430}\u{439}\u{448}\u{435}\u{435} \u{432}\u{440}\u{435}\u{43C}\u{44F}.</p>
-      </div>
-    `
-    };
-    const template = successTemplates[type] || successTemplates.default;
-    const mainForm = modal.nodeName === 'FORM' ? modal : modal.querySelector('.contact-form');
-    mainForm.innerHTML = template;
-    // Add close handlers for modal
-    if (type === FORM_TYPES.modal) {
-        const closeButtons = modal.querySelectorAll('.modal-close-button');
-        closeButtons.forEach((button)=>{
-            button.addEventListener('click', (e)=>{
-                e.preventDefault();
-                hideModal(modal);
-            });
-        });
+    // Show success toast notification
+    (0, _toastJs.showToast)("\u0417\u0430\u044F\u0432\u043A\u0430 \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u043E\u0442\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0430! \u041C\u044B \u0441\u0432\u044F\u0436\u0435\u043C\u0441\u044F \u0441 \u0432\u0430\u043C\u0438 \u0432 \u0431\u043B\u0438\u0436\u0430\u0439\u0448\u0435\u0435 \u0432\u0440\u0435\u043C\u044F.", 'success', 18000);
+    // For modal forms, close the modal and reset form
+    if (type === FORM_TYPES.modal) setTimeout(()=>{
+        hideModal(modal);
+        // Reset form after closing modal
+        const form = modal.querySelector('.contact-form');
+        if (form) {
+            form.reset();
+            // Reset phone input to default value
+            const phoneInput = form.querySelector('input[type="tel"]');
+            if (phoneInput) phoneInput.value = '+7 ';
+        }
+    }, 1000);
+    else {
+        // For registered forms, reset the form
+        const mainForm = modal.nodeName === 'FORM' ? modal : modal.querySelector('.contact-form');
+        if (mainForm) {
+            mainForm.reset();
+            // Reset phone input to default value
+            const phoneInput = mainForm.querySelector('input[type="tel"]');
+            if (phoneInput) phoneInput.value = '+7 ';
+        }
     }
 };
 // ==========================================================================
@@ -575,10 +653,10 @@ const registeredForms = new Map();
           </div>
           <div class='form-fields'>
             <div class='form-field'>
-              <input type='text' name='name' placeholder='\u{412}\u{430}\u{448}\u{435} \u{438}\u{43C}\u{44F}' class='input' required />
+              <input type='text' name='name' placeholder='\u{412}\u{430}\u{448}\u{435} \u{438}\u{43C}\u{44F}' class='input' />
             </div>
             <div class='form-field'>
-              <input type='tel' name='tel' placeholder='+7' class='input' minlength="10" value='+7 ' required />
+              <input type='tel' name='tel' placeholder='+7' class='input' minlength="10" value='+7 ' />
             </div>
           </div>
           <button type='submit' class='btn btn-orange'>\u{41E}\u{442}\u{43F}\u{440}\u{430}\u{432}\u{438}\u{442}\u{44C}</button>
@@ -716,6 +794,190 @@ function initializeForms() {
 // Auto-initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', initializeForms);
 
+},{"./toast.js":"lDdb1","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"lDdb1":[function(require,module,exports,__globalThis) {
+// ==========================================================================
+// Toast Notification Component
+// ==========================================================================
+/**
+ * Create toast notification container if it doesn't exist
+ */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+// Export functions for use in other modules
+parcelHelpers.export(exports, "showToast", ()=>showToast);
+parcelHelpers.export(exports, "hideToast", ()=>hideToast);
+parcelHelpers.export(exports, "createToast", ()=>createToast);
+parcelHelpers.export(exports, "createToastContainer", ()=>createToastContainer);
+const createToastContainer = ()=>{
+    let container = document.getElementById('toast-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'toast-container';
+        container.className = 'toast-container';
+        document.body.appendChild(container);
+    }
+    return container;
+};
+/**
+ * Create individual toast element
+ * @param {string} message - Error message
+ * @param {string} type - Toast type (error, success, info)
+ * @param {number} duration - Duration in milliseconds
+ * @returns {HTMLElement} - Toast element
+ */ const createToast = (message, type = 'error', duration = 12000)=>{
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+    const getIcon = (type)=>{
+        if (type === 'error') return `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 1.5C6.15 1.5 1.5 6.15 1.5 12C1.5 17.85 6.15 22.5 12 22.5C17.85 22.5 22.5 17.85 22.5 12C22.5 6.15 17.85 1.5 12 1.5ZM16.05 17.25L12 13.2L7.95 17.25L6.75 16.05L10.8 12L6.75 7.95L7.95 6.75L12 10.8L16.05 6.75L17.25 7.95L13.2 12L17.25 16.05L16.05 17.25Z" fill="white"/>
+      </svg>`;
+        if (type === 'success') return `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 1.5C9.9233 1.5 7.89323 2.11581 6.16652 3.26957C4.4398 4.42332 3.09399 6.0632 2.29927 7.98182C1.50455 9.90045 1.29661 12.0116 1.70176 14.0484C2.1069 16.0852 3.10693 17.9562 4.57538 19.4246C6.04383 20.8931 7.91476 21.8931 9.95156 22.2982C11.9884 22.7034 14.0996 22.4955 16.0182 21.7007C17.9368 20.906 19.5767 19.5602 20.7304 17.8335C21.8842 16.1068 22.5 14.0767 22.5 12C22.5 9.21523 21.3938 6.54451 19.4246 4.57538C17.4555 2.60625 14.7848 1.5 12 1.5ZM10.5 16.1925L6.75 12.4425L7.94251 11.25L10.5 13.8075L16.0575 8.25L17.2545 9.4395L10.5 16.1925Z" fill="white"/>
+      </svg>`;
+        return "\u2139\uFE0F"; // default for info
+    };
+    toast.innerHTML = `
+    <div class="toast-content">
+      <div class="toast-icon">
+        ${getIcon(type)}
+      </div>
+      <div class="toast-message">${message}</div>
+      <button class="toast-close" aria-label="\u{417}\u{430}\u{43A}\u{440}\u{44B}\u{442}\u{44C} \u{443}\u{432}\u{435}\u{434}\u{43E}\u{43C}\u{43B}\u{435}\u{43D}\u{438}\u{435}">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M13 1L1 13M1 1L13 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="toast-progress"></div>
+  `;
+    return toast;
+};
+/**
+ * Show toast notification
+ * @param {string} message - Message to show
+ * @param {string} type - Toast type (error, success, info)
+ * @param {number} duration - Duration in milliseconds (default: 12000)
+ */ const showToast = (message, type = 'error', duration = 12000)=>{
+    const container = createToastContainer();
+    const toast = createToast(message, type, duration);
+    // Add unique ID to toast for debugging and isolation
+    const toastId = `toast-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`;
+    toast.dataset.toastId = toastId;
+    // Add toast to container
+    container.appendChild(toast);
+    // Trigger animation after DOM insertion
+    setTimeout(()=>{
+        toast.classList.add('toast-show');
+        // Start progress bar animation after toast is visible
+        setTimeout(()=>{
+            const progressBar = toast.querySelector('.toast-progress');
+            if (progressBar) {
+                progressBar.style.animationDuration = `${duration / 1000}s`;
+                progressBar.style.animationName = 'toast-progress';
+                progressBar.style.animationPlayState = 'running';
+            }
+        }, 50);
+    }, 10);
+    // Setup close button
+    const closeBtn = toast.querySelector('.toast-close');
+    closeBtn.addEventListener('click', ()=>{
+        hideToast(toast);
+    });
+    // Simple timer management - each toast has its own isolated state
+    let autoHideTimeout = null;
+    let isPaused = false;
+    let isDestroyed = false;
+    let startTime = Date.now();
+    let totalPausedTime = 0; // Общее время, проведенное на паузе
+    let pauseStartTime = 0; // Время начала текущей паузы
+    // Function to start auto-hide timer
+    const startAutoHideTimer = ()=>{
+        if (isDestroyed || isPaused) return;
+        const elapsed = Date.now() - startTime - totalPausedTime;
+        const remaining = Math.max(0, duration - elapsed);
+        if (remaining <= 0) {
+            hideToast(toast);
+            return;
+        }
+        // Clear any existing timeout
+        if (autoHideTimeout) clearTimeout(autoHideTimeout);
+        autoHideTimeout = setTimeout(()=>{
+            if (!isDestroyed && !isPaused) hideToast(toast);
+        }, remaining);
+    };
+    // Function to pause toast
+    const pauseToast = ()=>{
+        if (isPaused || isDestroyed) return;
+        isPaused = true;
+        pauseStartTime = Date.now();
+        // Pause progress bar animation
+        const progressBar = toast.querySelector('.toast-progress');
+        if (progressBar) progressBar.style.animationPlayState = 'paused';
+        // Clear timer
+        if (autoHideTimeout) {
+            clearTimeout(autoHideTimeout);
+            autoHideTimeout = null;
+        }
+    };
+    // Function to resume toast
+    const resumeToast = ()=>{
+        if (!isPaused || isDestroyed) return;
+        // Add current pause duration to total paused time
+        totalPausedTime += Date.now() - pauseStartTime;
+        isPaused = false;
+        // Resume progress bar animation
+        const progressBar = toast.querySelector('.toast-progress');
+        if (progressBar) progressBar.style.animationPlayState = 'running';
+        // Restart timer for remaining time
+        startAutoHideTimer();
+    };
+    // Setup hover effects - isolated for this specific toast
+    let isHovered = false;
+    const handleMouseEnter = ()=>{
+        if (isHovered || isDestroyed) return;
+        isHovered = true;
+        pauseToast();
+    };
+    const handleMouseLeave = ()=>{
+        if (!isHovered || isDestroyed) return;
+        isHovered = false;
+        resumeToast();
+    };
+    // Bind events to this specific toast element
+    toast.addEventListener('mouseenter', handleMouseEnter);
+    toast.addEventListener('mouseleave', handleMouseLeave);
+    // Cleanup function - isolated for this toast instance
+    const cleanup = ()=>{
+        isDestroyed = true;
+        if (autoHideTimeout) {
+            clearTimeout(autoHideTimeout);
+            autoHideTimeout = null;
+        }
+        toast.removeEventListener('mouseenter', handleMouseEnter);
+        toast.removeEventListener('mouseleave', handleMouseLeave);
+    };
+    // Store cleanup function
+    toast._cleanup = cleanup;
+    // Start initial timer
+    startAutoHideTimer();
+    return toast;
+};
+/**
+ * Hide toast notification
+ * @param {HTMLElement} toast - Toast element to hide
+ */ const hideToast = (toast)=>{
+    if (!toast || !toast.parentNode) return;
+    // Call cleanup function if it exists
+    if (typeof toast._cleanup === 'function') toast._cleanup();
+    // Clear timeout if exists
+    if (toast.dataset.timeoutId) clearTimeout(parseInt(toast.dataset.timeoutId));
+    // Add hide animation
+    toast.classList.add('toast-hide');
+    // Remove from DOM after animation
+    setTimeout(()=>{
+        if (toast.parentNode) toast.parentNode.removeChild(toast);
+    }, 300); // Match CSS transition duration
+};
+
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"jnFvT":[function(require,module,exports,__globalThis) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
@@ -750,10 +1012,6 @@ exports.export = function(dest, destName, get) {
 // ==========================================================================
 // Pricing Section JavaScript
 // ==========================================================================
-// Import check icon with ?url to get URL string
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-var _iconCheckWhiteBlueCircleSvgUrl = require("../img/icon-check-white-blue-circle.svg?url");
-var _iconCheckWhiteBlueCircleSvgUrlDefault = parcelHelpers.interopDefault(_iconCheckWhiteBlueCircleSvgUrl);
 document.addEventListener('DOMContentLoaded', function() {
     // Responsive breakpoints for carousel
     const BREAKPOINTS = {
@@ -769,49 +1027,26 @@ document.addEventListener('DOMContentLoaded', function() {
     const nextBtn = document.getElementById('nextBtn');
     let currentSlide = 0;
     let slidesToShow = 4; // Number of cards visible at once (responsive)
-    let totalSlides = 0; // Will be set dynamically based on current tab data
+    let totalSlides = 0; // Will be set dynamically based on visible cards
     let maxSlide = 0;
-    // Function to create a single card element
-    function createCardElement(profile) {
-        const card = document.createElement('div');
-        card.className = 'pricing-card';
-        card.innerHTML = `
-      <div class="card-image"></div>
-      <div class="card-header">
-        <h3 class="card-title">${profile.title}</h3>
-      </div>
-      <div class="card-info">
-        <div class="window-size">
-          <p class="size-label">\u{420}\u{430}\u{437}\u{43C}\u{435}\u{440}</p>
-          <p class="size-value">${profile.size}</p>
-        </div>
-        <div class="features-list">
-          <!-- Features will be populated by updateCardContent -->
-        </div>
-      </div>
-      <p class="card-price">${profile.price}</p>
-      <a class="order-button" href="/forma-obratnoj-svyaz">
-        <span class="button-text">\u{417}\u{430}\u{43A}\u{430}\u{437}\u{430}\u{442}\u{44C}</span>
-      </a>
-    `;
-        return card;
-    }
-    // Function to create all cards for current tab data
-    function createCardsForTab(tabType) {
-        const data = contentData[tabType];
-        if (!data || !data.profiles) return;
-        // Clear existing cards
-        pricingCards.innerHTML = '';
-        // Create cards only for existing data
-        data.profiles.forEach((profile)=>{
-            const cardElement = createCardElement(profile);
-            pricingCards.appendChild(cardElement);
+    // Function to show/hide cards based on selected tab
+    function switchTab(tabType) {
+        // Hide all cards
+        const allCards = document.querySelectorAll('.pricing-card');
+        allCards.forEach((card)=>{
+            card.style.display = 'none';
         });
-        // Update total slides count
-        totalSlides = data.profiles.length;
+        // Show cards for selected tab
+        const tabCards = document.querySelectorAll(`.pricing-card[data-tab="${tabType}"]`);
+        tabCards.forEach((card)=>{
+            card.style.display = 'flex';
+        });
+        // Update total slides count based on visible cards
+        totalSlides = tabCards.length;
         maxSlide = Math.max(0, totalSlides - slidesToShow);
         // Reset carousel position
         currentSlide = 0;
+        updateCarousel();
     }
     // Tab switching
     tabs.forEach((tab)=>{
@@ -820,24 +1055,21 @@ document.addEventListener('DOMContentLoaded', function() {
             tabs.forEach((t)=>t.classList.remove('active'));
             // Add active class to clicked tab
             this.classList.add('active');
-            // Get the tab type
+            // Get the tab type and switch
             const tabType = this.getAttribute('data-tab');
-            // Create cards for new tab and update content
-            createCardsForTab(tabType);
-            updateCardContent(tabType);
-            updateCarousel();
+            switchTab(tabType);
         });
     });
     // Helper function to get gap from CSS
     function getCarouselGap() {
-        const firstCard = pricingCards.querySelector('.pricing-card');
+        const firstCard = pricingCards.querySelector('.pricing-card[style*="flex"], .pricing-card:not([style*="none"])');
         if (!firstCard) return 24; // fallback
         const containerStyles = getComputedStyle(pricingCards);
         return parseInt(containerStyles.gap) || 24;
     }
     // Helper function to calculate how many slides actually fit
     function calculateActualSlidesToShow() {
-        const firstCard = pricingCards.querySelector('.pricing-card');
+        const firstCard = pricingCards.querySelector('.pricing-card[style*="flex"], .pricing-card:not([style*="none"])');
         if (!firstCard || totalSlides === 0) return Math.min(slidesToShow, totalSlides);
         const cardWidth = firstCard.offsetWidth;
         const gap = getCarouselGap();
@@ -853,14 +1085,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     // Carousel navigation
     function updateCarousel() {
-        const firstCard = pricingCards.querySelector('.pricing-card');
+        const firstCard = pricingCards.querySelector('.pricing-card[style*="flex"], .pricing-card:not([style*="none"])');
         if (!firstCard) return;
         // Use actual slides that fit instead of configured value
         const actualSlidesToShow = calculateActualSlidesToShow();
         const actualMaxSlide = Math.max(0, totalSlides - actualSlidesToShow);
         const cardWidth = firstCard.offsetWidth;
         const gap = getCarouselGap();
-        const carouselWidth = pricingCards.parentElement.offsetWidth;
         // Ensure currentSlide doesn't exceed the actual max
         if (currentSlide > actualMaxSlide) currentSlide = actualMaxSlide;
         const translateX = currentSlide * (cardWidth + gap);
@@ -881,226 +1112,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     prevBtn.addEventListener('click', ()=>navigateCarousel(-1));
     nextBtn.addEventListener('click', ()=>navigateCarousel(1));
-    // Pricing data for different profile types
-    const contentData = {
-        whs: {
-            brand: 'WHS',
-            profiles: [
-                {
-                    title: "\u041E\u0434\u043D\u043E\u0441\u0442\u0432\u043E\u0440\u0447\u0430\u0442\u043E\u0435 \u043E\u043A\u043D\u043E",
-                    price: "\u043E\u0442 4 500 \u20BD",
-                    profile: 'WHS Profile 60',
-                    chambers: "3 \u043A\u0430\u043C\u0435\u0440\u044B, 60 \u043C\u043C",
-                    size: "600 \xd7 1200 \u043C\u043C (0,72 \u043C\xb2)",
-                    features: [
-                        "\u041F\u043E\u0432\u043E\u0440\u043E\u0442\u043D\u043E-\u043E\u0442\u043A\u0438\u0434\u043D\u0430\u044F \u0441\u0442\u0432\u043E\u0440\u043A\u0430",
-                        "\u0414\u0432\u0443\u0445\u043A\u0430\u043C\u0435\u0440\u043D\u044B\u0439 \u0441\u0442\u0435\u043A\u043B\u043E\u043F\u0430\u043A\u0435\u0442 24/32 \u043C\u043C",
-                        "\u042D\u043D\u0435\u0440\u0433\u043E\u0441\u0431\u0435\u0440\u0435\u0433\u0430\u044E\u0449\u0435\u0435 \u0441\u0442\u0435\u043A\u043B\u043E"
-                    ]
-                },
-                {
-                    title: "\u0414\u0432\u0443\u0445\u0441\u0442\u0432\u043E\u0440\u0447\u0430\u0442\u043E\u0435 \u043E\u043A\u043D\u043E",
-                    price: "\u043E\u0442 7 200 \u20BD",
-                    profile: 'WHS Profile 60',
-                    chambers: "3 \u043A\u0430\u043C\u0435\u0440\u044B, 60 \u043C\u043C",
-                    size: "1300 \xd7 1400 \u043C\u043C (1,82 \u043C\xb2)",
-                    features: [
-                        "\u041E\u0434\u043D\u0430 \u043F\u043E\u0432\u043E\u0440\u043E\u0442\u043D\u043E-\u043E\u0442\u043A\u0438\u0434\u043D\u0430\u044F, \u043E\u0434\u043D\u0430 \u0433\u043B\u0443\u0445\u0430\u044F \u0441\u0442\u0432\u043E\u0440\u043A\u0430",
-                        "\u0414\u0432\u0443\u0445\u043A\u0430\u043C\u0435\u0440\u043D\u044B\u0439 \u0441\u0442\u0435\u043A\u043B\u043E\u043F\u0430\u043A\u0435\u0442 24/32 \u043C\u043C",
-                        "\u042D\u043D\u0435\u0440\u0433\u043E\u0441\u0431\u0435\u0440\u0435\u0433\u0430\u044E\u0449\u0435\u0435 \u0441\u0442\u0435\u043A\u043B\u043E"
-                    ]
-                },
-                {
-                    title: "\u0422\u0440\u0435\u0445\u0441\u0442\u0432\u043E\u0440\u0447\u0430\u0442\u043E\u0435 \u043E\u043A\u043D\u043E",
-                    price: "\u043E\u0442 10 800 \u20BD",
-                    profile: 'WHS Profile 60',
-                    chambers: "3 \u043A\u0430\u043C\u0435\u0440\u044B, 60 \u043C\u043C",
-                    size: "2100 \xd7 1400 \u043C\u043C (2,94 \u043C\xb2)",
-                    features: [
-                        "\u0414\u0432\u0435 \u043F\u043E\u0432\u043E\u0440\u043E\u0442\u043D\u043E-\u043E\u0442\u043A\u0438\u0434\u043D\u044B\u0435, \u043E\u0434\u043D\u0430 \u0433\u043B\u0443\u0445\u0430\u044F \u0441\u0442\u0432\u043E\u0440\u043A\u0430",
-                        "\u0414\u0432\u0443\u0445\u043A\u0430\u043C\u0435\u0440\u043D\u044B\u0439 \u0441\u0442\u0435\u043A\u043B\u043E\u043F\u0430\u043A\u0435\u0442 24/32 \u043C\u043C",
-                        "\u042D\u043D\u0435\u0440\u0433\u043E\u0441\u0431\u0435\u0440\u0435\u0433\u0430\u044E\u0449\u0435\u0435 \u0441\u0442\u0435\u043A\u043B\u043E"
-                    ]
-                },
-                {
-                    title: "\u0411\u0430\u043B\u043A\u043E\u043D\u043D\u044B\u0439 \u0431\u043B\u043E\u043A",
-                    price: "\u043E\u0442 12 500 \u20BD",
-                    profile: 'WHS Profile 60',
-                    chambers: "3 \u043A\u0430\u043C\u0435\u0440\u044B, 60 \u043C\u043C",
-                    size: "2100 \xd7 2100 \u043C\u043C (4,41 \u043C\xb2)",
-                    features: [
-                        "\u041E\u043A\u043D\u043E + \u0431\u0430\u043B\u043A\u043E\u043D\u043D\u0430\u044F \u0434\u0432\u0435\u0440\u044C",
-                        "\u0414\u0432\u0443\u0445\u043A\u0430\u043C\u0435\u0440\u043D\u044B\u0439 \u0441\u0442\u0435\u043A\u043B\u043E\u043F\u0430\u043A\u0435\u0442 24/32 \u043C\u043C",
-                        "\u042D\u043D\u0435\u0440\u0433\u043E\u0441\u0431\u0435\u0440\u0435\u0433\u0430\u044E\u0449\u0435\u0435 \u0441\u0442\u0435\u043A\u043B\u043E"
-                    ]
-                },
-                {
-                    title: "\u041B\u043E\u0434\u0436\u0438\u044F",
-                    price: "\u043E\u0442 12 500 \u20BD",
-                    profile: 'WHS Profile 60',
-                    chambers: "3 \u043A\u0430\u043C\u0435\u0440\u044B, 60 \u043C\u043C",
-                    size: "3000 \xd7 1400 \u043C\u043C (4,2 \u043C\xb2)",
-                    features: [
-                        "\u041F\u0430\u043D\u043E\u0440\u0430\u043C\u043D\u043E\u0435 \u043E\u0441\u0442\u0435\u043A\u043B\u0435\u043D\u0438\u0435 \u043B\u043E\u0434\u0436\u0438\u0438",
-                        "\u0414\u0432\u0443\u0445\u043A\u0430\u043C\u0435\u0440\u043D\u044B\u0439 \u0441\u0442\u0435\u043A\u043B\u043E\u043F\u0430\u043A\u0435\u0442 24/32 \u043C\u043C",
-                        "\u042D\u043D\u0435\u0440\u0433\u043E\u0441\u0431\u0435\u0440\u0435\u0433\u0430\u044E\u0449\u0435\u0435 \u0441\u0442\u0435\u043A\u043B\u043E"
-                    ]
-                }
-            ]
-        },
-        rehau: {
-            brand: 'REHAU',
-            profiles: [
-                {
-                    title: "\u041E\u0434\u043D\u043E\u0441\u0442\u0432\u043E\u0440\u0447\u0430\u0442\u043E\u0435 \u043E\u043A\u043D\u043E",
-                    price: "\u043E\u0442 8 000 \u20BD",
-                    profile: 'REHAU Blitz',
-                    chambers: "3 \u043A\u0430\u043C\u0435\u0440\u044B, 60 \u043C\u043C",
-                    size: "600 \xd7 1200 \u043C\u043C (0,72 \u043C\xb2)",
-                    features: [
-                        "\u041F\u043E\u0432\u043E\u0440\u043E\u0442\u043D\u043E-\u043E\u0442\u043A\u0438\u0434\u043D\u0430\u044F \u0441\u0442\u0432\u043E\u0440\u043A\u0430",
-                        "\u0414\u0432\u0443\u0445\u043A\u0430\u043C\u0435\u0440\u043D\u044B\u0439 \u0441\u0442\u0435\u043A\u043B\u043E\u043F\u0430\u043A\u0435\u0442 24/32 \u043C\u043C",
-                        "\u042D\u043D\u0435\u0440\u0433\u043E\u0441\u0431\u0435\u0440\u0435\u0433\u0430\u044E\u0449\u0435\u0435 i-\u0441\u0442\u0435\u043A\u043B\u043E"
-                    ]
-                },
-                {
-                    title: "\u0414\u0432\u0443\u0445\u0441\u0442\u0432\u043E\u0440\u0447\u0430\u0442\u043E\u0435 \u043E\u043A\u043D\u043E",
-                    price: "\u043E\u0442 12 700 \u20BD",
-                    profile: 'REHAU Blitz',
-                    chambers: "3 \u043A\u0430\u043C\u0435\u0440\u044B, 60 \u043C\u043C",
-                    size: "1300 \xd7 1400 \u043C\u043C (1,82 \u043C\xb2)",
-                    features: [
-                        "\u041E\u0434\u043D\u0430 \u043F\u043E\u0432\u043E\u0440\u043E\u0442\u043D\u043E-\u043E\u0442\u043A\u0438\u0434\u043D\u0430\u044F, \u043E\u0434\u043D\u0430 \u0433\u043B\u0443\u0445\u0430\u044F \u0441\u0442\u0432\u043E\u0440\u043A\u0430",
-                        "\u0414\u0432\u0443\u0445\u043A\u0430\u043C\u0435\u0440\u043D\u044B\u0439 \u0441\u0442\u0435\u043A\u043B\u043E\u043F\u0430\u043A\u0435\u0442 24/32 \u043C\u043C",
-                        "\u042D\u043D\u0435\u0440\u0433\u043E\u0441\u0431\u0435\u0440\u0435\u0433\u0430\u044E\u0449\u0435\u0435 i-\u0441\u0442\u0435\u043A\u043B\u043E"
-                    ]
-                },
-                {
-                    title: "\u0422\u0440\u0435\u0445\u0441\u0442\u0432\u043E\u0440\u0447\u0430\u0442\u043E\u0435 \u043E\u043A\u043D\u043E",
-                    price: "\u043E\u0442 18 800 \u20BD",
-                    profile: 'REHAU Blitz',
-                    chambers: "3 \u043A\u0430\u043C\u0435\u0440\u044B, 60 \u043C\u043C",
-                    size: "2100 \xd7 1400 \u043C\u043C (2,94 \u043C\xb2)",
-                    features: [
-                        "\u0414\u0432\u0435 \u043F\u043E\u0432\u043E\u0440\u043E\u0442\u043D\u043E-\u043E\u0442\u043A\u0438\u0434\u043D\u044B\u0435, \u043E\u0434\u043D\u0430 \u0433\u043B\u0443\u0445\u0430\u044F \u0441\u0442\u0432\u043E\u0440\u043A\u0430",
-                        "\u0414\u0432\u0443\u0445\u043A\u0430\u043C\u0435\u0440\u043D\u044B\u0439 \u0441\u0442\u0435\u043A\u043B\u043E\u043F\u0430\u043A\u0435\u0442 24/32 \u043C\u043C",
-                        "\u042D\u043D\u0435\u0440\u0433\u043E\u0441\u0431\u0435\u0440\u0435\u0433\u0430\u044E\u0449\u0435\u0435 i-\u0441\u0442\u0435\u043A\u043B\u043E"
-                    ]
-                },
-                {
-                    title: "\u0411\u0430\u043B\u043A\u043E\u043D\u043D\u044B\u0439 \u0431\u043B\u043E\u043A",
-                    price: "\u043E\u0442 20 700 \u20BD",
-                    profile: 'REHAU Blitz',
-                    chambers: "3 \u043A\u0430\u043C\u0435\u0440\u044B, 60 \u043C\u043C",
-                    size: "2100 \xd7 2100 \u043C\u043C (4,41 \u043C\xb2)",
-                    features: [
-                        "\u041E\u043A\u043D\u043E + \u0431\u0430\u043B\u043A\u043E\u043D\u043D\u0430\u044F \u0434\u0432\u0435\u0440\u044C",
-                        "\u0414\u0432\u0443\u0445\u043A\u0430\u043C\u0435\u0440\u043D\u044B\u0439 \u0441\u0442\u0435\u043A\u043B\u043E\u043F\u0430\u043A\u0435\u0442 24/32 \u043C\u043C",
-                        "\u042D\u043D\u0435\u0440\u0433\u043E\u0441\u0431\u0435\u0440\u0435\u0433\u0430\u044E\u0449\u0435\u0435 i-\u0441\u0442\u0435\u043A\u043B\u043E"
-                    ]
-                },
-                {
-                    title: "\u041B\u043E\u0434\u0436\u0438\u044F",
-                    price: "\u043E\u0442 20 700 \u20BD",
-                    profile: 'REHAU Blitz',
-                    chambers: "3 \u043A\u0430\u043C\u0435\u0440\u044B, 60 \u043C\u043C",
-                    size: "3000 \xd7 1400 \u043C\u043C (4,2 \u043C\xb2)",
-                    features: [
-                        "\u041F\u0430\u043D\u043E\u0440\u0430\u043C\u043D\u043E\u0435 \u043E\u0441\u0442\u0435\u043A\u043B\u0435\u043D\u0438\u0435 \u043B\u043E\u0434\u0436\u0438\u0438",
-                        "\u0414\u0432\u0443\u0445\u043A\u0430\u043C\u0435\u0440\u043D\u044B\u0439 \u0441\u0442\u0435\u043A\u043B\u043E\u043F\u0430\u043A\u0435\u0442 24/32 \u043C\u043C",
-                        "\u042D\u043D\u0435\u0440\u0433\u043E\u0441\u0431\u0435\u0440\u0435\u0433\u0430\u044E\u0449\u0435\u0435 i-\u0441\u0442\u0435\u043A\u043B\u043E"
-                    ]
-                }
-            ]
-        },
-        veka: {
-            brand: 'VEKA',
-            profiles: [
-                {
-                    title: "\u041E\u0434\u043D\u043E\u0441\u0442\u0432\u043E\u0440\u0447\u0430\u0442\u043E\u0435 \u043E\u043A\u043D\u043E",
-                    price: "\u043E\u0442 6 000 \u20BD",
-                    profile: 'VEKA Evroline 58',
-                    chambers: "3 \u043A\u0430\u043C\u0435\u0440\u044B, 58 \u043C\u043C",
-                    size: "600 \xd7 1200 \u043C\u043C (0,72 \u043C\xb2)",
-                    features: [
-                        "\u041F\u043E\u0432\u043E\u0440\u043E\u0442\u043D\u043E-\u043E\u0442\u043A\u0438\u0434\u043D\u0430\u044F \u0441\u0442\u0432\u043E\u0440\u043A\u0430",
-                        "\u0414\u0432\u0443\u0445\u043A\u0430\u043C\u0435\u0440\u043D\u044B\u0439 \u0441\u0442\u0435\u043A\u043B\u043E\u043F\u0430\u043A\u0435\u0442 24/32 \u043C\u043C",
-                        "\u042D\u043D\u0435\u0440\u0433\u043E\u0441\u0431\u0435\u0440\u0435\u0433\u0430\u044E\u0449\u0435\u0435 \u0441\u0442\u0435\u043A\u043B\u043E"
-                    ]
-                },
-                {
-                    title: "\u0414\u0432\u0443\u0445\u0441\u0442\u0432\u043E\u0440\u0447\u0430\u0442\u043E\u0435 \u043E\u043A\u043D\u043E",
-                    price: "\u043E\u0442 9 700 \u20BD",
-                    profile: 'VEKA Evroline 58',
-                    chambers: "3 \u043A\u0430\u043C\u0435\u0440\u044B, 58 \u043C\u043C",
-                    size: "1300 \xd7 1400 \u043C\u043C (1,82 \u043C\xb2)",
-                    features: [
-                        "\u041E\u0434\u043D\u0430 \u043F\u043E\u0432\u043E\u0440\u043E\u0442\u043D\u043E-\u043E\u0442\u043A\u0438\u0434\u043D\u0430\u044F, \u043E\u0434\u043D\u0430 \u0433\u043B\u0443\u0445\u0430\u044F \u0441\u0442\u0432\u043E\u0440\u043A\u0430",
-                        "\u0414\u0432\u0443\u0445\u043A\u0430\u043C\u0435\u0440\u043D\u044B\u0439 \u0441\u0442\u0435\u043A\u043B\u043E\u043F\u0430\u043A\u0435\u0442 24/32 \u043C\u043C",
-                        "\u042D\u043D\u0435\u0440\u0433\u043E\u0441\u0431\u0435\u0440\u0435\u0433\u0430\u044E\u0449\u0435\u0435 \u0441\u0442\u0435\u043A\u043B\u043E"
-                    ]
-                },
-                {
-                    title: "\u0422\u0440\u0435\u0445\u0441\u0442\u0432\u043E\u0440\u0447\u0430\u0442\u043E\u0435 \u043E\u043A\u043D\u043E",
-                    price: "\u043E\u0442 13 800 \u20BD",
-                    profile: 'VEKA Evroline 58',
-                    chambers: "3 \u043A\u0430\u043C\u0435\u0440\u044B, 58 \u043C\u043C",
-                    size: "2100 \xd7 1400 \u043C\u043C (2,94 \u043C\xb2)",
-                    features: [
-                        "\u0414\u0432\u0435 \u043F\u043E\u0432\u043E\u0440\u043E\u0442\u043D\u043E-\u043E\u0442\u043A\u0438\u0434\u043D\u044B\u0435, \u043E\u0434\u043D\u0430 \u0433\u043B\u0443\u0445\u0430\u044F \u0441\u0442\u0432\u043E\u0440\u043A\u0430",
-                        "\u0414\u0432\u0443\u0445\u043A\u0430\u043C\u0435\u0440\u043D\u044B\u0439 \u0441\u0442\u0435\u043A\u043B\u043E\u043F\u0430\u043A\u0435\u0442 24/32 \u043C\u043C",
-                        "\u042D\u043D\u0435\u0440\u0433\u043E\u0441\u0431\u0435\u0440\u0435\u0433\u0430\u044E\u0449\u0435\u0435 \u0441\u0442\u0435\u043A\u043B\u043E"
-                    ]
-                },
-                {
-                    title: "\u0411\u0430\u043B\u043A\u043E\u043D\u043D\u044B\u0439 \u0431\u043B\u043E\u043A",
-                    price: "\u043E\u0442 15 700 \u20BD",
-                    profile: 'VEKA Evroline 58',
-                    chambers: "3 \u043A\u0430\u043C\u0435\u0440\u044B, 58 \u043C\u043C",
-                    size: "2100 \xd7 2100 \u043C\u043C (4,41 \u043C\xb2)",
-                    features: [
-                        "\u041E\u043A\u043D\u043E + \u0431\u0430\u043B\u043A\u043E\u043D\u043D\u0430\u044F \u0434\u0432\u0435\u0440\u044C",
-                        "\u0414\u0432\u0443\u0445\u043A\u0430\u043C\u0435\u0440\u043D\u044B\u0439 \u0441\u0442\u0435\u043A\u043B\u043E\u043F\u0430\u043A\u0435\u0442 24/32 \u043C\u043C",
-                        "\u042D\u043D\u0435\u0440\u0433\u043E\u0441\u0431\u0435\u0440\u0435\u0433\u0430\u044E\u0449\u0435\u0435 \u0441\u0442\u0435\u043A\u043B\u043E"
-                    ]
-                }
-            ]
-        }
-    };
-    // Update card content based on selected tab
-    function updateCardContent(tabType) {
-        const cards = document.querySelectorAll('.pricing-card');
-        const data = contentData[tabType];
-        cards.forEach((card, index)=>{
-            if (data.profiles[index]) {
-                const profile = data.profiles[index];
-                // Update features list
-                const featuresList = card.querySelector('.features-list');
-                if (featuresList) {
-                    featuresList.innerHTML = '';
-                    // Prepare complete features array with profile info
-                    const allFeatures = [
-                        profile.features[0],
-                        `<span class="highlight">${profile.profile}:</span> ${profile.chambers}`,
-                        ...profile.features.slice(1)
-                    ];
-                    // Generate feature items dynamically
-                    allFeatures.forEach((featureText)=>{
-                        if (featureText) {
-                            // Only add if feature exists
-                            const featureItem = document.createElement('div');
-                            featureItem.className = 'feature-item';
-                            featureItem.innerHTML = `
-                <img src="/img/icon-check-white-blue-circle.svg" alt="check" class="check-icon" width="24" height="24">
-                <p class="feature-text">${featureText}</p>
-              `;
-                            featuresList.appendChild(featureItem);
-                        }
-                    });
-                }
-            }
-        });
-    }
     // Touch/swipe functionality for mobile
     let startX = 0;
     let startY = 0;
@@ -1188,13 +1199,12 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', handleResize);
     // Initialize responsive layout
     handleResize();
-    // Initialize with default tab content (WHS - matches active tab)
-    createCardsForTab('whs');
-    updateCardContent('whs');
+    // Initialize with default tab (WHS - matches active tab in HTML)
+    switchTab('whs');
     // Initialize carousel
     updateCarousel();
 });
 
-},{"../img/icon-check-white-blue-circle.svg?url":"4DjLG","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"4DjLG":[function() {},{}]},["lhpGb"], "lhpGb", "parcelRequireef94", {})
+},{}]},["lhpGb"], "lhpGb", "parcelRequireef94", {})
 
 //# sourceMappingURL=d1sa.github.io.b828852a.js.map

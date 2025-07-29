@@ -6,20 +6,6 @@
 @use "../variables" as *;
 
 .profile-comparison-section {
-  background: $color-bg-primary;
-}
-
-.profile-comparison-content {
-  max-width: $container-max-width;
-  margin: 0 auto;
-  padding: $spacing-2xl 0 $spacing-7xl 0;
-  @include flex-column;
-  gap: $spacing-5xl;
-
-  @include mobile {
-    padding: $spacing-xl 0 $spacing-4xl 0;
-    gap: $spacing-3xl;
-  }
 }
 
 .profile-title {

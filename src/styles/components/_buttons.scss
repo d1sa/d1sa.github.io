@@ -11,6 +11,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   gap: $spacing-sm;
   padding: $spacing-md $spacing-2xl;
   border: none;
@@ -27,70 +28,74 @@
 
 .btn {
   @include btn-base;
+}
 
-  // Button variants
-  // ==========================================================================
-  &-green {
-    background: $color-secondary;
+// Button variants
+// ==========================================================================
+.btn-green {
+  background: $color-secondary;
+  color: $color-text-white;
+
+  &:hover {
+    background: $color-secondary-hover;
     color: $color-text-white;
-
-    &:hover {
-      background: $color-secondary-hover;
-    }
   }
+}
 
-  &-blue {
-    background: $color-primary;
+.btn-blue {
+  background: $color-primary;
+  color: $color-text-white;
+  // width: 364px;
+  // padding: $spacing-lg $spacing-2xl;
+  // border-radius: $border-radius-md;
+
+  &:hover {
+    background: $color-primary-hover;
     color: $color-text-white;
-    // width: 364px;
-    // padding: $spacing-lg $spacing-2xl;
-    // border-radius: $border-radius-md;
-
-    &:hover {
-      background: $color-primary-hover;
-    }
-
-    @include mobile {
-      width: 100%;
-    }
   }
 
-  &-orange {
-    background: $color-accent;
+  @include mobile {
+    width: 100%;
+  }
+}
+
+.btn-orange {
+  background: $color-accent;
+  color: $color-text-white;
+
+  &:hover {
+    background: $color-accent-hover;
     color: $color-text-white;
-
-    &:hover {
-      background: $color-accent-hover;
-    }
   }
+}
 
-  &-outline {
-    background: $color-bg-primary;
-    color: $color-text-primary;
-    border: 1px solid $color-border-default;
-    min-width: 180px;
-    padding: $spacing-md $spacing-2xl;
-    border-radius: $border-radius-sm;
-    font-family: $font-family-secondary;
-    font-size: $font-size-base;
-    font-weight: $font-weight-normal;
-    line-height: $line-height-spacious;
-    cursor: pointer;
-    transition: all $transition-fast;
+.btn-outline {
+  background: $color-bg-primary;
+  color: $color-text-primary;
+  border: 1px solid $color-border-default;
+  min-width: 180px;
+  padding: $spacing-md $spacing-2xl;
+  border-radius: $border-radius-sm;
+  font-family: $font-family-secondary;
+  font-size: $font-size-base;
+  font-weight: $font-weight-normal;
+  line-height: $line-height-spacious;
+  cursor: pointer;
+  transition: all $transition-fast;
 
-    &:hover {
-      background: $color-bg-secondary;
-      border-color: $color-primary;
-    }
+  &:hover {
+    background: $color-bg-secondary;
+    border-color: $color-bg-secondary;
+    color: $color-primary;
   }
+}
 
-  // Button modifiers
-  // ==========================================================================
-  &-xl {
-    padding: $spacing-lg $spacing-2xl;
-    border-radius: $border-radius-md;
-    gap: $spacing-2xl;
-  }
+// Button modifiers
+// ==========================================================================
+.btn-xl {
+  padding: $spacing-lg $spacing-2xl;
+  border-radius: $border-radius-md;
+  gap: $spacing-2xl;
 }
 
 // Call button specific styles
@@ -138,8 +143,8 @@
   );
 }
 
-.phone-number {
-  font-size: $font-size-base;
-  font-weight: $font-weight-medium;
-  color: $color-text-primary;
-}
+// .phone-number {
+//   font-size: $font-size-base;
+//   font-weight: $font-weight-medium;
+//   color: $color-text-primary;
+// }

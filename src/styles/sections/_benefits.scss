@@ -1,0 +1,109 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.benefits-section {
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-2xl;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mobile {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.benefit {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: $spacing-sm;
+  padding: 0 $spacing-6xl $spacing-2xl $spacing-2xl;
+  gap: $spacing-2xl;
+
+  @include desktop {
+    padding-bottom: 0;
+  }
+
+  @include tablet {
+    flex: unset;
+    align-self: stretch;
+  }
+
+  @include mobile {
+    flex-direction: row;
+  }
+}
+
+.benefit-icon {
+  position: relative;
+  width: $spacing-4xl;
+  height: $spacing-4xl;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.benefit-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: $spacing-sm;
+}
+
+.benefit--vertical {
+  flex: 1;
+  padding: 0 $spacing-6xl $spacing-2xl 0;
+
+  & > .benefit-content {
+    width: 100%;
+    /* max-width: 308px; */
+    gap: $spacing-lg;
+  }
+
+  @include tablet {
+    flex-direction: row;
+    gap: $spacing-2xl;
+    padding-bottom: 0;
+
+    flex: unset;
+    align-self: stretch;
+
+    & > .f-row {
+      flex-direction: column;
+    }
+  }
+
+  @include mobile {
+    padding-bottom: 0;
+    flex: unset;
+    align-self: stretch;
+  }
+}
+
+.benefit-content__title {
+  align-self: stretch;
+  position: relative;
+  margin: 0;
+  font-size: $font-size-2xl;
+  line-height: $line-height-2xl;
+  font-weight: $font-weight-medium;
+  font-family: inherit;
+
+  @include mobile {
+    font-size: $font-size-lg;
+  }
+}
+
+.benefit-content__text {
+  align-self: stretch;
+  position: relative;
+}

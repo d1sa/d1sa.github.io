@@ -72,28 +72,30 @@
   }
 }
 
+.input-solid {
+  background: $color-input-solid;
+  border: 2px solid $color-input-solid;
+  box-shadow: 0 0 0 0 transparent;
+
+  &:hover,
+  &:focus {
+    background: $color-input-solid-hover;
+    border: 2px solid $color-input-solid-hover;
+    box-shadow: 0 0 0 0 transparent;
+  }
+
+  &:focus,
+  &:active {
+    border-color: $color-primary;
+    background: $color-bg-primary;
+    box-shadow: 0 0 0 3px rgba(38, 140, 235, 0.1);
+  }
+}
+
 // Input variants
 // ==========================================================================
 
-// Phone input variant
 .input--phone {
-  // @extend .input;
-  // height: 72px;
-  // border: none;
-  // border-radius: $border-radius-md;
-  // background: #e8edf4;
-  // box-shadow: none;
-
-  // &:focus {
-  //   background: #dde6f0;
-  //   border: 2px solid $color-primary;
-  //   box-shadow: 0 0 0 3px rgba(38, 140, 235, 0.1);
-  // }
-
-  // &:hover:not(:focus) {
-  //   background: #dde6f0;
-  //   border: none;
-  // }
 }
 
 // Large input variant

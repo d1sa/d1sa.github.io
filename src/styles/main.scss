@@ -19,6 +19,7 @@
 @use "components/header" as *;
 @use "components/footer" as *;
 @use "components/sections" as *;
+@use "components/toast" as *;
 
 // 5. Sections
 
@@ -31,3 +32,5 @@
 @use "sections/balcony-loggias" as *;
 @use "sections/lead-collection" as *;
 @use "sections/reviews" as *;
+@use "sections/lead-form" as *;
+@use "sections/benefits" as *;

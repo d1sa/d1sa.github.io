@@ -1,0 +1,73 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.lead-form-card {
+  @include flex-column;
+  gap: $spacing-2xl;
+  padding: $spacing-4xl;
+  border-radius: $border-radius-xl;
+  border: 1px solid $color-border-table;
+  background: $color-bg-primary;
+
+  @include mobile {
+    padding: $spacing-2xl;
+  }
+}
+
+.lead-form-container {
+  @include flex-column;
+  gap: $spacing-2xl;
+}
+
+// Review Lead Form
+.lead-form {
+  @include flex-column;
+  gap: $spacing-xl;
+}
+
+.form-disclaimer {
+  text-align: center;
+  @include text-muted($font-size-xs);
+  font-weight: $font-weight-normal;
+  line-height: $line-height-base;
+  margin: 0;
+
+  a {
+    color: $color-primary;
+    text-decoration: none;
+    transition: $transition-base;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Success Message
+.success-message {
+  @include flex-column;
+  align-items: center;
+  gap: $spacing-lg;
+  padding: $spacing-4xl;
+  border-radius: $border-radius-xl;
+  border: 1px solid $color-border-table;
+  background: $color-bg-primary;
+  text-align: center;
+
+  .success-title {
+    @include text-heading($font-size-2xl, $font-weight-semibold);
+    line-height: $line-height-relaxed;
+    color: $color-secondary;
+    margin: 0;
+  }
+
+  .success-text {
+    @include text-body();
+    margin: 0;
+    max-width: 500px;
+  }
+
+  @include mobile {
+    padding: $spacing-3xl;
+  }
+}

@@ -2,6 +2,9 @@
 // Forms Management System - Main File
 // ==========================================================================
 
+// Import toast functions from separate module
+import { showToast, hideToast } from './toast.js';
+
 // ==========================================================================
 // Configuration
 // ==========================================================================
@@ -207,7 +210,7 @@ const handleFormSubmit = formType => e => {
   if (formType.type === FORM_TYPES.modal && typeof grecaptcha !== 'undefined') {
     const response = grecaptcha.getResponse();
     if (response.length === 0) {
-      alert('Пожалуйста, подтвердите, что вы не робот!');
+      showToast('Пожалуйста, подтвердите, что вы не робот!', 'error', 8000);
       return false;
     }
   }
@@ -232,25 +235,29 @@ const handleFormSubmit = formType => e => {
     if (key === 'g-recaptcha-response') continue;
 
     const trimmedValue = value.trim();
-    if (!trimmedValue) continue;
 
-    // Validation
-    if (key === 'tel') {
-      if (!validatePhone(trimmedValue)) {
-        validation.isValid = false;
-        validation.errors.push('Введите корректный телефон');
-      }
-    }
-
+    // Validation for required fields
     if (key === 'name') {
-      if (trimmedValue.length < 2) {
+      if (!trimmedValue || trimmedValue.length < 2) {
         validation.isValid = false;
         validation.errors.push('Имя не может быть пустым');
       }
     }
 
-    // Add to message
-    message += `<i>${getFieldName(key)}</i>: <b>${trimmedValue}</b>\n`;
+    if (key === 'tel') {
+      if (!trimmedValue || trimmedValue === '+7' || trimmedValue === '+7 ') {
+        validation.isValid = false;
+        validation.errors.push('Введите номер телефона');
+      } else if (!validatePhone(trimmedValue)) {
+        validation.isValid = false;
+        validation.errors.push('Введите корректный телефон');
+      }
+    }
+
+    // Add to message only if field has value
+    if (trimmedValue) {
+      message += `<i>${getFieldName(key)}</i>: <b>${trimmedValue}</b>\n`;
+    }
   }
 
   message += `\n\n<i>${textName ? `(${textName})` : ''}</i>`;
@@ -266,37 +273,27 @@ const handleFormSubmit = formType => e => {
 };
 
 /**
- * Show form validation errors
+ * Show form validation errors as toast notifications
  * @param {Object} validation - Validation result
  * @param {Object} formType - Form type
  */
 const showFormErrors = (validation, formType) => {
+  // Show each error as a separate toast
+  validation.errors.forEach((error, index) => {
+    // Stagger toast appearances slightly
+    setTimeout(() => {
+      showToast(error, 'error', 12000);
+    }, index * 200);
+  });
+
+  // Remove old inline error containers if they exist
   const { modal } = formType;
   const mainForm =
     modal.nodeName === 'FORM' ? modal : modal.querySelector('.contact-form');
-
-  let errorsContainer = mainForm.querySelector('.errorsContainer');
-
-  if (!errorsContainer) {
-    errorsContainer = document.createElement('div');
-    errorsContainer.className = 'errorsContainer';
-
-    // Insert before form fields
-    const formFields = mainForm.querySelector('.form-fields');
-    if (formFields) {
-      mainForm.insertBefore(errorsContainer, formFields);
-    } else {
-      mainForm.appendChild(errorsContainer);
-    }
+  const errorsContainer = mainForm.querySelector('.errorsContainer');
+  if (errorsContainer) {
+    errorsContainer.remove();
   }
-
-  errorsContainer.innerHTML = '';
-  validation.errors.forEach(error => {
-    const errorEl = document.createElement('div');
-    errorEl.className = 'errorItem';
-    errorEl.textContent = error;
-    errorsContainer.appendChild(errorEl);
-  });
 };
 
 /**
@@ -306,43 +303,40 @@ const showFormErrors = (validation, formType) => {
 const handleSubmissionSuccess = formType => {
   const { type, modal } = formType;
 
-  const successTemplates = {
-    [FORM_TYPES.modal]: `
-      <div class='form-header'>
-        <h3>Заявка успешно отправлена</h3>
-        <p>Благодарим вас за успешную отправку заявки! Мы свяжемся с вами в самое ближайшее время.</p>
-      </div>
-      <button class='btn btn-blue modal-close-button'>Закрыть</button>
-    `,
-    [FORM_TYPES.registered]: `
-      <div class='form-header'>
-        <h3>Заявка успешно отправлена</h3>
-        <p>Мы свяжемся с вами в самое ближайшее время.</p>
-      </div>
-    `,
-    default: `
-      <div class='form-header'>
-        <h3>Заявка успешно отправлена</h3>
-        <p>Мы свяжемся с вами в самое ближайшее время.</p>
-      </div>
-    `,
-  };
+  // Show success toast notification
+  showToast(
+    'Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.',
+    'success',
+    18000
+  );
 
-  const template = successTemplates[type] || successTemplates.default;
-  const mainForm =
-    modal.nodeName === 'FORM' ? modal : modal.querySelector('.contact-form');
-
-  mainForm.innerHTML = template;
-
-  // Add close handlers for modal
+  // For modal forms, close the modal and reset form
   if (type === FORM_TYPES.modal) {
-    const closeButtons = modal.querySelectorAll('.modal-close-button');
-    closeButtons.forEach(button => {
-      button.addEventListener('click', e => {
-        e.preventDefault();
-        hideModal(modal);
-      });
-    });
+    setTimeout(() => {
+      hideModal(modal);
+      // Reset form after closing modal
+      const form = modal.querySelector('.contact-form');
+      if (form) {
+        form.reset();
+        // Reset phone input to default value
+        const phoneInput = form.querySelector('input[type="tel"]');
+        if (phoneInput) {
+          phoneInput.value = '+7 ';
+        }
+      }
+    }, 1000);
+  } else {
+    // For registered forms, reset the form
+    const mainForm =
+      modal.nodeName === 'FORM' ? modal : modal.querySelector('.contact-form');
+    if (mainForm) {
+      mainForm.reset();
+      // Reset phone input to default value
+      const phoneInput = mainForm.querySelector('input[type="tel"]');
+      if (phoneInput) {
+        phoneInput.value = '+7 ';
+      }
+    }
   }
 };
 
@@ -367,10 +361,10 @@ const createModalHTML = config => {
           </div>
           <div class='form-fields'>
             <div class='form-field'>
-              <input type='text' name='name' placeholder='Ваше имя' class='input' required />
+              <input type='text' name='name' placeholder='Ваше имя' class='input' />
             </div>
             <div class='form-field'>
-              <input type='tel' name='tel' placeholder='+7' class='input' minlength="10" value='+7 ' required />
+              <input type='tel' name='tel' placeholder='+7' class='input' minlength="10" value='+7 ' />
             </div>
           </div>
           <button type='submit' class='btn btn-orange'>Отправить</button>
@@ -553,3 +547,6 @@ export function initializeForms() {
 
 // Auto-initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', initializeForms);
+
+// Re-export toast functions for backward compatibility
+export { showToast, hideToast } from './toast.js';

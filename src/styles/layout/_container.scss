@@ -3,7 +3,26 @@
 // ==========================================================================
 
 @use "../mixins" as *;
+@use "../variables" as *;
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-8xl;
+}
 
 .container {
   @include container;
+}
+
+.main-content section {
+  > .container {
+    gap: $spacing-5xl;
+    display: flex;
+    flex-direction: column;
+
+    @include mobile {
+      gap: $spacing-3xl;
+    }
+  }
 }
