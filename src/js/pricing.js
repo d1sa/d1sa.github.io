@@ -6,8 +6,6 @@
 import checkIconSrc from '../img/icon-check-white-blue-circle.svg?url';
 
 document.addEventListener('DOMContentLoaded', function () {
-  console.log('checkIconSrc imported:', checkIconSrc);
-
   // Responsive breakpoints for carousel
   const BREAKPOINTS = {
     MOBILE: 576,
@@ -24,8 +22,58 @@ document.addEventListener('DOMContentLoaded', function () {
   const nextBtn = document.getElementById('nextBtn');
   let currentSlide = 0;
   let slidesToShow = 4; // Number of cards visible at once (responsive)
-  const totalSlides = document.querySelectorAll('.pricing-card').length;
-  let maxSlide = Math.max(0, totalSlides - slidesToShow);
+  let totalSlides = 0; // Will be set dynamically based on current tab data
+  let maxSlide = 0;
+
+  // Function to create a single card element
+  function createCardElement(profile) {
+    const card = document.createElement('div');
+    card.className = 'pricing-card';
+
+    card.innerHTML = `
+      <div class="card-image"></div>
+      <div class="card-header">
+        <h3 class="card-title">${profile.title}</h3>
+      </div>
+      <div class="card-info">
+        <div class="window-size">
+          <p class="size-label">Размер</p>
+          <p class="size-value">${profile.size}</p>
+        </div>
+        <div class="features-list">
+          <!-- Features will be populated by updateCardContent -->
+        </div>
+      </div>
+      <p class="card-price">${profile.price}</p>
+      <a class="order-button" href="/forma-obratnoj-svyaz">
+        <span class="button-text">Заказать</span>
+      </a>
+    `;
+
+    return card;
+  }
+
+  // Function to create all cards for current tab data
+  function createCardsForTab(tabType) {
+    const data = contentData[tabType];
+    if (!data || !data.profiles) return;
+
+    // Clear existing cards
+    pricingCards.innerHTML = '';
+
+    // Create cards only for existing data
+    data.profiles.forEach(profile => {
+      const cardElement = createCardElement(profile);
+      pricingCards.appendChild(cardElement);
+    });
+
+    // Update total slides count
+    totalSlides = data.profiles.length;
+    maxSlide = Math.max(0, totalSlides - slidesToShow);
+
+    // Reset carousel position
+    currentSlide = 0;
+  }
 
   // Tab switching
   tabs.forEach(tab => {
@@ -39,8 +87,10 @@ document.addEventListener('DOMContentLoaded', function () {
       // Get the tab type
       const tabType = this.getAttribute('data-tab');
 
-      // Update card content based on tab
+      // Create cards for new tab and update content
+      createCardsForTab(tabType);
       updateCardContent(tabType);
+      updateCarousel();
     });
   });
 
@@ -56,7 +106,8 @@ document.addEventListener('DOMContentLoaded', function () {
   // Helper function to calculate how many slides actually fit
   function calculateActualSlidesToShow() {
     const firstCard = pricingCards.querySelector('.pricing-card');
-    if (!firstCard) return slidesToShow;
+    if (!firstCard || totalSlides === 0)
+      return Math.min(slidesToShow, totalSlides);
 
     const cardWidth = firstCard.offsetWidth;
     const gap = getCarouselGap();
@@ -73,14 +124,6 @@ document.addEventListener('DOMContentLoaded', function () {
       totalWidth += gap + cardWidth;
       actualSlides++;
     }
-
-    console.log('Actual slides calculation:', {
-      carouselWidth,
-      cardWidth,
-      gap,
-      calculatedSlides: actualSlides,
-      configuredSlides: slidesToShow,
-    });
 
     return Math.min(actualSlides, totalSlides);
   }
@@ -102,21 +145,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (currentSlide > actualMaxSlide) {
       currentSlide = actualMaxSlide;
     }
-
-    // Debug info
-    console.log('Carousel Debug:', {
-      totalSlides,
-      configuredSlidesToShow: slidesToShow,
-      actualSlidesToShow,
-      maxSlide,
-      actualMaxSlide,
-      currentSlide,
-      cardWidth,
-      gap,
-      carouselWidth,
-      expectedWidth:
-        actualSlidesToShow * cardWidth + (actualSlidesToShow - 1) * gap,
-    });
 
     const translateX = currentSlide * (cardWidth + gap);
     pricingCards.style.transform = `translateX(-${translateX}px)`;
@@ -324,18 +352,18 @@ document.addEventListener('DOMContentLoaded', function () {
             'Энергосберегающее стекло',
           ],
         },
-        {
-          title: 'Лоджия',
-          price: 'от 15 700 ₽',
-          profile: 'VEKA Evroline 58',
-          chambers: '3 камеры, 58 мм',
-          size: '3000 × 1400 мм (4,2 м²)',
-          features: [
-            'Панорамное остекление лоджии',
-            'Двухкамерный стеклопакет 24/32 мм',
-            'Энергосберегающее стекло',
-          ],
-        },
+        // {
+        //   title: 'Лоджия',
+        //   price: 'от 15 700 ₽',
+        //   profile: 'VEKA Evroline 58',
+        //   chambers: '3 камеры, 58 мм',
+        //   size: '3000 × 1400 мм (4,2 м²)',
+        //   features: [
+        //     'Панорамное остекление лоджии',
+        //     'Двухкамерный стеклопакет 24/32 мм',
+        //     'Энергосберегающее стекло',
+        //   ],
+        // },
       ],
     },
   };
@@ -349,25 +377,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (data.profiles[index]) {
         const profile = data.profiles[index];
 
-        // Update card title
-        const titleElement = card.querySelector('.card-title');
-        if (titleElement) {
-          titleElement.textContent = profile.title;
-        }
-
-        // Update window size
-        const sizeElement = card.querySelector('.size-value');
-        if (sizeElement) {
-          sizeElement.textContent = profile.size;
-        }
-
-        // Update price
-        const priceElement = card.querySelector('.card-price');
-        if (priceElement) {
-          priceElement.textContent = profile.price;
-        }
-
-        // Update all features
+        // Update features list
         const featuresList = card.querySelector('.features-list');
         if (featuresList) {
           featuresList.innerHTML = '';
@@ -497,9 +507,10 @@ document.addEventListener('DOMContentLoaded', function () {
   // Initialize responsive layout
   handleResize();
 
+  // Initialize with default tab content (WHS - matches active tab)
+  createCardsForTab('whs');
+  updateCardContent('whs');
+
   // Initialize carousel
   updateCarousel();
-
-  // Initialize with default tab content (WHS - matches active tab)
-  updateCardContent('whs');
 });

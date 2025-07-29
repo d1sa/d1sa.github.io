@@ -755,7 +755,6 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _iconCheckWhiteBlueCircleSvgUrl = require("../img/icon-check-white-blue-circle.svg?url");
 var _iconCheckWhiteBlueCircleSvgUrlDefault = parcelHelpers.interopDefault(_iconCheckWhiteBlueCircleSvgUrl);
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('checkIconSrc imported:', (0, _iconCheckWhiteBlueCircleSvgUrlDefault.default));
     // Responsive breakpoints for carousel
     const BREAKPOINTS = {
         MOBILE: 576,
@@ -770,8 +769,50 @@ document.addEventListener('DOMContentLoaded', function() {
     const nextBtn = document.getElementById('nextBtn');
     let currentSlide = 0;
     let slidesToShow = 4; // Number of cards visible at once (responsive)
-    const totalSlides = document.querySelectorAll('.pricing-card').length;
-    let maxSlide = Math.max(0, totalSlides - slidesToShow);
+    let totalSlides = 0; // Will be set dynamically based on current tab data
+    let maxSlide = 0;
+    // Function to create a single card element
+    function createCardElement(profile) {
+        const card = document.createElement('div');
+        card.className = 'pricing-card';
+        card.innerHTML = `
+      <div class="card-image"></div>
+      <div class="card-header">
+        <h3 class="card-title">${profile.title}</h3>
+      </div>
+      <div class="card-info">
+        <div class="window-size">
+          <p class="size-label">\u{420}\u{430}\u{437}\u{43C}\u{435}\u{440}</p>
+          <p class="size-value">${profile.size}</p>
+        </div>
+        <div class="features-list">
+          <!-- Features will be populated by updateCardContent -->
+        </div>
+      </div>
+      <p class="card-price">${profile.price}</p>
+      <a class="order-button" href="/forma-obratnoj-svyaz">
+        <span class="button-text">\u{417}\u{430}\u{43A}\u{430}\u{437}\u{430}\u{442}\u{44C}</span>
+      </a>
+    `;
+        return card;
+    }
+    // Function to create all cards for current tab data
+    function createCardsForTab(tabType) {
+        const data = contentData[tabType];
+        if (!data || !data.profiles) return;
+        // Clear existing cards
+        pricingCards.innerHTML = '';
+        // Create cards only for existing data
+        data.profiles.forEach((profile)=>{
+            const cardElement = createCardElement(profile);
+            pricingCards.appendChild(cardElement);
+        });
+        // Update total slides count
+        totalSlides = data.profiles.length;
+        maxSlide = Math.max(0, totalSlides - slidesToShow);
+        // Reset carousel position
+        currentSlide = 0;
+    }
     // Tab switching
     tabs.forEach((tab)=>{
         tab.addEventListener('click', function() {
@@ -781,8 +822,10 @@ document.addEventListener('DOMContentLoaded', function() {
             this.classList.add('active');
             // Get the tab type
             const tabType = this.getAttribute('data-tab');
-            // Update card content based on tab
+            // Create cards for new tab and update content
+            createCardsForTab(tabType);
             updateCardContent(tabType);
+            updateCarousel();
         });
     });
     // Helper function to get gap from CSS
@@ -795,7 +838,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Helper function to calculate how many slides actually fit
     function calculateActualSlidesToShow() {
         const firstCard = pricingCards.querySelector('.pricing-card');
-        if (!firstCard) return slidesToShow;
+        if (!firstCard || totalSlides === 0) return Math.min(slidesToShow, totalSlides);
         const cardWidth = firstCard.offsetWidth;
         const gap = getCarouselGap();
         const carouselWidth = pricingCards.parentElement.offsetWidth;
@@ -806,13 +849,6 @@ document.addEventListener('DOMContentLoaded', function() {
             totalWidth += gap + cardWidth;
             actualSlides++;
         }
-        console.log('Actual slides calculation:', {
-            carouselWidth,
-            cardWidth,
-            gap,
-            calculatedSlides: actualSlides,
-            configuredSlides: slidesToShow
-        });
         return Math.min(actualSlides, totalSlides);
     }
     // Carousel navigation
@@ -827,19 +863,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const carouselWidth = pricingCards.parentElement.offsetWidth;
         // Ensure currentSlide doesn't exceed the actual max
         if (currentSlide > actualMaxSlide) currentSlide = actualMaxSlide;
-        // Debug info
-        console.log('Carousel Debug:', {
-            totalSlides,
-            configuredSlidesToShow: slidesToShow,
-            actualSlidesToShow,
-            maxSlide,
-            actualMaxSlide,
-            currentSlide,
-            cardWidth,
-            gap,
-            carouselWidth,
-            expectedWidth: actualSlidesToShow * cardWidth + (actualSlidesToShow - 1) * gap
-        });
         const translateX = currentSlide * (cardWidth + gap);
         pricingCards.style.transform = `translateX(-${translateX}px)`;
         // Update button states using actual max slide
@@ -1040,18 +1063,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         "\u0414\u0432\u0443\u0445\u043A\u0430\u043C\u0435\u0440\u043D\u044B\u0439 \u0441\u0442\u0435\u043A\u043B\u043E\u043F\u0430\u043A\u0435\u0442 24/32 \u043C\u043C",
                         "\u042D\u043D\u0435\u0440\u0433\u043E\u0441\u0431\u0435\u0440\u0435\u0433\u0430\u044E\u0449\u0435\u0435 \u0441\u0442\u0435\u043A\u043B\u043E"
                     ]
-                },
-                {
-                    title: "\u041B\u043E\u0434\u0436\u0438\u044F",
-                    price: "\u043E\u0442 15 700 \u20BD",
-                    profile: 'VEKA Evroline 58',
-                    chambers: "3 \u043A\u0430\u043C\u0435\u0440\u044B, 58 \u043C\u043C",
-                    size: "3000 \xd7 1400 \u043C\u043C (4,2 \u043C\xb2)",
-                    features: [
-                        "\u041F\u0430\u043D\u043E\u0440\u0430\u043C\u043D\u043E\u0435 \u043E\u0441\u0442\u0435\u043A\u043B\u0435\u043D\u0438\u0435 \u043B\u043E\u0434\u0436\u0438\u0438",
-                        "\u0414\u0432\u0443\u0445\u043A\u0430\u043C\u0435\u0440\u043D\u044B\u0439 \u0441\u0442\u0435\u043A\u043B\u043E\u043F\u0430\u043A\u0435\u0442 24/32 \u043C\u043C",
-                        "\u042D\u043D\u0435\u0440\u0433\u043E\u0441\u0431\u0435\u0440\u0435\u0433\u0430\u044E\u0449\u0435\u0435 \u0441\u0442\u0435\u043A\u043B\u043E"
-                    ]
                 }
             ]
         }
@@ -1063,16 +1074,7 @@ document.addEventListener('DOMContentLoaded', function() {
         cards.forEach((card, index)=>{
             if (data.profiles[index]) {
                 const profile = data.profiles[index];
-                // Update card title
-                const titleElement = card.querySelector('.card-title');
-                if (titleElement) titleElement.textContent = profile.title;
-                // Update window size
-                const sizeElement = card.querySelector('.size-value');
-                if (sizeElement) sizeElement.textContent = profile.size;
-                // Update price
-                const priceElement = card.querySelector('.card-price');
-                if (priceElement) priceElement.textContent = profile.price;
-                // Update all features
+                // Update features list
                 const featuresList = card.querySelector('.features-list');
                 if (featuresList) {
                     featuresList.innerHTML = '';
@@ -1186,10 +1188,11 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', handleResize);
     // Initialize responsive layout
     handleResize();
+    // Initialize with default tab content (WHS - matches active tab)
+    createCardsForTab('whs');
+    updateCardContent('whs');
     // Initialize carousel
     updateCarousel();
-    // Initialize with default tab content (WHS - matches active tab)
-    updateCardContent('whs');
 });
 
 },{"../img/icon-check-white-blue-circle.svg?url":"4DjLG","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"4DjLG":[function() {},{}]},["lhpGb"], "lhpGb", "parcelRequireef94", {})
