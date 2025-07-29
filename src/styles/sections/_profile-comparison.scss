@@ -7,11 +7,6 @@
 
 .profile-comparison-section {
   background: $color-bg-primary;
-  @include section-spacing;
-
-  @include mobile {
-    padding: $spacing-4xl 0;
-  }
 }
 
 .profile-comparison-content {
@@ -25,13 +20,6 @@
     padding: $spacing-xl 0 $spacing-4xl 0;
     gap: $spacing-3xl;
   }
-}
-
-.section-header {
-  @include flex-column;
-  align-items: center;
-  gap: $spacing-md;
-  text-align: center;
 }
 
 .profile-title {

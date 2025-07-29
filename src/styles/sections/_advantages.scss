@@ -7,7 +7,6 @@
 
 .advantages-section {
   background: $color-bg-primary;
-  padding: $spacing-2xl 0 $spacing-7xl 0;
 }
 
 .advantages-card {
@@ -16,12 +15,6 @@
   padding: $spacing-3xl;
   @include flex-column;
   gap: $spacing-6xl;
-}
-
-.section-title {
-  @include text-heading($font-size-2xl, $font-weight-medium);
-  line-height: $line-height-base;
-  max-width: 849px;
 }
 
 .advantages-grid {

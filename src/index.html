@@ -110,7 +110,7 @@
             </nav>
 
             <div class="header-actions">
-              <div class="contact-phone-button">
+              <a class="contact-phone-button" href="tel:+74842230015">
                 <div class="phone-icon">
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                     <path
@@ -120,7 +120,7 @@
                   </svg>
                 </div>
                 <span class="phone-number">+7 (4842) 23-00-15</span>
-              </div>
+              </a>
 
               <a class="btn btn-green" href="/forma-obratnoj-svyaz"
                 >Бесплатная консультация</a
@@ -151,7 +151,7 @@
               </div>
 
               <div class="hero-cta">
-                <a class="btn btn-blue btn-xl" href="/forma-obratnoj-svyaz">
+                <a class="btn btn-blue btn-xl" href="tel:+74842230015">
                   <svg
                     class="call-icon"
                     width="36"
@@ -180,15 +180,15 @@
             </div>
 
             <div class="hero-form">
-              <div class="form-card">
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F1f54da7576db4a91aadcb8542ef8632d%2F43c296e4909c455f82bf354825d71814?format=webp&width=800"
-                  alt="Window background"
+              <div class="hero-form-wrapper">
+                <!-- <img
+                  src="../src/img/main-image.png"
+                  alt="Пластиковые окна в Калуге недорого — установка под ключ"
                   class="form-bg"
-                />
-                <div class="form-content">
-                  <div class="form-header">
-                    <div class="form-tag">
+                /> -->
+                <div class="hero-form-card">
+                  <div class="hero-form-header">
+                    <div class="hero-form-tag">
                       <svg
                         width="12"
                         height="12"
@@ -227,9 +227,9 @@
                     <button type="submit" class="btn btn-orange">
                       Отправить
                     </button>
-                    <p class="form-disclaimer">
+                    <p class="form-disclaimer disclaimer">
                       Отправляя данные в форме вы соглашаетесь с
-                      <span>политикой обработки персональных данных</span>
+                      <a href="#">политикой обработки персональных данных</a>
                     </p>
                   </form>
                 </div>
@@ -242,7 +242,7 @@
       <section class="advantages-section">
         <div class="container">
           <div class="advantages-card">
-            <h2 class="section-title">Почему выбирают «Окна на Века»</h2>
+            <h2 class="section-title-sm">Почему выбирают «Окна на Века»</h2>
             <div class="advantages-grid">
               <div class="advantage">
                 <div class="advantage-icon">
@@ -308,20 +308,22 @@
         </div>
       </section>
 
-      <section class="services-section-2">
+      <section class="services-section">
         <div class="container">
-          <h2 class="services-title-2">Наши услуги в Калуге</h2>
-          <div class="services-grid-2">
-            <div class="service-card-2 service-card-2--large-right">
+          <div class="section-header">
+            <h2 class="section-title">Наши услуги в Калуге</h2>
+          </div>
+          <div class="services-grid">
+            <div class="service-card service-card--large-right">
               Установка пластиковых окон VEKA, Rehau, KBE
             </div>
-            <div class="service-card-2 service-card-2--wide-top">
+            <div class="service-card service-card--wide-top">
               Остекление балконов и лоджий в Калуге под ключ
             </div>
-            <div class="service-card-2 service-card-2--small-bottom-left">
+            <div class="service-card service-card--small-bottom-left">
               Утепление лоджий в новостройках Калуги
             </div>
-            <div class="service-card-2 service-card-2--medium-bottom-center">
+            <div class="service-card service-card--medium-bottom-center">
               Отделка балкона под ключ с подбором дизайна
             </div>
           </div>
@@ -331,9 +333,9 @@
       <section class="profile-comparison-section">
         <div class="container">
           <div class="profile-comparison-content">
-            <div class="section-header">
-              <h2 class="profile-title">Выбор профиля: WHS, VEKA или Rehau?</h2>
-              <p class="profile-subtitle">
+            <div class="section-header section-header--center">
+              <h2 class="section-title">Выбор профиля: WHS, VEKA или Rehau?</h2>
+              <p class="section-subtitle">
                 Сравните характеристики популярных профилей для пластиковых окон
                 в Калуге:
               </p>
@@ -612,9 +614,9 @@
 
       <section class="pricing-section">
         <div class="container">
-          <div class="pricing-header">
-            <h2 class="pricing-title">Цены на окна ПВХ в Калуге</h2>
-            <p class="pricing-subtitle">
+          <div class="section-header section-header--center">
+            <h2 class="section-title">Цены на окна ПВХ в Калуге</h2>
+            <p class="section-subtitle">
               Узнайте, сколько стоит пластиковое окно в Калуге — выберите
               необходимую конфигурацию:
             </p>
@@ -656,118 +658,22 @@
 
             <div class="pricing-carousel">
               <div class="pricing-cards" id="pricingCards">
+                <!-- Card templates - content will be populated by JavaScript -->
                 <div class="pricing-card">
                   <div class="card-image"></div>
                   <div class="card-header">
-                    <h3 class="card-title">Одностворчатое окно</h3>
+                    <h3 class="card-title"></h3>
                   </div>
                   <div class="card-info">
                     <div class="window-size">
                       <p class="size-label">Размер</p>
-                      <p class="size-value">133 × 410 мм (1,87 м2)</p>
+                      <p class="size-value"></p>
                     </div>
                     <div class="features-list">
-                      <div class="feature-item">
-                        <svg
-                          class="check-icon"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g clip-path="url(#clip0_332_6888)">
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M12 0C18.623 0 24 5.37704 24 12C24 18.623 18.623 24 12 24C5.37704 24 0 18.623 0 12C0 5.37704 5.37704 0 12 0Z"
-                              fill="white"
-                            />
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M7.37879 13.5013L9.96708 16.117C10.2102 16.3626 10.5388 16.5 10.8827 16.5C11.2257 16.5 11.5543 16.3626 11.7973 16.117L17.6212 10.2315C18.1263 9.72111 18.1263 8.89319 17.6212 8.3828C17.1162 7.8724 16.296 7.8724 15.791 8.3828L10.8818 13.343L9.20905 11.6517C8.70399 11.1413 7.88384 11.1413 7.37879 11.6517C6.87374 12.1621 6.87374 12.9909 7.37879 13.5013Z"
-                              fill="#268CEB"
-                            />
-                          </g>
-                          <defs>
-                            <clipPath id="clip0_332_6888">
-                              <rect width="24" height="24" fill="white" />
-                            </clipPath>
-                          </defs>
-                        </svg>
-                        <p class="feature-text">Поворотное и глухая створки</p>
-                      </div>
-                      <div class="feature-item">
-                        <svg
-                          class="check-icon"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g clip-path="url(#clip0_332_6891)">
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M12 0C18.623 0 24 5.37704 24 12C24 18.623 18.623 24 12 24C5.37704 24 0 18.623 0 12C0 5.37704 5.37704 0 12 0Z"
-                              fill="white"
-                            />
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M7.37879 13.5013L9.96708 16.117C10.2102 16.3626 10.5388 16.5 10.8827 16.5C11.2257 16.5 11.5543 16.3626 11.7973 16.117L17.6212 10.2315C18.1263 9.72111 18.1263 8.89319 17.6212 8.3828C17.1162 7.8724 16.296 7.8724 15.791 8.3828L10.8818 13.343L9.20905 11.6517C8.70399 11.1413 7.88384 11.1413 7.37879 11.6517C6.87374 12.1621 6.87374 12.9909 7.37879 13.5013Z"
-                              fill="#268CEB"
-                            />
-                          </g>
-                          <defs>
-                            <clipPath id="clip0_332_6891">
-                              <rect width="24" height="24" fill="white" />
-                            </clipPath>
-                          </defs>
-                        </svg>
-                        <p class="feature-text">
-                          <span class="highlight">VEKA Evroline 58:</span> 3
-                          камеры, 58 мм
-                        </p>
-                      </div>
-                      <div class="feature-item">
-                        <svg
-                          class="check-icon"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g clip-path="url(#clip0_332_6894)">
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M12 0C18.623 0 24 5.37704 24 12C24 18.623 18.623 24 12 24C5.37704 24 0 18.623 0 12C0 5.37704 5.37704 0 12 0Z"
-                              fill="white"
-                            />
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M7.37879 13.5013L9.96708 16.117C10.2102 16.3626 10.5388 16.5 10.8827 16.5C11.2257 16.5 11.5543 16.3626 11.7973 16.117L17.6212 10.2315C18.1263 9.72111 18.1263 8.89319 17.6212 8.3828C17.1162 7.8724 16.296 7.8724 15.791 8.3828L10.8818 13.343L9.20905 11.6517C8.70399 11.1413 7.88384 11.1413 7.37879 11.6517C6.87374 12.1621 6.87374 12.9909 7.37879 13.5013Z"
-                              fill="#268CEB"
-                            />
-                          </g>
-                          <defs>
-                            <clipPath id="clip0_332_6894">
-                              <rect width="24" height="24" fill="white" />
-                            </clipPath>
-                          </defs>
-                        </svg>
-                        <p class="feature-text">
-                          Стеклопакет 24/32 мм, энергосберегающий
-                        </p>
-                      </div>
+                      <!-- Features will be populated by JavaScript -->
                     </div>
                   </div>
-                  <p class="card-price">от 6 000 ₽</p>
+                  <p class="card-price"></p>
                   <a class="order-button" href="/forma-obratnoj-svyaz">
                     <span class="button-text">Заказать</span>
                   </a>
@@ -776,115 +682,18 @@
                 <div class="pricing-card">
                   <div class="card-image"></div>
                   <div class="card-header">
-                    <h3 class="card-title">Двухстворчатое окно</h3>
+                    <h3 class="card-title"></h3>
                   </div>
                   <div class="card-info">
                     <div class="window-size">
                       <p class="size-label">Размер</p>
-                      <p class="size-value">133 × 410 мм (1,87 м2)</p>
+                      <p class="size-value"></p>
                     </div>
                     <div class="features-list">
-                      <div class="feature-item">
-                        <svg
-                          class="check-icon"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g clip-path="url(#clip0_332_6911)">
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M12 0C18.623 0 24 5.37704 24 12C24 18.623 18.623 24 12 24C5.37704 24 0 18.623 0 12C0 5.37704 5.37704 0 12 0Z"
-                              fill="white"
-                            />
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M7.37879 13.5013L9.96708 16.117C10.2102 16.3626 10.5388 16.5 10.8827 16.5C11.2257 16.5 11.5543 16.3626 11.7973 16.117L17.6212 10.2315C18.1263 9.72111 18.1263 8.89319 17.6212 8.3828C17.1162 7.8724 16.296 7.8724 15.791 8.3828L10.8818 13.343L9.20905 11.6517C8.70399 11.1413 7.88384 11.1413 7.37879 11.6517C6.87374 12.1621 6.87374 12.9909 7.37879 13.5013Z"
-                              fill="#268CEB"
-                            />
-                          </g>
-                          <defs>
-                            <clipPath id="clip0_332_6911">
-                              <rect width="24" height="24" fill="white" />
-                            </clipPath>
-                          </defs>
-                        </svg>
-                        <p class="feature-text">Поворотное и глухая створки</p>
-                      </div>
-                      <div class="feature-item">
-                        <svg
-                          class="check-icon"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g clip-path="url(#clip0_332_6914)">
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M12 0C18.623 0 24 5.37704 24 12C24 18.623 18.623 24 12 24C5.37704 24 0 18.623 0 12C0 5.37704 5.37704 0 12 0Z"
-                              fill="white"
-                            />
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M7.37879 13.5013L9.96708 16.117C10.2102 16.3626 10.5388 16.5 10.8827 16.5C11.2257 16.5 11.5543 16.3626 11.7973 16.117L17.6212 10.2315C18.1263 9.72111 18.1263 8.89319 17.6212 8.3828C17.1162 7.8724 16.296 7.8724 15.791 8.3828L10.8818 13.343L9.20905 11.6517C8.70399 11.1413 7.88384 11.1413 7.37879 11.6517C6.87374 12.1621 6.87374 12.9909 7.37879 13.5013Z"
-                              fill="#268CEB"
-                            />
-                          </g>
-                          <defs>
-                            <clipPath id="clip0_332_6914">
-                              <rect width="24" height="24" fill="white" />
-                            </clipPath>
-                          </defs>
-                        </svg>
-                        <p class="feature-text">
-                          <span class="highlight">VEKA Evroline 58:</span> 3
-                          камеры, 58 мм
-                        </p>
-                      </div>
-                      <div class="feature-item">
-                        <svg
-                          class="check-icon"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g clip-path="url(#clip0_332_6917)">
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M12 0C18.623 0 24 5.37704 24 12C24 18.623 18.623 24 12 24C5.37704 24 0 18.623 0 12C0 5.37704 5.37704 0 12 0Z"
-                              fill="white"
-                            />
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M7.37879 13.5013L9.96708 16.117C10.2102 16.3626 10.5388 16.5 10.8827 16.5C11.2257 16.5 11.5543 16.3626 11.7973 16.117L17.6212 10.2315C18.1263 9.72111 18.1263 8.89319 17.6212 8.3828C17.1162 7.8724 16.296 7.8724 15.791 8.3828L10.8818 13.343L9.20905 11.6517C8.70399 11.1413 7.88384 11.1413 7.37879 11.6517C6.87374 12.1621 6.87374 12.9909 7.37879 13.5013Z"
-                              fill="#268CEB"
-                            />
-                          </g>
-                          <defs>
-                            <clipPath id="clip0_332_6917">
-                              <rect width="24" height="24" fill="white" />
-                            </clipPath>
-                          </defs>
-                        </svg>
-                        <p class="feature-text">
-                          Стеклопакет 24/32 мм, энергосберегающий
-                        </p>
-                      </div>
+                      <!-- Features will be populated by JavaScript -->
                     </div>
                   </div>
-                  <p class="card-price">от 9 700 ₽</p>
+                  <p class="card-price"></p>
                   <a class="order-button" href="/forma-obratnoj-svyaz">
                     <span class="button-text">Заказать</span>
                   </a>
@@ -893,115 +702,18 @@
                 <div class="pricing-card">
                   <div class="card-image"></div>
                   <div class="card-header">
-                    <h3 class="card-title">Трехстворчатое окно</h3>
+                    <h3 class="card-title"></h3>
                   </div>
                   <div class="card-info">
                     <div class="window-size">
                       <p class="size-label">Размер</p>
-                      <p class="size-value">133 × 410 мм (1,87 м2)</p>
+                      <p class="size-value"></p>
                     </div>
                     <div class="features-list">
-                      <div class="feature-item">
-                        <svg
-                          class="check-icon"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g clip-path="url(#clip0_332_6934)">
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M12 0C18.623 0 24 5.37704 24 12C24 18.623 18.623 24 12 24C5.37704 24 0 18.623 0 12C0 5.37704 5.37704 0 12 0Z"
-                              fill="white"
-                            />
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M7.37879 13.5013L9.96708 16.117C10.2102 16.3626 10.5388 16.5 10.8827 16.5C11.2257 16.5 11.5543 16.3626 11.7973 16.117L17.6212 10.2315C18.1263 9.72111 18.1263 8.89319 17.6212 8.3828C17.1162 7.8724 16.296 7.8724 15.791 8.3828L10.8818 13.343L9.20905 11.6517C8.70399 11.1413 7.88384 11.1413 7.37879 11.6517C6.87374 12.1621 6.87374 12.9909 7.37879 13.5013Z"
-                              fill="#268CEB"
-                            />
-                          </g>
-                          <defs>
-                            <clipPath id="clip0_332_6934">
-                              <rect width="24" height="24" fill="white" />
-                            </clipPath>
-                          </defs>
-                        </svg>
-                        <p class="feature-text">Поворотное и глухая створки</p>
-                      </div>
-                      <div class="feature-item">
-                        <svg
-                          class="check-icon"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g clip-path="url(#clip0_332_6937)">
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M12 0C18.623 0 24 5.37704 24 12C24 18.623 18.623 24 12 24C5.37704 24 0 18.623 0 12C0 5.37704 5.37704 0 12 0Z"
-                              fill="white"
-                            />
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M7.37879 13.5013L9.96708 16.117C10.2102 16.3626 10.5388 16.5 10.8827 16.5C11.2257 16.5 11.5543 16.3626 11.7973 16.117L17.6212 10.2315C18.1263 9.72111 18.1263 8.89319 17.6212 8.3828C17.1162 7.8724 16.296 7.8724 15.791 8.3828L10.8818 13.343L9.20905 11.6517C8.70399 11.1413 7.88384 11.1413 7.37879 11.6517C6.87374 12.1621 6.87374 12.9909 7.37879 13.5013Z"
-                              fill="#268CEB"
-                            />
-                          </g>
-                          <defs>
-                            <clipPath id="clip0_332_6937">
-                              <rect width="24" height="24" fill="white" />
-                            </clipPath>
-                          </defs>
-                        </svg>
-                        <p class="feature-text">
-                          <span class="highlight">VEKA Evroline 58:</span> 3
-                          камеры, 58 мм
-                        </p>
-                      </div>
-                      <div class="feature-item">
-                        <svg
-                          class="check-icon"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g clip-path="url(#clip0_332_6940)">
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M12 0C18.623 0 24 5.37704 24 12C24 18.623 18.623 24 12 24C5.37704 24 0 18.623 0 12C0 5.37704 5.37704 0 12 0Z"
-                              fill="white"
-                            />
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M7.37879 13.5013L9.96708 16.117C10.2102 16.3626 10.5388 16.5 10.8827 16.5C11.2257 16.5 11.5543 16.3626 11.7973 16.117L17.6212 10.2315C18.1263 9.72111 18.1263 8.89319 17.6212 8.3828C17.1162 7.8724 16.296 7.8724 15.791 8.3828L10.8818 13.343L9.20905 11.6517C8.70399 11.1413 7.88384 11.1413 7.37879 11.6517C6.87374 12.1621 6.87374 12.9909 7.37879 13.5013Z"
-                              fill="#268CEB"
-                            />
-                          </g>
-                          <defs>
-                            <clipPath id="clip0_332_6940">
-                              <rect width="24" height="24" fill="white" />
-                            </clipPath>
-                          </defs>
-                        </svg>
-                        <p class="feature-text">
-                          Стеклопакет 24/32 мм, энергосберегающий
-                        </p>
-                      </div>
+                      <!-- Features will be populated by JavaScript -->
                     </div>
                   </div>
-                  <p class="card-price">от 13 800 ₽</p>
+                  <p class="card-price"></p>
                   <a class="order-button" href="/forma-obratnoj-svyaz">
                     <span class="button-text">Заказать</span>
                   </a>
@@ -1010,148 +722,38 @@
                 <div class="pricing-card">
                   <div class="card-image"></div>
                   <div class="card-header">
-                    <h3 class="card-title">Балконный блок</h3>
+                    <h3 class="card-title"></h3>
                   </div>
                   <div class="card-info">
                     <div class="window-size">
                       <p class="size-label">Размер</p>
-                      <p class="size-value">133 × 410 мм (1,87 м2)</p>
+                      <p class="size-value"></p>
                     </div>
                     <div class="features-list">
-                      <div class="feature-item">
-                        <svg
-                          class="check-icon"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g clip-path="url(#clip0_332_6957)">
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M12 0C18.623 0 24 5.37704 24 12C24 18.623 18.623 24 12 24C5.37704 24 0 18.623 0 12C0 5.37704 5.37704 0 12 0Z"
-                              fill="white"
-                            />
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M7.37879 13.5013L9.96708 16.117C10.2102 16.3626 10.5388 16.5 10.8827 16.5C11.2257 16.5 11.5543 16.3626 11.7973 16.117L17.6212 10.2315C18.1263 9.72111 18.1263 8.89319 17.6212 8.3828C17.1162 7.8724 16.296 7.8724 15.791 8.3828L10.8818 13.343L9.20905 11.6517C8.70399 11.1413 7.88384 11.1413 7.37879 11.6517C6.87374 12.1621 6.87374 12.9909 7.37879 13.5013Z"
-                              fill="#268CEB"
-                            />
-                          </g>
-                          <defs>
-                            <clipPath id="clip0_332_6957">
-                              <rect width="24" height="24" fill="white" />
-                            </clipPath>
-                          </defs>
-                        </svg>
-                        <p class="feature-text">Поворотное и глухая створки</p>
-                      </div>
-                      <div class="feature-item">
-                        <svg
-                          class="check-icon"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g clip-path="url(#clip0_332_6960)">
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M12 0C18.623 0 24 5.37704 24 12C24 18.623 18.623 24 12 24C5.37704 24 0 18.623 0 12C0 5.37704 5.37704 0 12 0Z"
-                              fill="white"
-                            />
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M7.37879 13.5013L9.96708 16.117C10.2102 16.3626 10.5388 16.5 10.8827 16.5C11.2257 16.5 11.5543 16.3626 11.7973 16.117L17.6212 10.2315C18.1263 9.72111 18.1263 8.89319 17.6212 8.3828C17.1162 7.8724 16.296 7.8724 15.791 8.3828L10.8818 13.343L9.20905 11.6517C8.70399 11.1413 7.88384 11.1413 7.37879 11.6517C6.87374 12.1621 6.87374 12.9909 7.37879 13.5013Z"
-                              fill="#268CEB"
-                            />
-                          </g>
-                          <defs>
-                            <clipPath id="clip0_332_6960">
-                              <rect width="24" height="24" fill="white" />
-                            </clipPath>
-                          </defs>
-                        </svg>
-                        <p class="feature-text">
-                          <span class="highlight">VEKA Evroline 58:</span> 3
-                          камеры, 58 мм
-                        </p>
-                      </div>
-                      <div class="feature-item">
-                        <svg
-                          class="check-icon"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g clip-path="url(#clip0_332_6963)">
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M12 0C18.623 0 24 5.37704 24 12C24 18.623 18.623 24 12 24C5.37704 24 0 18.623 0 12C0 5.37704 5.37704 0 12 0Z"
-                              fill="white"
-                            />
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M7.37879 13.5013L9.96708 16.117C10.2102 16.3626 10.5388 16.5 10.8827 16.5C11.2257 16.5 11.5543 16.3626 11.7973 16.117L17.6212 10.2315C18.1263 9.72111 18.1263 8.89319 17.6212 8.3828C17.1162 7.8724 16.296 7.8724 15.791 8.3828L10.8818 13.343L9.20905 11.6517C8.70399 11.1413 7.88384 11.1413 7.37879 11.6517C6.87374 12.1621 6.87374 12.9909 7.37879 13.5013Z"
-                              fill="#268CEB"
-                            />
-                          </g>
-                          <defs>
-                            <clipPath id="clip0_332_6963">
-                              <rect width="24" height="24" fill="white" />
-                            </clipPath>
-                          </defs>
-                        </svg>
-                        <p class="feature-text">
-                          Стеклопакет 24/32 мм, энергосберегающий
-                        </p>
-                      </div>
+                      <!-- Features will be populated by JavaScript -->
                     </div>
                   </div>
-                  <p class="card-price">от 15 700 ₽</p>
-                  <button class="order-button">
+                  <p class="card-price"></p>
+                  <a class="order-button" href="/forma-obratnoj-svyaz">
                     <span class="button-text">Заказать</span>
-                  </button>
+                  </a>
                 </div>
 
                 <div class="pricing-card">
                   <div class="card-image"></div>
                   <div class="card-header">
-                    <h3 class="card-title">Лоджия</h3>
+                    <h3 class="card-title"></h3>
                   </div>
                   <div class="card-info">
                     <div class="window-size">
                       <p class="size-label">Размер</p>
-                      <p class="size-value">133 × 410 мм (1,87 м2)</p>
+                      <p class="size-value"></p>
                     </div>
                     <div class="features-list">
-                      <div class="feature-item">
-                        <p class="feature-text">Поворотное и глухая створки</p>
-                      </div>
-                      <div class="feature-item">
-                        <p class="feature-text">
-                          <span class="highlight">VEKA Evroline 58:</span> 3
-                          камеры, 58 мм
-                        </p>
-                      </div>
-                      <div class="feature-item">
-                        <p class="feature-text">
-                          Стеклопакет 24/32 мм, энергосберегающий
-                        </p>
-                      </div>
+                      <!-- Features will be populated by JavaScript -->
                     </div>
                   </div>
-                  <p class="card-price">от 15 700 ₽</p>
+                  <p class="card-price"></p>
                   <a class="order-button" href="/forma-obratnoj-svyaz">
                     <span class="button-text">Заказать</span>
                   </a>
@@ -1184,9 +786,11 @@
       <section class="glazing-balconies-section">
         <div class="container">
           <div class="glazing-balconies-content">
-            <h2 class="glazing-title">
-              Остекление балконов Калуга: цена и варианты
-            </h2>
+            <div class="section-header">
+              <h2 class="section-title">
+                Остекление балконов Калуга: цена и варианты
+              </h2>
+            </div>
 
             <div class="glazing-services">
               <div class="glazing-service-item">
@@ -1408,11 +1012,11 @@
             </div>
 
             <div class="lead-collection-right">
-              <div class="section-header-lead">
-                <h2 class="lead-title">
+              <div class="section-header section-header--center">
+                <h2 class="section-title">
                   Не знаете какие окна подойдут именно вам
                 </h2>
-                <p class="lead-subtitle">
+                <p class="section-subtitle">
                   Оставьте заявку на консультацию — наши специалисты помогут
                   подобрать оптимальное решение для вашего дома. Бесплатно
                   проведём замеры и рассчитаем стоимость.
@@ -1557,9 +1161,11 @@
         <div class="container">
           <!-- Block 1: Header with title and images -->
           <div class="section-header-block">
-            <h2 class="section-title">
-              Отделка балконов и лоджий с утеплением под ключ в Калуге
-            </h2>
+            <div class="section-header section-header--center">
+              <h2 class="section-title">
+                Отделка балконов и лоджий с утеплением под ключ в Калуге
+              </h2>
+            </div>
             <div class="images-grid">
               <div class="image-placeholder"></div>
               <div class="image-placeholder"></div>
@@ -1567,14 +1173,89 @@
               <div class="image-placeholder"></div>
             </div>
           </div>
+        </div>
+      </section>
 
+      <section class="advantages-section">
+        <div class="container">
+          <div class="advantages-card">
+            <h2 class="section-title-sm">Почему выбирают «Окна на Века»</h2>
+            <div class="advantages-grid">
+              <div class="advantage">
+                <div class="advantage-icon">
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <path
+                      d="M2 22H30V24H2V22ZM2 26H30V28H2V26ZM24 10C23.6044 10 23.2178 10.1173 22.8889 10.3371C22.56 10.5568 22.3036 10.8692 22.1522 11.2346C22.0009 11.6001 21.9613 12.0022 22.0384 12.3902C22.1156 12.7781 22.3061 13.1345 22.5858 13.4142C22.8655 13.6939 23.2219 13.8844 23.6098 13.9616C23.9978 14.0387 24.3999 13.9991 24.7654 13.8478C25.1308 13.6964 25.4432 13.44 25.6629 13.1111C25.8827 12.7822 26 12.3956 26 12C26 11.4696 25.7893 10.9609 25.4142 10.5858C25.0391 10.2107 24.5304 10 24 10ZM16 16C15.2089 16 14.4355 15.7654 13.7777 15.3259C13.1199 14.8864 12.6072 14.2616 12.3045 13.5307C12.0017 12.7998 11.9225 11.9956 12.0769 11.2196C12.2312 10.4437 12.6122 9.73098 13.1716 9.17157C13.731 8.61216 14.4437 8.2312 15.2196 8.07686C15.9956 7.92252 16.7998 8.00173 17.5307 8.30448C18.2616 8.60723 18.8864 9.11993 19.3259 9.77772C19.7654 10.4355 20 11.2089 20 12C19.9987 13.0605 19.5768 14.0771 18.827 14.827C18.0771 15.5768 17.0605 15.9987 16 16ZM16 10C15.6044 10 15.2178 10.1173 14.8889 10.3371C14.56 10.5568 14.3036 10.8692 14.1522 11.2346C14.0009 11.6001 13.9613 12.0022 14.0384 12.3902C14.1156 12.7781 14.3061 13.1345 14.5858 13.4142C14.8655 13.6939 15.2219 13.8844 15.6098 13.9616C15.9978 14.0387 16.3999 13.9991 16.7654 13.8478C17.1308 13.6964 17.4432 13.44 17.6629 13.1111C17.8827 12.7822 18 12.3956 18 12C17.9995 11.4697 17.7886 10.9613 17.4136 10.5864C17.0387 10.2114 16.5303 10.0005 16 10ZM8 10C7.60444 10 7.21776 10.1173 6.88886 10.3371C6.55996 10.5568 6.30362 10.8692 6.15224 11.2346C6.00087 11.6001 5.96126 12.0022 6.03843 12.3902C6.1156 12.7781 6.30608 13.1345 6.58579 13.4142C6.86549 13.6939 7.22186 13.8844 7.60982 13.9616C7.99778 14.0387 8.39991 13.9991 8.76537 13.8478C9.13082 13.6964 9.44318 13.44 9.66294 13.1111C9.8827 12.7822 10 12.3956 10 12C10 11.4696 9.78929 10.9609 9.41421 10.5858C9.03914 10.2107 8.53043 10 8 10Z"
+                      fill="#009ADC"
+                    ></path>
+                    <path
+                      d="M28 20H4C3.46997 19.9987 2.96203 19.7875 2.58724 19.4128C2.21246 19.038 2.00132 18.53 2 18V6C2.00132 5.46997 2.21246 4.96203 2.58724 4.58724C2.96203 4.21246 3.46997 4.00132 4 4H28C28.53 4.00132 29.038 4.21246 29.4128 4.58724C29.7875 4.96203 29.9987 5.46997 30 6V18C29.9992 18.5302 29.7882 19.0384 29.4133 19.4133C29.0384 19.7882 28.5302 19.9992 28 20ZM28 6H4V18H28V6Z"
+                      fill="#009ADC"
+                    ></path>
+                  </svg>
+                </div>
+                <p>Бесплатный замер по Калуге</p>
+              </div>
+
+              <div class="advantage">
+                <div class="advantage-icon">
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <path
+                      d="M23 27.59L20.41 25L19 26.41L23 30.41L31 22.41L29.59 21L23 27.59ZM16 23L13.861 21.987C13.0065 21.5799 12.2845 20.9396 11.7783 20.1398C11.2721 19.3401 11.0023 18.4135 11 17.467V11H21V17.468C20.9977 18.4145 20.7279 19.3411 20.2217 20.1408C19.7155 20.9406 18.9935 21.5809 18.139 21.988L16 23ZM13 13V17.468C13.0015 18.0356 13.1636 18.5913 13.4674 19.0708C13.7712 19.5503 14.2044 19.9342 14.717 20.178L16 20.786L17.283 20.179C17.7958 19.9351 18.2291 19.5511 18.5329 19.0714C18.8367 18.5917 18.9987 18.0358 19 17.468V13H13ZM4.12 17.656C4.40593 17.4627 4.63698 17.1988 4.79068 16.8898C4.94439 16.5808 5.01552 16.2373 4.99717 15.8926C4.97881 15.548 4.87159 15.214 4.68593 14.9231C4.50027 14.6322 4.24249 14.3942 3.93765 14.2324C3.63281 14.0706 3.29129 13.9905 2.9463 13.9997C2.60131 14.009 2.26459 14.1074 1.96887 14.2853C1.67316 14.4632 1.42852 14.7147 1.25874 15.0151C1.08897 15.3156 0.99983 15.6549 1 16C1 16.789 1.46 17.464 2.124 17.79C2.45608 20.4239 3.53286 22.9084 5.22786 24.9517C6.92287 26.9949 9.16572 28.5121 11.693 29.325L12.307 27.421C10.1603 26.7314 8.25242 25.4485 6.80388 23.7206C5.35535 21.9927 4.42424 19.8902 4.12 17.656ZM29.877 14.21C29.5449 11.5761 28.4681 9.09156 26.7731 7.0483C25.0781 5.00505 22.8353 3.48789 20.308 2.675L19.694 4.579C21.8407 5.26859 23.7486 6.55146 25.1971 8.2794C26.6457 10.0073 27.5758 12.1098 27.88 14.344C27.5941 14.5373 27.363 14.8012 27.2093 15.1102C27.0556 15.4192 26.9845 15.7627 27.0028 16.1074C27.0212 16.452 27.1284 16.786 27.3141 17.0769C27.4997 17.3678 27.7575 17.6058 28.0624 17.7676C28.3672 17.9294 28.7087 18.0095 29.0537 18.0003C29.3987 17.991 29.7354 17.8926 30.0311 17.7147C30.3268 17.5368 30.5715 17.2853 30.7413 16.9849C30.911 16.6844 31.0002 16.3451 31 16C30.9998 15.6263 30.8943 15.2602 30.6957 14.9436C30.4971 14.6271 30.2134 14.3728 29.877 14.21ZM16 1C15.211 1 14.536 1.46 14.21 2.124C11.5762 2.456 9.09176 3.53263 7.04852 5.22745C5.00528 6.92226 3.48805 9.1649 2.675 11.692L4.579 12.308C5.26843 10.1611 6.55123 8.25302 8.27918 6.8043C10.0071 5.35558 12.1097 4.42532 14.344 4.121C14.5374 4.40674 14.8014 4.63759 15.1104 4.79111C15.4194 4.94464 15.7629 5.01561 16.1074 4.99713C16.452 4.97865 16.7859 4.87135 17.0767 4.68566C17.3675 4.49997 17.6053 4.2422 17.767 3.93741C17.9287 3.63262 18.0089 3.29118 17.9996 2.94627C17.9903 2.60136 17.892 2.26471 17.7141 1.96905C17.5363 1.67339 17.2849 1.42877 16.9846 1.25896C16.6842 1.08916 16.345 0.999947 16 1Z"
+                      fill="#009ADC"
+                    ></path>
+                  </svg>
+                </div>
+                <p>Гарантия 5 лет на окна и монтаж</p>
+              </div>
+
+              <div class="advantage">
+                <div class="advantage-icon">
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <path
+                      d="M15 11H17V20H15V11ZM13 2H19V4H13V2Z"
+                      fill="#009ADC"
+                    ></path>
+                    <path
+                      d="M27.9999 8.99999L26.5799 7.58999L24.3299 9.83999C22.4881 7.71302 19.8977 6.37742 17.0968 6.1107C14.2959 5.84397 11.4999 6.66663 9.28973 8.40774C7.07958 10.1488 5.62521 12.6745 5.2288 15.46C4.83238 18.2456 5.5244 21.0767 7.16107 23.3653C8.79774 25.6538 11.2532 27.2239 14.0173 27.7491C16.7814 28.2744 19.6417 27.7145 22.0037 26.1858C24.3658 24.6571 26.048 22.2771 26.701 19.5403C27.3539 16.8036 26.9274 13.9204 25.5099 11.49L27.9999 8.99999ZM15.9999 26C14.2199 26 12.4798 25.4722 10.9998 24.4832C9.51977 23.4943 8.36621 22.0887 7.68502 20.4441C7.00384 18.7996 6.82561 16.99 7.17287 15.2442C7.52014 13.4983 8.37731 11.8947 9.63598 10.636C10.8947 9.37736 12.4983 8.52019 14.2441 8.17292C15.99 7.82566 17.7996 8.00389 19.4441 8.68508C21.0886 9.36626 22.4942 10.5198 23.4832 11.9999C24.4721 13.4799 24.9999 15.22 24.9999 17C24.9999 19.3869 24.0517 21.6761 22.3639 23.364C20.6761 25.0518 18.3869 26 15.9999 26Z"
+                      fill="#009ADC"
+                    ></path>
+                  </svg>
+                </div>
+                <p>Установка пластиковых окон за 1 день</p>
+              </div>
+
+              <div class="advantage">
+                <div class="advantage-icon">
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <path
+                      d="M12 12H14V24H12V12ZM18 12H20V24H18V12Z"
+                      fill="#009ADC"
+                    ></path>
+                    <path
+                      d="M4 6V8H6V28C6 28.5304 6.21071 29.0391 6.58579 29.4142C6.96086 29.7893 7.46957 30 8 30H24C24.5304 30 25.0391 29.7893 25.4142 29.4142C25.7893 29.0391 26 28.5304 26 28V8H28V6H4ZM8 28V8H24V28H8ZM12 2H20V4H12V2Z"
+                      fill="#009ADC"
+                    ></path>
+                  </svg>
+                </div>
+                <p>Вынос строительного мусора после работ</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="balcony-loggias-section">
+        <div class="container">
           <!-- Block 2: Loggias block -->
           <div class="loggias-block">
             <div class="content-section">
-              <h3 class="block-title">
-                <span class="highlight">Лоджия</span> под ключ в Калуге —
-                утепление и остекление
-              </h3>
+              <div class="section-header">
+                <h2 class="section-title">
+                  <span class="highlight">Лоджия</span> под ключ в Калуге —
+                  утепление и остекление
+                </h2>
+              </div>
               <div class="features-list">
                 <div class="feature-item">
                   <svg
@@ -1758,7 +1439,11 @@
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
+      <section class="balcony-loggias-section">
+        <div class="container">
           <!-- Block 3: Verandas block -->
           <div class="verandas-block">
             <div class="form-card">
@@ -1784,12 +1469,14 @@
               </div>
             </div>
             <div class="content-section">
-              <h3 class="block-title">
-                Остекление <span class="highlight">веранд</span>,
-                <span class="highlight">террас</span> и
-                <span class="highlight">беседок</span> под ключ в Калуге и
-                регионе
-              </h3>
+              <div class="section-header">
+                <h2 class="section-title">
+                  Остекление <span class="highlight">веранд</span>,
+                  <span class="highlight">террас</span> и
+                  <span class="highlight">беседок</span> под ключ в Калуге и
+                  регионе
+                </h2>
+              </div>
               <div class="features-list">
                 <div class="feature-item">
                   <svg
@@ -1867,20 +1554,25 @@
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
+      <section class="balcony-loggias-section">
+        <div class="container">
           <!-- Block 4: Order glazing CTA -->
           <div class="order-glazing-block">
             <div class="content-section">
-              <div class="section-header">
+              <div class="section-header section-header--center">
                 <div class="section-tag">Заказать остекление</div>
-                <h3 class="section-title">
+                <h2 class="section-title">
                   Остекление веранд, террас и беседок под ключ в Калуге
-                </h3>
+                </h2>
                 <p class="section-subtitle">
                   Оставьте заявку, и мы свяжемся с вами в ближайшее время для
                   обсчетки и выезда специалиста.
                 </p>
               </div>
+
               <div class="inner-content">
                 <a class="green-button" href="/forma-obratnoj-svyaz">
                   <div class="button-content">
@@ -1937,7 +1629,7 @@
         <div class="container">
           <!-- Reviews Section -->
           <div class="reviews-content">
-            <div class="section-header">
+            <div class="section-header section-header--center">
               <h2 class="section-title">Наши работы и отзывы</h2>
             </div>
 
@@ -2292,7 +1984,11 @@
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
+      <section class="section-lead-form">
+        <div class="container">
           <!-- Lead Form Section -->
           <div class="lead-form-section">
             <div class="section-header">

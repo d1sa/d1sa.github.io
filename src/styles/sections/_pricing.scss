@@ -6,13 +6,6 @@
 @use "../mixins" as *;
 
 .pricing-section {
-  padding: $spacing-2xl 0 $spacing-7xl 0;
-
-  .container {
-    max-width: $container-max-width;
-    margin: 0 auto;
-    padding: 0 $container-padding;
-  }
 }
 
 .pricing-header {
@@ -106,7 +99,6 @@
 .pricing-carousel {
   display: flex;
   align-items: center;
-  gap: $spacing-2xl;
   flex: 1;
   overflow: hidden;
   position: relative;

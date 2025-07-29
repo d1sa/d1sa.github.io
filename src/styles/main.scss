@@ -18,13 +18,14 @@
 @use "components/inputs" as *;
 @use "components/header" as *;
 @use "components/footer" as *;
+@use "components/sections" as *;
 
 // 5. Sections
+
 @use "sections/hero" as *;
 @use "sections/advantages" as *;
 @use "sections/profile-comparison" as *;
 @use "sections/services" as *;
-@use "sections/services-2" as *;
 @use "sections/pricing" as *;
 @use "sections/glazing-balconies" as *;
 @use "sections/balcony-loggias" as *;

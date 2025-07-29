@@ -6,7 +6,6 @@
 @use "../variables" as *;
 
 .glazing-balconies-section {
-  @include section-spacing;
   background: $color-bg-primary;
 }
 

@@ -6,7 +6,6 @@
 @use "../variables" as *;
 
 .lead-collection-section {
-  @include section-spacing;
   background: $color-bg-secondary;
 }
 

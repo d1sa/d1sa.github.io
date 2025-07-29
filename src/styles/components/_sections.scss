@@ -1,0 +1,60 @@
+@use "../mixins" as *;
+@use "../variables" as *;
+
+section {
+  .section-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $spacing-md;
+    align-self: stretch;
+
+    &--center {
+      text-align: center;
+    }
+  }
+
+  .section-tag {
+    align-self: stretch;
+    color: $color-primary;
+    font-family: $font-family-primary;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    line-height: 16px;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    align-self: stretch;
+    color: $color-text-primary;
+    font-family: $font-family-primary;
+    font-size: $font-size-4xl;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-loose;
+    width: 100%;
+    margin: 0;
+  }
+
+  .section-subtitle {
+    align-self: stretch;
+    color: $color-text-primary;
+    font-family: $font-family-primary;
+    font-size: $font-size-base;
+    font-weight: $font-weight-light;
+    line-height: $line-height-spacious;
+    margin: 0;
+  }
+
+  .section-title-sm {
+    //   @include tablet {
+    //     font-size: $font-size-xl;
+    //   }
+  }
+}
+
+.main-content {
+  section {
+    margin-top: $spacing-7xl;
+  }
+}

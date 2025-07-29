@@ -68,7 +68,6 @@
 }
 
 .hero-description {
-  @include text-body;
 }
 
 .hero-cta {
@@ -97,5 +96,45 @@
 
   @include tablet {
     padding-left: 0;
+  }
+}
+
+.hero-form-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    min-width: 100%;
+    width: 34vw;
+    height: calc(100% + $spacing-5xl);
+    background: url(../img/main-image.png) no-repeat center center;
+    background-size: cover;
+    z-index: 0;
+    border-radius: $border-radius-2xl;
+    transform: translateY(-50%);
+  }
+}
+
+.hero-form-card {
+  position: relative;
+  z-index: 1;
+  // @include backdrop-blur;
+  border-radius: $border-radius-2xl;
+  padding: $spacing-4xl;
+  min-height: 500px;
+  @include flex-column;
+  justify-content: center;
+  gap: $spacing-3xl;
+  width: 100%;
+
+  @include tablet {
+    background: $color-bg-secondary;
+    backdrop-filter: none;
   }
 }

@@ -2,143 +2,86 @@
 // Reviews Section
 // ==========================================================================
 
+@use "../variables" as *;
+@use "../mixins" as *;
+
 .reviews-section {
-  padding: 64px 0;
-  background: #fff;
-
-  .container {
-    max-width: 1128px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
   // Reviews Content
   .reviews-content {
-    margin-bottom: 96px;
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 48px;
-
-      .section-title {
-        font-family:
-          "Geologica",
-          -apple-system,
-          BlinkMacSystemFont,
-          "Segoe UI",
-          Roboto,
-          Helvetica,
-          Arial,
-          sans-serif;
-        font-size: 48px;
-        font-weight: 600;
-        line-height: 1.3;
-        color: #000;
-        margin: 0;
-        max-width: 849px;
-        margin: 0 auto;
-      }
-    }
+    @include flex-column;
+    align-self: stretch;
+    gap: $spacing-7xl;
+    margin-bottom: $spacing-8xl;
   }
 
   // Reviews Grid
   .reviews-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    gap: $spacing-2xl;
     align-items: flex-start;
 
-    @media (max-width: 991px) {
+    @include tablet {
       grid-template-columns: 1fr;
-      gap: 32px;
+      gap: $spacing-3xl;
     }
   }
 
   // Review Card
   .review-card {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding-bottom: 8px;
+    @include flex-column;
+    gap: $spacing-lg;
+    padding-bottom: $spacing-sm;
 
     .review-image-placeholder {
       height: 360px;
-      background: #f2f5fa;
-      border-radius: 16px;
-      padding: 32px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 16px;
+      background: $color-bg-secondary;
+      border-radius: $border-radius-md;
+      padding: $spacing-3xl;
+      @include flex-column;
+      gap: $spacing-lg;
 
-      @media (max-width: 768px) {
+      @include mobile {
         height: 240px;
-        padding: 20px;
+        padding: $spacing-xl;
       }
     }
 
     .review-bar {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: $spacing-xl;
       flex-wrap: wrap;
 
-      @media (max-width: 768px) {
-        flex-direction: column;
+      @include mobile {
+        @include flex-column;
         align-items: flex-start;
-        gap: 16px;
+        gap: $spacing-lg;
       }
     }
 
     .user-info {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: $spacing-md;
 
       .user-avatar {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background: #f2f5fa;
+        @include icon-circle(40px, $color-bg-secondary);
         flex-shrink: 0;
       }
 
       .user-details {
-        display: flex;
-        flex-direction: column;
+        @include flex-column;
         justify-content: center;
 
         .user-label {
-          font-family:
-            "Geologica",
-            -apple-system,
-            BlinkMacSystemFont,
-            "Segoe UI",
-            Roboto,
-            Helvetica,
-            Arial,
-            sans-serif;
-          font-size: 14px;
-          font-weight: 300;
-          line-height: 16px;
-          color: rgba(0, 0, 0, 0.5);
+          @include text-muted($font-size-md);
+          line-height: $spacing-lg;
           margin: 0;
         }
 
         .user-name {
-          font-family:
-            "Geologica",
-            -apple-system,
-            BlinkMacSystemFont,
-            "Segoe UI",
-            Roboto,
-            Helvetica,
-            Arial,
-            sans-serif;
-          font-size: 16px;
-          font-weight: 300;
-          line-height: 1.5;
-          color: #000;
+          @include text-body($font-size-base, $font-weight-light);
           margin: 0;
         }
       }
@@ -147,74 +90,42 @@
     .review-meta {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: $spacing-sm;
       flex-wrap: wrap;
 
-      @media (max-width: 576px) {
-        flex-direction: column;
+      @include mobile {
+        @include flex-column;
         align-items: flex-start;
-        gap: 12px;
+        gap: $spacing-md;
       }
     }
 
     .meta-item {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: $spacing-sm;
 
       .meta-icon {
-        display: flex;
-        width: 40px;
-        height: 40px;
-        padding: 12px 0;
-        justify-content: center;
-        align-items: center;
-        border-radius: 50px;
-        background: #ebf3ff;
-        flex-shrink: 0;
+        @include icon-circle(40px, $color-bg-tertiary);
+        padding: $spacing-md 0;
 
         svg {
-          width: 20px;
-          height: 20px;
+          width: $spacing-xl;
+          height: $spacing-xl;
         }
       }
 
       .meta-details {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
+        @include flex-column;
 
         .meta-label {
-          font-family:
-            "Geologica",
-            -apple-system,
-            BlinkMacSystemFont,
-            "Segoe UI",
-            Roboto,
-            Helvetica,
-            Arial,
-            sans-serif;
-          font-size: 14px;
-          font-weight: 300;
-          line-height: 16px;
-          color: rgba(0, 0, 0, 0.5);
+          @include text-muted($font-size-md);
+          line-height: $spacing-lg;
           margin: 0;
         }
 
         .meta-value {
-          font-family:
-            "Geologica",
-            -apple-system,
-            BlinkMacSystemFont,
-            "Segoe UI",
-            Roboto,
-            Helvetica,
-            Arial,
-            sans-serif;
-          font-size: 16px;
-          font-weight: 300;
-          line-height: 1.5;
-          color: #000;
+          @include text-body($font-size-base, $font-weight-light);
           margin: 0;
         }
       }
@@ -222,312 +133,102 @@
 
     .review-text {
       display: flex;
-      padding: 8px 40px 16px 52px;
+      padding: $spacing-sm $spacing-4xl $spacing-lg 52px;
       justify-content: center;
       align-items: flex-start;
-      gap: 12px;
+      gap: $spacing-md;
       position: relative;
 
-      @media (max-width: 768px) {
-        padding: 8px 20px 16px 32px;
+      @include mobile {
+        padding: $spacing-sm $spacing-xl $spacing-lg $spacing-3xl;
       }
 
-      @media (max-width: 576px) {
-        padding: 8px 16px 16px 20px;
+      @media (max-width: $breakpoint-mobile) {
+        padding: $spacing-sm $spacing-lg $spacing-lg $spacing-xl;
       }
 
       p {
         flex: 1;
-        font-family:
-          "Geologica",
-          -apple-system,
-          BlinkMacSystemFont,
-          "Segoe UI",
-          Roboto,
-          Helvetica,
-          Arial,
-          sans-serif;
-        font-size: 16px;
-        font-weight: 300;
-        line-height: 1.5;
-        color: #000;
+        @include text-body();
         margin: 0;
       }
 
       .quote-icon {
         position: absolute;
-        right: 12px;
+        right: $spacing-md;
         top: 10px;
         flex-shrink: 0;
 
         svg {
-          width: 24px;
-          height: 24px;
+          width: $spacing-2xl;
+          height: $spacing-2xl;
         }
 
-        @media (max-width: 576px) {
+        @media (max-width: $breakpoint-mobile) {
           position: static;
-          margin-top: 8px;
+          margin-top: $spacing-sm;
         }
       }
     }
   }
+}
 
-  // Lead Form Section
-  .lead-form-section {
-    .section-header {
-      text-align: left;
-      margin-bottom: 56px;
+// Lead Form Section
+.lead-form-section {
+  @include flex-column;
+  align-self: stretch;
+  gap: $spacing-7xl;
+}
 
-      .section-title {
-        font-family:
-          "Geologica",
-          -apple-system,
-          BlinkMacSystemFont,
-          "Segoe UI",
-          Roboto,
-          Helvetica,
-          Arial,
-          sans-serif;
-        font-size: 48px;
-        font-weight: 600;
-        line-height: 1.3;
-        color: #000;
-        margin: 0 0 12px 0;
-        max-width: 647px;
+// Review Lead Form
+.review-lead-form {
+  @include flex-column;
+  gap: $spacing-xl;
 
-        @media (max-width: 991px) {
-          font-size: 32px;
-        }
+  .form-disclaimer {
+    text-align: center;
+    @include text-muted($font-size-xs);
+    font-weight: $font-weight-normal;
+    line-height: $line-height-base;
+    margin: 0;
 
-        @media (max-width: 768px) {
-          font-size: 30px;
-        }
-      }
-
-      .section-subtitle {
-        font-family:
-          "Geologica",
-          -apple-system,
-          BlinkMacSystemFont,
-          "Segoe UI",
-          Roboto,
-          Helvetica,
-          Arial,
-          sans-serif;
-        font-size: 14px;
-        font-weight: 300;
-        line-height: 1.71;
-        color: #000;
-        margin: 0;
-        max-width: 712px;
-      }
-    }
-  }
-
-  // Review Lead Form
-  .review-lead-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-
-    .form-fields {
-      display: flex;
-      align-items: flex-end;
-      gap: 24px;
-      padding: 40px;
-      border-radius: 30px;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      background: #fff;
-
-      @media (max-width: 991px) {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 20px;
-        padding: 32px;
-      }
-
-      @media (max-width: 768px) {
-        padding: 24px;
-      }
-    }
-
-    .form-input {
-      display: flex;
-      height: 72px;
-      padding: 16px;
-      align-items: center;
-      gap: 12px;
-      flex: 1;
-      border-radius: 16px;
-      background: #e8edf4;
-      border: none;
-      font-family:
-        "Geologica",
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        Helvetica,
-        Arial,
-        sans-serif;
-      font-size: 16px;
-      font-weight: 300;
-      line-height: 1.5;
-      color: #000;
-      transition: 0.3s ease;
-
-      &::placeholder {
-        color: rgba(0, 0, 0, 0.5);
-      }
-
-      &:focus {
-        outline: none;
-        background: #dde4ed;
-        box-shadow: 0 0 0 2px rgba(38, 140, 235, 0.2);
-      }
-
-      &.error {
-        border-color: #ff4444;
-        background: #ffebeb;
-      }
-
-      @media (max-width: 991px) {
-        height: 56px;
-        padding: 12px;
-      }
-    }
-
-    .submit-button {
-      display: flex;
-      height: 72px;
-      min-width: 220px;
-      padding: 16px 32px;
-      justify-content: center;
-      align-items: center;
-      border-radius: 16px;
-      background: #f60;
-      border: none;
-      cursor: pointer;
-      transition: 0.3s ease;
-      font-family:
-        "Geologica",
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        Helvetica,
-        Arial,
-        sans-serif;
-      font-size: 16px;
-      font-weight: 500;
-      line-height: 1.5;
-      color: #fff;
+    .privacy-link {
+      color: $color-primary;
+      text-decoration: none;
+      transition: $transition-base;
 
       &:hover {
-        background: #e55a00;
-        transform: translateY(-1px);
-      }
-
-      &:active {
-        transform: translateY(0);
-      }
-
-      &:disabled {
-        opacity: 0.7;
-        cursor: not-allowed;
-        transform: none;
-      }
-
-      @media (max-width: 991px) {
-        height: 56px;
-        min-width: 180px;
-        padding: 12px 24px;
-      }
-
-      @media (max-width: 768px) {
-        width: 100%;
-      }
-    }
-
-    .form-disclaimer {
-      text-align: center;
-      font-family:
-        "Geologica",
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        Helvetica,
-        Arial,
-        sans-serif;
-      font-size: 12px;
-      font-weight: 400;
-      line-height: 1.2;
-      color: rgba(0, 0, 0, 0.5);
-      margin: 0;
-
-      .privacy-link {
-        color: #268ceb;
-        text-decoration: none;
-        transition: 0.3s ease;
-
-        &:hover {
-          text-decoration: underline;
-        }
+        text-decoration: underline;
       }
     }
   }
+}
 
-  // Success Message
-  .success-message {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-    padding: 40px;
-    border-radius: 30px;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    background: #fff;
-    text-align: center;
+// Success Message
+.success-message {
+  @include flex-column;
+  align-items: center;
+  gap: $spacing-lg;
+  padding: $spacing-4xl;
+  border-radius: $border-radius-xl;
+  border: 1px solid $color-border-table;
+  background: $color-bg-primary;
+  text-align: center;
 
-    .success-title {
-      font-family:
-        "Geologica",
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        Helvetica,
-        Arial,
-        sans-serif;
-      font-size: 24px;
-      font-weight: 600;
-      line-height: 1.25;
-      color: #2bb109;
-      margin: 0;
-    }
+  .success-title {
+    @include text-heading($font-size-2xl, $font-weight-semibold);
+    line-height: $line-height-relaxed;
+    color: $color-secondary;
+    margin: 0;
+  }
 
-    .success-text {
-      font-family:
-        "Geologica",
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        Helvetica,
-        Arial,
-        sans-serif;
-      font-size: 16px;
-      font-weight: 300;
-      line-height: 1.5;
-      color: #000;
-      margin: 0;
-      max-width: 500px;
-    }
+  .success-text {
+    @include text-body();
+    margin: 0;
+    max-width: 500px;
+  }
 
-    @media (max-width: 768px) {
-      padding: 32px;
-    }
+  @include mobile {
+    padding: $spacing-3xl;
   }
 }
