@@ -310,8 +310,11 @@ const handleSubmissionSuccess = formType => {
     18000
   );
 
-  // For modal forms, close the modal and reset form
+  // For modal forms, add success tag and close modal
   if (type === FORM_TYPES.modal) {
+    // Add success tag immediately
+    updateModalSuccessTag(modal);
+
     setTimeout(() => {
       hideModal(modal);
       // Reset form after closing modal
@@ -361,10 +364,10 @@ const createModalHTML = config => {
           </div>
           <div class='form-fields'>
             <div class='form-field'>
-              <input type='text' name='name' placeholder='Ваше имя' class='input' />
+              <input type='text' name='name' placeholder='Ваше имя' class='input input-solid' />
             </div>
             <div class='form-field'>
-              <input type='tel' name='tel' placeholder='+7' class='input' minlength="10" value='+7 ' />
+              <input type='tel' name='tel' placeholder='+7' class='input input-solid' minlength="10" value='+7 ' />
             </div>
           </div>
           <button type='submit' class='btn btn-orange'>Отправить</button>
@@ -374,6 +377,21 @@ const createModalHTML = config => {
           </p>
         </form>
       </div>
+    </div>
+  `;
+};
+
+/**
+ * Create success tag HTML
+ * @returns {string} - Success tag HTML
+ */
+const createSuccessTagHTML = () => {
+  return `
+    <div class="form-tag">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+        <path d="M1 5.35L4.75 9.25L11 2.75" stroke="#2BB109" stroke-width="2"></path>
+      </svg>
+      <span>Заявка отправлена! Мы скоро свяжемся с вами</span>
     </div>
   `;
 };
@@ -404,6 +422,31 @@ const showModal = modal => {
  */
 const hideModal = modal => {
   modal.classList.remove('show');
+};
+
+/**
+ * Update modal content with success tag if form was sent
+ * @param {HTMLElement} modal - Modal element
+ */
+const updateModalSuccessTag = modal => {
+  const isFormSent = localStorage.getItem('formSended') === 'true';
+  const formContent = modal.querySelector('.form-content .form-header');
+  const existingTag = modal.querySelector('.form-tag');
+
+  // Remove existing tag if present
+  if (existingTag) {
+    existingTag.remove();
+  }
+
+  // Add success tag if form was sent
+  if (isFormSent && formContent) {
+    const tagElement = document.createElement('div');
+    tagElement.innerHTML = createSuccessTagHTML();
+    const tag = tagElement.firstElementChild;
+
+    // Insert tag at the beginning of form-content
+    formContent.insertBefore(tag, formContent.firstChild);
+  }
 };
 
 // ==========================================================================
@@ -474,23 +517,29 @@ const initializeModalForm = () => {
   const modal = createModal(formType);
   formType.modal = modal;
 
-  // Setup form submission
+  // Initial setup for form content
   const form = modal.querySelector('.contact-form');
-  form.addEventListener('submit', handleFormSubmit(formType));
+  if (form) {
+    form.addEventListener('submit', handleFormSubmit(formType));
 
-  // Setup phone input
-  const phoneInput = modal.querySelector('input[type="tel"]');
-  phoneInput.addEventListener('input', formatPhoneInput);
+    // Setup phone input
+    const phoneInput = modal.querySelector('input[type="tel"]');
+    if (phoneInput) {
+      phoneInput.addEventListener('input', formatPhoneInput);
+    }
+  }
 
   // Add to DOM
   document.body.appendChild(modal);
 
-  // Setup close handlers
+  // Setup initial close handlers
   const closeIcon = modal.querySelector('.modal-close-icon');
-  closeIcon.addEventListener('click', e => {
-    e.preventDefault();
-    hideModal(modal);
-  });
+  if (closeIcon) {
+    closeIcon.addEventListener('click', e => {
+      e.preventDefault();
+      hideModal(modal);
+    });
+  }
 
   // Close on backdrop click
   window.addEventListener('click', e => {
@@ -506,6 +555,7 @@ const initializeModalForm = () => {
   modalTriggers.forEach(trigger => {
     trigger.addEventListener('click', e => {
       e.preventDefault();
+      updateModalSuccessTag(modal);
       showModal(modal);
     });
   });
@@ -540,9 +590,7 @@ export function initializeForms() {
     textName: 'Форма отзывов',
   });
 
-  console.log('✅ Forms system initialized successfully!');
-  console.log(`📊 Registered forms: contactForm, leadForm, reviewLeadForm`);
-  console.log(`🎯 Modal triggers: [href="/forma-obratnoj-svyaz"]`);
+  console.log(`✅ Registered forms`);
 }
 
 // Auto-initialize when DOM is ready

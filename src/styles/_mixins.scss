@@ -132,7 +132,7 @@
 
 // Backdrop filter
 // ==========================================================================
-@mixin backdrop-blur($blur: 10px, $bg: $color-bg-overlay) {
+@mixin backdrop-blur($blur: 40px, $bg: $color-bg-overlay) {
   background: $bg;
   backdrop-filter: blur($blur);
 }

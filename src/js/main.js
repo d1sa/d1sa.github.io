@@ -10,7 +10,8 @@
 // Core functionality modules
 import './header.js'; // Header height compensation and navigation
 import './forms.js'; // Complete forms management system (replaces modal-form + utils)
-import './pricing.js'; // Pricing carousel and tabs
+// import './pricing.js'; // Pricing carousel and tabs
+import './slider.js'; // Swiper slider
 
 // ==========================================================================
 // Global App Initialization

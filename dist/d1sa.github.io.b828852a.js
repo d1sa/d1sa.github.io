@@ -170,7 +170,8 @@
  */ // Core functionality modules
 var _headerJs = require("./header.js"); // Header height compensation and navigation
 var _formsJs = require("./forms.js"); // Complete forms management system (replaces modal-form + utils)
-var _pricingJs = require("./pricing.js"); // Pricing carousel and tabs
+// import './pricing.js'; // Pricing carousel and tabs
+var _sliderJs = require("./slider.js"); // Swiper slider
 // ==========================================================================
 // Global App Initialization
 // ==========================================================================
@@ -237,7 +238,7 @@ window.OknaApp = {
     ]
 };
 
-},{"./header.js":"7clXR","./forms.js":"14dZ8","./pricing.js":"3h78u"}],"7clXR":[function(require,module,exports,__globalThis) {
+},{"./header.js":"7clXR","./forms.js":"14dZ8","./slider.js":"9eRXX"}],"7clXR":[function(require,module,exports,__globalThis) {
 // ==========================================================================
 // Header Height Compensation
 // ==========================================================================
@@ -611,19 +612,22 @@ const registeredForms = new Map();
     const { type, modal } = formType;
     // Show success toast notification
     (0, _toastJs.showToast)("\u0417\u0430\u044F\u0432\u043A\u0430 \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u043E\u0442\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0430! \u041C\u044B \u0441\u0432\u044F\u0436\u0435\u043C\u0441\u044F \u0441 \u0432\u0430\u043C\u0438 \u0432 \u0431\u043B\u0438\u0436\u0430\u0439\u0448\u0435\u0435 \u0432\u0440\u0435\u043C\u044F.", 'success', 18000);
-    // For modal forms, close the modal and reset form
-    if (type === FORM_TYPES.modal) setTimeout(()=>{
-        hideModal(modal);
-        // Reset form after closing modal
-        const form = modal.querySelector('.contact-form');
-        if (form) {
-            form.reset();
-            // Reset phone input to default value
-            const phoneInput = form.querySelector('input[type="tel"]');
-            if (phoneInput) phoneInput.value = '+7 ';
-        }
-    }, 1000);
-    else {
+    // For modal forms, add success tag and close modal
+    if (type === FORM_TYPES.modal) {
+        // Add success tag immediately
+        updateModalSuccessTag(modal);
+        setTimeout(()=>{
+            hideModal(modal);
+            // Reset form after closing modal
+            const form = modal.querySelector('.contact-form');
+            if (form) {
+                form.reset();
+                // Reset phone input to default value
+                const phoneInput = form.querySelector('input[type="tel"]');
+                if (phoneInput) phoneInput.value = '+7 ';
+            }
+        }, 1000);
+    } else {
         // For registered forms, reset the form
         const mainForm = modal.nodeName === 'FORM' ? modal : modal.querySelector('.contact-form');
         if (mainForm) {
@@ -653,10 +657,10 @@ const registeredForms = new Map();
           </div>
           <div class='form-fields'>
             <div class='form-field'>
-              <input type='text' name='name' placeholder='\u{412}\u{430}\u{448}\u{435} \u{438}\u{43C}\u{44F}' class='input' />
+              <input type='text' name='name' placeholder='\u{412}\u{430}\u{448}\u{435} \u{438}\u{43C}\u{44F}' class='input input-solid' />
             </div>
             <div class='form-field'>
-              <input type='tel' name='tel' placeholder='+7' class='input' minlength="10" value='+7 ' />
+              <input type='tel' name='tel' placeholder='+7' class='input input-solid' minlength="10" value='+7 ' />
             </div>
           </div>
           <button type='submit' class='btn btn-orange'>\u{41E}\u{442}\u{43F}\u{440}\u{430}\u{432}\u{438}\u{442}\u{44C}</button>
@@ -666,6 +670,19 @@ const registeredForms = new Map();
           </p>
         </form>
       </div>
+    </div>
+  `;
+};
+/**
+ * Create success tag HTML
+ * @returns {string} - Success tag HTML
+ */ const createSuccessTagHTML = ()=>{
+    return `
+    <div class="form-tag">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+        <path d="M1 5.35L4.75 9.25L11 2.75" stroke="#2BB109" stroke-width="2"></path>
+      </svg>
+      <span>\u{417}\u{430}\u{44F}\u{432}\u{43A}\u{430} \u{43E}\u{442}\u{43F}\u{440}\u{430}\u{432}\u{43B}\u{435}\u{43D}\u{430}! \u{41C}\u{44B} \u{441}\u{43A}\u{43E}\u{440}\u{43E} \u{441}\u{432}\u{44F}\u{436}\u{435}\u{43C}\u{441}\u{44F} \u{441} \u{432}\u{430}\u{43C}\u{438}</span>
     </div>
   `;
 };
@@ -690,6 +707,24 @@ const registeredForms = new Map();
  * @param {HTMLElement} modal - Modal element
  */ const hideModal = (modal)=>{
     modal.classList.remove('show');
+};
+/**
+ * Update modal content with success tag if form was sent
+ * @param {HTMLElement} modal - Modal element
+ */ const updateModalSuccessTag = (modal)=>{
+    const isFormSent = localStorage.getItem('formSended') === 'true';
+    const formContent = modal.querySelector('.form-content .form-header');
+    const existingTag = modal.querySelector('.form-tag');
+    // Remove existing tag if present
+    if (existingTag) existingTag.remove();
+    // Add success tag if form was sent
+    if (isFormSent && formContent) {
+        const tagElement = document.createElement('div');
+        tagElement.innerHTML = createSuccessTagHTML();
+        const tag = tagElement.firstElementChild;
+        // Insert tag at the beginning of form-content
+        formContent.insertBefore(tag, formContent.firstChild);
+    }
 };
 function registerForm(formId, fields, options = {}) {
     const form = document.getElementById(formId);
@@ -736,17 +771,19 @@ function registerForm(formId, fields, options = {}) {
     };
     const modal = createModal(formType);
     formType.modal = modal;
-    // Setup form submission
+    // Initial setup for form content
     const form = modal.querySelector('.contact-form');
-    form.addEventListener('submit', handleFormSubmit(formType));
-    // Setup phone input
-    const phoneInput = modal.querySelector('input[type="tel"]');
-    phoneInput.addEventListener('input', formatPhoneInput);
+    if (form) {
+        form.addEventListener('submit', handleFormSubmit(formType));
+        // Setup phone input
+        const phoneInput = modal.querySelector('input[type="tel"]');
+        if (phoneInput) phoneInput.addEventListener('input', formatPhoneInput);
+    }
     // Add to DOM
     document.body.appendChild(modal);
-    // Setup close handlers
+    // Setup initial close handlers
     const closeIcon = modal.querySelector('.modal-close-icon');
-    closeIcon.addEventListener('click', (e)=>{
+    if (closeIcon) closeIcon.addEventListener('click', (e)=>{
         e.preventDefault();
         hideModal(modal);
     });
@@ -759,6 +796,7 @@ function registerForm(formId, fields, options = {}) {
     modalTriggers.forEach((trigger)=>{
         trigger.addEventListener('click', (e)=>{
             e.preventDefault();
+            updateModalSuccessTag(modal);
             showModal(modal);
         });
     });
@@ -787,9 +825,7 @@ function initializeForms() {
     ], {
         textName: "\u0424\u043E\u0440\u043C\u0430 \u043E\u0442\u0437\u044B\u0432\u043E\u0432"
     });
-    console.log("\u2705 Forms system initialized successfully!");
-    console.log(`\u{1F4CA} Registered forms: contactForm, leadForm, reviewLeadForm`);
-    console.log(`\u{1F3AF} Modal triggers: [href="/forma-obratnoj-svyaz"]`);
+    console.log(`\u{2705} Registered forms`);
 }
 // Auto-initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', initializeForms);
@@ -1008,201 +1044,62 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"3h78u":[function(require,module,exports,__globalThis) {
-// ==========================================================================
-// Pricing Section JavaScript
-// ==========================================================================
+},{}],"9eRXX":[function(require,module,exports,__globalThis) {
 document.addEventListener('DOMContentLoaded', function() {
-    // Responsive breakpoints for carousel
-    const BREAKPOINTS = {
-        MOBILE: 576,
-        TABLET: 768,
-        DESKTOP: 992
-    };
-    // Tab functionality
-    const tabs = document.querySelectorAll('.pricing-tabs .tab');
-    const pricingCards = document.getElementById('pricingCards');
-    // Carousel functionality
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    let currentSlide = 0;
-    let slidesToShow = 4; // Number of cards visible at once (responsive)
-    let totalSlides = 0; // Will be set dynamically based on visible cards
-    let maxSlide = 0;
-    // Function to show/hide cards based on selected tab
-    function switchTab(tabType) {
-        // Hide all cards
-        const allCards = document.querySelectorAll('.pricing-card');
-        allCards.forEach((card)=>{
-            card.style.display = 'none';
-        });
-        // Show cards for selected tab
-        const tabCards = document.querySelectorAll(`.pricing-card[data-tab="${tabType}"]`);
-        tabCards.forEach((card)=>{
-            card.style.display = 'flex';
-        });
-        // Update total slides count based on visible cards
-        totalSlides = tabCards.length;
-        maxSlide = Math.max(0, totalSlides - slidesToShow);
-        // Reset carousel position
-        currentSlide = 0;
-        updateCarousel();
-    }
-    // Tab switching
-    tabs.forEach((tab)=>{
-        tab.addEventListener('click', function() {
-            // Remove active class from all tabs
-            tabs.forEach((t)=>t.classList.remove('active'));
-            // Add active class to clicked tab
-            this.classList.add('active');
-            // Get the tab type and switch
-            const tabType = this.getAttribute('data-tab');
-            switchTab(tabType);
-        });
-    });
-    // Helper function to get gap from CSS
-    function getCarouselGap() {
-        const firstCard = pricingCards.querySelector('.pricing-card[style*="flex"], .pricing-card:not([style*="none"])');
-        if (!firstCard) return 24; // fallback
-        const containerStyles = getComputedStyle(pricingCards);
-        return parseInt(containerStyles.gap) || 24;
-    }
-    // Helper function to calculate how many slides actually fit
-    function calculateActualSlidesToShow() {
-        const firstCard = pricingCards.querySelector('.pricing-card[style*="flex"], .pricing-card:not([style*="none"])');
-        if (!firstCard || totalSlides === 0) return Math.min(slidesToShow, totalSlides);
-        const cardWidth = firstCard.offsetWidth;
-        const gap = getCarouselGap();
-        const carouselWidth = pricingCards.parentElement.offsetWidth;
-        // Calculate how many full cards fit
-        let actualSlides = 1;
-        let totalWidth = cardWidth;
-        while(actualSlides < totalSlides && totalWidth + gap + cardWidth <= carouselWidth){
-            totalWidth += gap + cardWidth;
-            actualSlides++;
-        }
-        return Math.min(actualSlides, totalSlides);
-    }
-    // Carousel navigation
-    function updateCarousel() {
-        const firstCard = pricingCards.querySelector('.pricing-card[style*="flex"], .pricing-card:not([style*="none"])');
-        if (!firstCard) return;
-        // Use actual slides that fit instead of configured value
-        const actualSlidesToShow = calculateActualSlidesToShow();
-        const actualMaxSlide = Math.max(0, totalSlides - actualSlidesToShow);
-        const cardWidth = firstCard.offsetWidth;
-        const gap = getCarouselGap();
-        // Ensure currentSlide doesn't exceed the actual max
-        if (currentSlide > actualMaxSlide) currentSlide = actualMaxSlide;
-        const translateX = currentSlide * (cardWidth + gap);
-        pricingCards.style.transform = `translateX(-${translateX}px)`;
-        // Update button states using actual max slide
-        prevBtn.disabled = currentSlide === 0;
-        nextBtn.disabled = currentSlide >= actualMaxSlide;
-    }
-    // Unified carousel navigation function
-    function navigateCarousel(direction) {
-        const actualSlidesToShow = calculateActualSlidesToShow();
-        const actualMaxSlide = Math.max(0, totalSlides - actualSlidesToShow);
-        const newSlide = currentSlide + direction;
-        if (newSlide >= 0 && newSlide <= actualMaxSlide) {
-            currentSlide = newSlide;
-            updateCarousel();
-        }
-    }
-    prevBtn.addEventListener('click', ()=>navigateCarousel(-1));
-    nextBtn.addEventListener('click', ()=>navigateCarousel(1));
-    // Touch/swipe functionality for mobile
-    let startX = 0;
-    let startY = 0;
-    let isDragging = false;
-    pricingCards.addEventListener('touchstart', function(e) {
-        startX = e.touches[0].clientX;
-        startY = e.touches[0].clientY;
-        isDragging = true;
-    });
-    pricingCards.addEventListener('touchmove', function(e) {
-        if (!isDragging) return;
-        const currentX = e.touches[0].clientX;
-        const currentY = e.touches[0].clientY;
-        const diffX = Math.abs(currentX - startX);
-        const diffY = Math.abs(currentY - startY);
-        // Prevent default only if horizontal movement is greater than vertical
-        // This allows vertical scrolling while enabling horizontal swiping
-        if (diffX > diffY && diffX > 10) e.preventDefault();
-    });
-    pricingCards.addEventListener('touchend', function(e) {
-        if (!isDragging) return;
-        const endX = e.changedTouches[0].clientX;
-        const diff = startX - endX;
-        if (Math.abs(diff) > 50) {
-            // Minimum swipe distance
-            const actualSlidesToShow = calculateActualSlidesToShow();
-            const actualMaxSlide = Math.max(0, totalSlides - actualSlidesToShow);
-            if (diff > 0 && currentSlide < actualMaxSlide) {
-                // Swipe left - next slide
-                currentSlide++;
-                updateCarousel();
-            } else if (diff < 0 && currentSlide > 0) {
-                // Swipe right - previous slide
-                currentSlide--;
-                updateCarousel();
+    let swiperPricing1 = new Swiper('.swiper-section-pricing-1', {
+        slidesPerView: 4,
+        spaceBetween: 24,
+        navigation: {
+            nextEl: '.swiper-button-next-1',
+            prevEl: '.swiper-button-prev-1'
+        },
+        breakpoints: {
+            390: {
+                slidesPerView: 2,
+                spaceBetween: 16
+            },
+            768: {
+                slidesPerView: 4,
+                spaceBetween: 24
             }
         }
-        isDragging = false;
     });
-    // Keyboard navigation
-    document.addEventListener('keydown', function(e) {
-        const actualSlidesToShow = calculateActualSlidesToShow();
-        const actualMaxSlide = Math.max(0, totalSlides - actualSlidesToShow);
-        if (e.key === 'ArrowLeft' && currentSlide > 0) {
-            currentSlide--;
-            updateCarousel();
-        } else if (e.key === 'ArrowRight' && currentSlide < actualMaxSlide) {
-            currentSlide++;
-            updateCarousel();
+    let swiperPricing2 = new Swiper('.swiper-section-pricing-2', {
+        slidesPerView: 4,
+        spaceBetween: 24,
+        navigation: {
+            nextEl: '.swiper-button-next-2',
+            prevEl: '.swiper-button-prev-2'
+        },
+        breakpoints: {
+            390: {
+                slidesPerView: 2,
+                spaceBetween: 16
+            },
+            768: {
+                slidesPerView: 4,
+                spaceBetween: 24
+            }
         }
     });
-    // Responsive handling
-    function handleResize() {
-        const width = window.innerWidth;
-        // Calculate slides to show based on screen width
-        const slidesConfig = [
-            {
-                maxWidth: BREAKPOINTS.MOBILE,
-                slides: 1
+    let swiperPricing3 = new Swiper('.swiper-section-pricing-3', {
+        slidesPerView: 4,
+        spaceBetween: 24,
+        navigation: {
+            nextEl: '.swiper-button-next-3',
+            prevEl: '.swiper-button-prev-3'
+        },
+        breakpoints: {
+            390: {
+                slidesPerView: 2,
+                spaceBetween: 16
             },
-            {
-                maxWidth: BREAKPOINTS.TABLET,
-                slides: 2
-            },
-            {
-                maxWidth: BREAKPOINTS.DESKTOP,
-                slides: 3
-            },
-            {
-                maxWidth: Infinity,
-                slides: 4
+            768: {
+                slidesPerView: 4,
+                spaceBetween: 24
             }
-        ];
-        const newSlidesToShow = slidesConfig.find((config)=>width < config.maxWidth).slides;
-        if (newSlidesToShow !== slidesToShow) {
-            // Update configured slides to show
-            slidesToShow = newSlidesToShow;
-            maxSlide = Math.max(0, totalSlides - slidesToShow);
-            // Reset carousel position and update
-            currentSlide = 0;
-            updateCarousel();
-        } else // Even if slidesToShow didn't change, we should recalculate on resize
-        updateCarousel();
-    }
-    window.addEventListener('resize', handleResize);
-    // Initialize responsive layout
-    handleResize();
-    // Initialize with default tab (WHS - matches active tab in HTML)
-    switchTab('whs');
-    // Initialize carousel
-    updateCarousel();
+        }
+    });
 });
 
 },{}]},["lhpGb"], "lhpGb", "parcelRequireef94", {})
