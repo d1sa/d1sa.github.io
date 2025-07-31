@@ -108,11 +108,11 @@
 
 .pricing-card {
   display: flex;
-  width: 264px;
+  min-width: 264px;
   flex-direction: column;
   align-items: flex-start;
   gap: $spacing-lg;
-  flex-shrink: 0;
+  flex: 1;
 
   .card-image {
     height: 264px;
@@ -137,6 +137,10 @@
       line-height: $line-height-normal;
       margin: 0;
     }
+
+    @include mobile {
+      min-height: 0;
+    }
   }
 
   .card-info {
@@ -147,6 +151,11 @@
     align-items: flex-start;
     gap: $spacing-2xl;
     width: 100%;
+
+    @include mobile {
+      gap: $spacing-md;
+      padding: 0;
+    }
   }
 
   .window-size {
@@ -213,6 +222,10 @@
       margin: 0;
 
       .highlight {
+        display: inline-flex;
+        padding: 0 $spacing-sm;
+        border-radius: 100px;
+        background: $color-primary-light;
         color: $color-primary;
       }
     }
@@ -311,10 +324,6 @@
     }
   }
 
-  .pricing-tabs-container {
-    margin-bottom: $spacing-3xl;
-  }
-
   .pricing-card {
     width: 240px;
 
@@ -364,8 +373,14 @@
 .pricing-cards .swiper-slide {
   display: flex !important;
   align-self: stretch;
-  flex: 1;
+  flex: 1 0 auto;
   height: auto;
+}
+
+.swiper-pagination-1,
+.swiper-pagination-2,
+.swiper-pagination-3 {
+  --swiper-pagination-bottom: -32px;
 }
 
 .swiper-button-next-1,
@@ -375,6 +390,8 @@
 .swiper-button-prev-2,
 .swiper-button-prev-3 {
   position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   padding: $spacing-sm;
   align-items: center;
@@ -398,6 +415,20 @@
     cursor: not-allowed;
     visibility: hidden;
   }
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url("../img/chevron-right.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+  }
 }
 
 .swiper-button-next-1,
@@ -405,6 +436,10 @@
 .swiper-button-next-3 {
   order: 1;
   right: calc(-1 * $spacing-4xl - $spacing-sm);
+
+  &:before {
+    background-image: url("../img/chevron-right.svg");
+  }
 }
 
 .swiper-button-prev-1,
@@ -412,6 +447,10 @@
 .swiper-button-prev-3 {
   order: -1;
   left: calc(-1 * $spacing-4xl - $spacing-sm);
+
+  &:before {
+    background-image: url("../img/chevron-left.svg");
+  }
 }
 
 .swiper-button-disabled {

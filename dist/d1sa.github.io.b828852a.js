@@ -170,7 +170,7 @@
  */ // Core functionality modules
 var _headerJs = require("./header.js"); // Header height compensation and navigation
 var _formsJs = require("./forms.js"); // Complete forms management system (replaces modal-form + utils)
-// import './pricing.js'; // Pricing carousel and tabs
+var _pricingJs = require("./pricing.js"); // Pricing carousel and tabs
 var _sliderJs = require("./slider.js"); // Swiper slider
 // ==========================================================================
 // Global App Initialization
@@ -238,7 +238,7 @@ window.OknaApp = {
     ]
 };
 
-},{"./header.js":"7clXR","./forms.js":"14dZ8","./slider.js":"9eRXX"}],"7clXR":[function(require,module,exports,__globalThis) {
+},{"./header.js":"7clXR","./forms.js":"14dZ8","./slider.js":"9eRXX","./pricing.js":"3h78u"}],"7clXR":[function(require,module,exports,__globalThis) {
 // ==========================================================================
 // Header Height Compensation
 // ==========================================================================
@@ -1047,11 +1047,15 @@ exports.export = function(dest, destName, get) {
 },{}],"9eRXX":[function(require,module,exports,__globalThis) {
 document.addEventListener('DOMContentLoaded', function() {
     let swiperPricing1 = new Swiper('.swiper-section-pricing-1', {
-        slidesPerView: 4,
+        slidesPerView: 1,
         spaceBetween: 24,
         navigation: {
             nextEl: '.swiper-button-next-1',
             prevEl: '.swiper-button-prev-1'
+        },
+        pagination: {
+            el: '.swiper-pagination-1',
+            clickable: true
         },
         breakpoints: {
             390: {
@@ -1065,11 +1069,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     let swiperPricing2 = new Swiper('.swiper-section-pricing-2', {
-        slidesPerView: 4,
+        slidesPerView: 1,
         spaceBetween: 24,
         navigation: {
             nextEl: '.swiper-button-next-2',
             prevEl: '.swiper-button-prev-2'
+        },
+        pagination: {
+            el: '.swiper-pagination-2',
+            clickable: true
         },
         breakpoints: {
             390: {
@@ -1083,11 +1091,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     let swiperPricing3 = new Swiper('.swiper-section-pricing-3', {
-        slidesPerView: 4,
+        slidesPerView: 1,
         spaceBetween: 24,
         navigation: {
             nextEl: '.swiper-button-next-3',
             prevEl: '.swiper-button-prev-3'
+        },
+        pagination: {
+            el: '.swiper-pagination-3',
+            clickable: true
         },
         breakpoints: {
             390: {
@@ -1100,6 +1112,32 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+});
+
+},{}],"3h78u":[function(require,module,exports,__globalThis) {
+document.addEventListener('DOMContentLoaded', function() {
+    const tabs = document.querySelectorAll('.pricing-tabs .tab');
+    const carouselContainers = document.querySelectorAll('.pricing-carousel-container');
+    console.log('tabs');
+    console.log(tabs);
+    console.log(carouselContainers);
+    function switchTab(tabType) {
+        carouselContainers.forEach((container)=>{
+            container.style.display = 'none';
+        });
+        const targetContainer = document.querySelector(`.pricing-carousel-container[data-tab="${tabType}"]`);
+        if (targetContainer) targetContainer.style.display = 'block';
+    }
+    tabs.forEach((tab)=>{
+        tab.addEventListener('click', function() {
+            tabs.forEach((t)=>t.classList.remove('active'));
+            this.classList.add('active');
+            const tabType = this.getAttribute('data-tab');
+            console.log(tabType);
+            switchTab(tabType);
+        });
+    });
+    switchTab('whs');
 });
 
 },{}]},["lhpGb"], "lhpGb", "parcelRequireef94", {})

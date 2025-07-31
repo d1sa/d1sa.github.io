@@ -1250,7 +1250,7 @@ a:hover {
 }
 
 section {
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 section .section-header {
@@ -2266,10 +2266,10 @@ section .section-subtitle {
 
 .pricing-card {
   flex-direction: column;
-  flex-shrink: 0;
+  flex: 1;
   align-items: flex-start;
   gap: 16px;
-  width: 264px;
+  min-width: 264px;
   display: flex;
 }
 
@@ -2298,6 +2298,12 @@ section .section-subtitle {
   line-height: 1.33;
 }
 
+@media (width <= 767px) {
+  .pricing-card .card-header {
+    min-height: 0;
+  }
+}
+
 .pricing-card .card-info {
   flex-direction: column;
   flex-grow: 1;
@@ -2306,6 +2312,13 @@ section .section-subtitle {
   width: 100%;
   padding: 0 0 24px;
   display: flex;
+}
+
+@media (width <= 767px) {
+  .pricing-card .card-info {
+    gap: 12px;
+    padding: 0;
+  }
 }
 
 .pricing-card .window-size {
@@ -2374,6 +2387,10 @@ section .section-subtitle {
 
 .pricing-card .feature-item .feature-text .highlight {
   color: #268ceb;
+  background: #ebf3ff;
+  border-radius: 100px;
+  padding: 0 8px;
+  display: inline-flex;
 }
 
 .pricing-card .card-price {
@@ -2467,10 +2484,6 @@ section .section-subtitle {
     font-size: 32px;
   }
 
-  .pricing-tabs-container {
-    margin-bottom: 32px;
-  }
-
   .pricing-card {
     width: 240px;
   }
@@ -2515,10 +2528,14 @@ section .section-subtitle {
 }
 
 .pricing-cards .swiper-slide {
-  flex: 1;
+  flex: 1 0 auto;
   align-self: stretch;
   height: auto;
   display: flex !important;
+}
+
+.swiper-pagination-1, .swiper-pagination-2, .swiper-pagination-3 {
+  --swiper-pagination-bottom: -32px;
 }
 
 .swiper-button-next-1, .swiper-button-next-2, .swiper-button-next-3, .swiper-button-prev-1, .swiper-button-prev-2, .swiper-button-prev-3 {
@@ -2535,6 +2552,8 @@ section .section-subtitle {
   transition: all .3s;
   display: flex;
   position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   box-shadow: 0 4px 16px #00000014;
 }
 
@@ -2548,14 +2567,36 @@ section .section-subtitle {
   visibility: hidden;
 }
 
+.swiper-button-next-1:before, .swiper-button-next-2:before, .swiper-button-next-3:before, .swiper-button-prev-1:before, .swiper-button-prev-2:before, .swiper-button-prev-3:before {
+  content: "";
+  background-image: url("chevron-right.d117afa3.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .swiper-button-next-1, .swiper-button-next-2, .swiper-button-next-3 {
   order: 1;
   right: -48px;
 }
 
+.swiper-button-next-1:before, .swiper-button-next-2:before, .swiper-button-next-3:before {
+  background-image: url("chevron-right.d117afa3.svg");
+}
+
 .swiper-button-prev-1, .swiper-button-prev-2, .swiper-button-prev-3 {
   order: -1;
   left: -48px;
+}
+
+.swiper-button-prev-1:before, .swiper-button-prev-2:before, .swiper-button-prev-3:before {
+  background-image: url("chevron-left.60daab81.svg");
 }
 
 .swiper-button-disabled {
