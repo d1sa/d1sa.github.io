@@ -2269,7 +2269,7 @@ section .section-subtitle {
   flex: 1;
   align-items: flex-start;
   gap: 16px;
-  min-width: 264px;
+  min-width: 144px;
   display: flex;
 }
 
@@ -2473,19 +2473,7 @@ section .section-subtitle {
 
 @media (width <= 991px) {
   .pricing-section {
-    padding: 16px 0 40px;
-  }
-
-  .pricing-header {
-    margin-bottom: 32px;
-  }
-
-  .pricing-header .pricing-title {
-    font-size: 32px;
-  }
-
-  .pricing-card {
-    width: 240px;
+    padding: 0 0 40px;
   }
 
   .pricing-card .card-image {

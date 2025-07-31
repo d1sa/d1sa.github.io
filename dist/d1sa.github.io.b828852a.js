@@ -1063,6 +1063,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 spaceBetween: 16
             },
             768: {
+                slidesPerView: 3,
+                spaceBetween: 24
+            },
+            1024: {
                 slidesPerView: 4,
                 spaceBetween: 24
             }
@@ -1085,6 +1089,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 spaceBetween: 16
             },
             768: {
+                slidesPerView: 3,
+                spaceBetween: 24
+            },
+            1024: {
                 slidesPerView: 4,
                 spaceBetween: 24
             }
@@ -1107,6 +1115,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 spaceBetween: 16
             },
             768: {
+                slidesPerView: 3,
+                spaceBetween: 24
+            },
+            1024: {
                 slidesPerView: 4,
                 spaceBetween: 24
             }

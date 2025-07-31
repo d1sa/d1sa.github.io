@@ -108,7 +108,7 @@
 
 .pricing-card {
   display: flex;
-  min-width: 264px;
+  min-width: 144px;
   flex-direction: column;
   align-items: flex-start;
   gap: $spacing-lg;
@@ -313,20 +313,10 @@
 // Responsive Design
 @media (max-width: $breakpoint-desktop) {
   .pricing-section {
-    padding: $spacing-lg 0 $spacing-4xl 0;
-  }
-
-  .pricing-header {
-    margin-bottom: $spacing-3xl;
-
-    .pricing-title {
-      font-size: $font-size-3xl;
-    }
+    padding: 0 0 $spacing-4xl 0;
   }
 
   .pricing-card {
-    width: 240px;
-
     .card-image {
       height: 240px;
     }
