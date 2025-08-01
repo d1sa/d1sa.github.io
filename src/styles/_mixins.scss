@@ -80,6 +80,13 @@
 
 // Responsive breakpoints
 // ==========================================================================
+
+@mixin mobile-sm {
+  @media (max-width: #{$breakpoint-mobile-sm - 1px}) {
+    @content;
+  }
+}
+
 @mixin mobile {
   @media (max-width: #{$breakpoint-tablet - 1px}) {
     @content;
@@ -94,6 +101,12 @@
 
 @mixin desktop {
   @media (min-width: $breakpoint-desktop) {
+    @content;
+  }
+}
+
+@mixin pre-desktop {
+  @media (max-width: $breakpoint-desktop) {
     @content;
   }
 }

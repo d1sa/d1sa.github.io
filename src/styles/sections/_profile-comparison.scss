@@ -9,7 +9,24 @@
   position: relative;
 }
 
+.main-content section.profile-comparison-section > .container {
+  gap: $spacing-3xl;
+
+  @include tablet {
+    gap: $spacing-2xl;
+  }
+
+  @include mobile {
+    gap: $spacing-2xl;
+  }
+
+  @include mobile-sm {
+    gap: $spacing-xl;
+  }
+}
+
 .profile-comparison-section {
+
 }
 
 .profile-title {

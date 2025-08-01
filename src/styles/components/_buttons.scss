@@ -167,6 +167,11 @@
   font-weight: $font-weight-medium;
   color: $color-text-white-muted;
   line-height: $line-height-relaxed;
+
+  @include mobile {
+    font-size: $font-size-sm;
+    line-height: $line-height-sm;
+  }
 }
 
 .call-phone {

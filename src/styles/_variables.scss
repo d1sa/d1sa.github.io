@@ -153,6 +153,7 @@ $transition-smooth: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
 // Breakpoints
 // ==========================================================================
+$breakpoint-mobile-sm: 374px; // mobile small
 $breakpoint-mobile: 576px; // mobile
 $breakpoint-tablet: 768px; // tablet
 $breakpoint-desktop: 991px; // desktop

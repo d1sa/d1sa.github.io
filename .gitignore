@@ -8,7 +8,9 @@ pnpm-debug.log*
 # Build outputs
 # dist/
 # *.map
+.parcel-cache/*
 .parcel-cache/
+.parcel-cache
 
 # Environment variables
 .env

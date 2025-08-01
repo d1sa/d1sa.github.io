@@ -15,6 +15,14 @@
   padding: $spacing-3xl;
   @include flex-column;
   gap: $spacing-6xl;
+
+  @include tablet {
+    gap: $spacing-2xl;
+  }
+
+  @include mobile {
+    padding: $spacing-2xl;
+  }
 }
 
 .advantages-grid {
@@ -38,12 +46,17 @@
     padding-right: 0;
   }
 
-  &-icon {
-    @include icon-circle($spacing-6xl, $color-bg-primary);
+  @include mobile {
+    flex-direction: row;
+    align-items: center;
   }
 
   p {
-    @include text-body;
     max-width: 308px;
   }
+}
+
+.advantage-icon {
+  @include icon-circle($spacing-6xl, $color-bg-primary);
+  flex-shrink: 0;
 }

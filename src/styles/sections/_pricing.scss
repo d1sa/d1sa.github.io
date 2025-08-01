@@ -174,7 +174,7 @@
 
   .card-info {
     display: flex;
-    flex-grow: 1;
+    // flex-grow: 1;
     // padding: 0 0 $spacing-2xl 0;
     flex-direction: column;
     align-items: flex-start;
@@ -193,6 +193,7 @@
     align-items: flex-start;
     gap: $spacing-sm;
     width: 100%;
+    flex-grow: 1;
   }
 
   .feature-item {
@@ -202,6 +203,10 @@
     gap: $spacing-sm;
     width: 100%;
     padding-left: $spacing-3xl;
+
+    @include mobile {
+      padding-left: calc($spacing-3xl - $spacing-xs);
+    }
 
     &::before {
       content: "";
@@ -216,6 +221,10 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
+
+      @include mobile {
+        left: -$spacing-xs;
+      }
     }
 
     .check-icon {
@@ -227,6 +236,11 @@
     .feature-text {
       flex: 1;
       margin: 0;
+
+      @include mobile {
+        font-size: $font-size-md;
+        line-height: $line-height-md;
+      }
 
       .highlight {
         display: inline-flex;
@@ -246,12 +260,88 @@
     line-height: $line-height-normal;
     margin: 0;
   }
+
+  .btn {
+    min-width: 100px;
+  }
+}
+
+.pricing-card {
+
+  .card-image {
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+
+  .card-header .card-title {
+    font-size: $font-size-lg;
+    line-height: $line-height-lg;
+  }
+
+  .card-price {
+    font-size: $font-size-xl;
+    line-height: $line-height-xl;
+  }
+
+  @include mobile {
+    .info-item {
+      .info-item__label {
+        font-size: $font-size-xs;
+        line-height: $line-height-xs;
+      }
+  
+      .info-item__value {
+        font-size: $font-size-md;
+        line-height: $line-height-md;
+      }
+    }
+  }
 }
 
 .comparison-card {
   background-color: $color-bg-secondary;
   border-radius: $border-radius-2xl;
   padding: $spacing-2xl;
+
+  @include mobile {
+    padding: $spacing-md;
+    border-radius: $border-radius-lg;
+  }
+
+  .card-header {
+    .card-title {
+      @include mobile {
+        font-size: $font-size-lg;
+        line-height: $line-height-lg;
+      }
+    }
+  }
+
+  .card-image {
+    height: auto;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+  }
+
+  // .card-image {
+  //   @include mobile {
+  //     height: 140px;
+  //   }
+  // }
+
+  @include mobile {
+    .info-item {
+      .info-item__label {
+        font-size: $font-size-xs;
+        line-height: $line-height-xs;
+      }
+  
+      .info-item__value {
+        font-size: $font-size-md;
+        line-height: $line-height-md;
+      }
+    }
+  }
 }
 
 .info-item {
@@ -274,6 +364,23 @@
   }
 }
 
+.swiper-wrapper {
+  align-items: stretch;
+  min-width: 100%;
+  display: flex;
+
+  @include tablet {
+    padding-bottom: $spacing-3xl;
+  }
+
+  .swiper-slide {
+    flex: 1 0 auto;
+    align-self: stretch;
+    height: auto;
+    display: flex !important;
+  }
+}
+
 .pricing-cards .swiper-slide {
   display: flex !important;
   align-self: stretch;
@@ -284,7 +391,11 @@
 .swiper-pagination-1,
 .swiper-pagination-2,
 .swiper-pagination-3 {
-  --swiper-pagination-bottom: -32px;
+  --swiper-pagination-bottom: 0;
+
+  @media (min-width: $breakpoint-desktop) {
+    display: none;
+  }
 }
 
 .swiper-button-next-1,

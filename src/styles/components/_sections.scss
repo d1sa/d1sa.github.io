@@ -31,12 +31,21 @@ section {
   .section-title {
     align-self: stretch;
     color: $color-text-primary;
-    font-family: $font-family-primary;
     font-size: $font-size-4xl;
     font-weight: $font-weight-bold;
-    line-height: $line-height-loose;
+    line-height: $line-height-4xl;
     width: 100%;
     margin: 0;
+
+    // @include tablet {
+    //   font-size: $font-size-3xl;
+    //   line-height: $line-height-3xl;
+    // }
+
+    @include mobile {
+      font-size: $font-size-3xl;
+      line-height: $line-height-3xl;
+    }
   }
 
   .section-subtitle {

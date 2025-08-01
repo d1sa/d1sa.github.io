@@ -10,6 +10,14 @@
   display: flex;
   flex-direction: column;
   gap: $spacing-8xl;
+
+  @include mobile {
+    gap: $spacing-6xl;
+  }
+
+  @include mobile-sm {
+    gap: $spacing-5xl;
+  }
 }
 
 .container {

@@ -87,12 +87,27 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-size: 68px;
   font-weight: 600;
-  line-height: 1.3;
+  line-height: 76px;
 }
 
 @media (width <= 990px) {
   h1 {
-    font-size: 32px;
+    font-size: 68px;
+    line-height: 76px;
+  }
+}
+
+@media (width <= 767px) {
+  h1 {
+    font-size: 68px;
+    line-height: 76px;
+  }
+}
+
+@media (width <= 373px) {
+  h1 {
+    font-size: 48px;
+    line-height: 58px;
   }
 }
 
@@ -102,21 +117,23 @@ h2 {
   line-height: 1.25;
 }
 
-@media (width <= 990px) {
+@media (width <= 767px) {
   h2 {
-    font-size: 24px;
+    font-size: 32px;
+    line-height: 40px;
   }
 }
 
 h3 {
   font-size: 32px;
   font-weight: 500;
-  line-height: 1.33;
+  line-height: 40px;
 }
 
-@media (width <= 990px) {
+@media (width <= 373px) {
   h3 {
     font-size: 21px;
+    line-height: 28px;
   }
 }
 
@@ -124,12 +141,6 @@ h4 {
   font-size: 24px;
   font-weight: 500;
   line-height: 1.33;
-}
-
-@media (width <= 990px) {
-  h4 {
-    font-size: 21px;
-  }
 }
 
 h5 {
@@ -216,6 +227,18 @@ a:hover {
   gap: 96px;
   display: flex;
   position: relative;
+}
+
+@media (width <= 767px) {
+  .main-content {
+    gap: 56px;
+  }
+}
+
+@media (width <= 373px) {
+  .main-content {
+    gap: 48px;
+  }
 }
 
 .container {
@@ -397,6 +420,13 @@ a:hover {
   font-size: 16px;
   font-weight: 500;
   line-height: 1.25;
+}
+
+@media (width <= 767px) {
+  .call-caption {
+    font-size: 13px;
+    line-height: 16px;
+  }
 }
 
 .call-phone {
@@ -1317,10 +1347,16 @@ section .section-title {
   align-self: stretch;
   width: 100%;
   margin: 0;
-  font-family: Geologica, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   font-size: 48px;
   font-weight: 700;
-  line-height: 1.3;
+  line-height: 58px;
+}
+
+@media (width <= 767px) {
+  section .section-title {
+    font-size: 32px;
+    line-height: 40px;
+  }
 }
 
 section .section-subtitle {
@@ -1701,9 +1737,21 @@ section .section-subtitle {
   padding: 96px 0 24px;
 }
 
+@media (width <= 990px) {
+  .hero-section {
+    padding: 40px 0 0;
+  }
+}
+
 @media (width <= 767px) {
   .hero-section {
-    padding: 40px 0 24px;
+    padding: 40px 0 0;
+  }
+}
+
+@media (width <= 373px) {
+  .hero-section {
+    padding: 24px 0 0;
   }
 }
 
@@ -1724,11 +1772,10 @@ section .section-subtitle {
 .hero-text {
   flex-direction: column;
   gap: 64px;
-  padding-bottom: 32px;
   display: flex;
 }
 
-@media (width <= 767px) {
+@media (width <= 990px) {
   .hero-text {
     gap: 40px;
   }
@@ -1741,23 +1788,33 @@ section .section-subtitle {
   display: flex;
 }
 
-.hero-title h1 {
-  color: #000;
-  margin: 0 0 4px;
-  font-size: 68px;
-  font-weight: 600;
-  line-height: 1.3;
+@media (width <= 991px) {
+  .hero-message {
+    flex-direction: row;
+    max-width: none;
+  }
 }
 
 @media (width <= 990px) {
-  .hero-title h1 {
-    font-size: 40px;
+  .hero-message {
+    gap: 32px;
   }
 }
 
 @media (width <= 767px) {
+  .hero-message {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+.hero-title h1 {
+  margin-bottom: 12px;
+}
+
+@media (width <= 373px) {
   .hero-title h1 {
-    font-size: 32px;
+    margin-right: 12px;
   }
 }
 
@@ -1772,6 +1829,30 @@ section .section-subtitle {
 @media (width <= 767px) {
   .hero-title h2 {
     font-size: 21px;
+  }
+}
+
+@media (width <= 991px) {
+  .hero-title {
+    flex: 1 0 65%;
+  }
+}
+
+@media (width <= 767px) {
+  .hero-title {
+    flex: 1;
+  }
+}
+
+@media (width <= 991px) {
+  .hero-description {
+    padding-top: 24px;
+  }
+}
+
+@media (width <= 767px) {
+  .hero-description {
+    padding-top: 0;
   }
 }
 
@@ -1808,7 +1889,7 @@ section .section-subtitle {
 }
 
 .hero-form-wrapper {
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
   display: flex;
   position: relative;
@@ -1828,6 +1909,18 @@ section .section-subtitle {
   transform: translateY(-50%);
 }
 
+@media (width <= 1650px) {
+  .hero-form-wrapper:before {
+    width: 44vw;
+  }
+}
+
+@media (width <= 990px) {
+  .hero-form-wrapper:before {
+    height: 100%;
+  }
+}
+
 .hero-form-card {
   z-index: 1;
   border-radius: 32px;
@@ -1843,9 +1936,22 @@ section .section-subtitle {
 
 @media (width <= 990px) {
   .hero-form-card {
-    backdrop-filter: none;
-    background: #f2f5fa;
+    width: 70%;
+    max-width: 600px;
+    min-height: 0;
+    padding: 24px;
   }
+}
+
+@media (width <= 767px) {
+  .hero-form-card {
+    width: 100%;
+    padding: 32px 24px;
+  }
+}
+
+.hero-form-header h3 {
+  max-width: 550px;
 }
 
 .advantages-section {
@@ -1859,6 +1965,18 @@ section .section-subtitle {
   gap: 56px;
   padding: 32px;
   display: flex;
+}
+
+@media (width <= 990px) {
+  .advantages-card {
+    gap: 24px;
+  }
+}
+
+@media (width <= 767px) {
+  .advantages-card {
+    padding: 24px;
+  }
 }
 
 .advantages-grid {
@@ -1892,9 +2010,21 @@ section .section-subtitle {
   }
 }
 
+@media (width <= 767px) {
+  .advantage {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.advantage p {
+  max-width: 308px;
+}
+
 .advantage-icon {
   background: #fff;
   border-radius: 50px;
+  flex-shrink: 0;
   justify-content: center;
   align-items: center;
   width: 56px;
@@ -1902,16 +2032,30 @@ section .section-subtitle {
   display: flex;
 }
 
-.advantage p {
-  color: #000;
-  max-width: 308px;
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 1.5;
-}
-
 .profile-comparison {
   position: relative;
+}
+
+.main-content section.profile-comparison-section > .container {
+  gap: 32px;
+}
+
+@media (width <= 990px) {
+  .main-content section.profile-comparison-section > .container {
+    gap: 24px;
+  }
+}
+
+@media (width <= 767px) {
+  .main-content section.profile-comparison-section > .container {
+    gap: 24px;
+  }
+}
+
+@media (width <= 373px) {
+  .main-content section.profile-comparison-section > .container {
+    gap: 20px;
+  }
 }
 
 .profile-title {
@@ -2384,7 +2528,6 @@ section .section-subtitle {
 
 .card .card-info, .pricing-card .card-info {
   flex-direction: column;
-  flex-grow: 1;
   align-items: flex-start;
   gap: 12px;
   width: 100%;
@@ -2400,6 +2543,7 @@ section .section-subtitle {
 
 .card .features-list, .pricing-card .features-list {
   flex-direction: column;
+  flex-grow: 1;
   align-items: flex-start;
   gap: 8px;
   width: 100%;
@@ -2413,6 +2557,12 @@ section .section-subtitle {
   padding-left: 32px;
   display: flex;
   position: relative;
+}
+
+@media (width <= 767px) {
+  .card .feature-item, .pricing-card .feature-item {
+    padding-left: 28px;
+  }
 }
 
 .card .feature-item:before, .pricing-card .feature-item:before {
@@ -2429,6 +2579,12 @@ section .section-subtitle {
   left: 0;
 }
 
+@media (width <= 767px) {
+  .card .feature-item:before, .pricing-card .feature-item:before {
+    left: -4px;
+  }
+}
+
 .card .feature-item .check-icon, .pricing-card .feature-item .check-icon {
   flex-shrink: 0;
   width: 24px;
@@ -2438,6 +2594,13 @@ section .section-subtitle {
 .card .feature-item .feature-text, .pricing-card .feature-item .feature-text {
   flex: 1;
   margin: 0;
+}
+
+@media (width <= 767px) {
+  .card .feature-item .feature-text, .pricing-card .feature-item .feature-text {
+    font-size: 14px;
+    line-height: 20px;
+  }
 }
 
 .card .feature-item .feature-text .highlight, .pricing-card .feature-item .feature-text .highlight {
@@ -2457,10 +2620,71 @@ section .section-subtitle {
   line-height: 1.33;
 }
 
+.card .btn, .pricing-card .btn {
+  min-width: 100px;
+}
+
+.pricing-card .card-image {
+  aspect-ratio: 1;
+  height: auto;
+}
+
+.pricing-card .card-header .card-title {
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.pricing-card .card-price {
+  font-size: 21px;
+  line-height: 28px;
+}
+
+@media (width <= 767px) {
+  .pricing-card .info-item .info-item__label {
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  .pricing-card .info-item .info-item__value {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
 .comparison-card {
   background-color: #f2f5fa;
   border-radius: 32px;
   padding: 24px;
+}
+
+@media (width <= 767px) {
+  .comparison-card {
+    border-radius: 20px;
+    padding: 12px;
+  }
+
+  .comparison-card .card-header .card-title {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+.comparison-card .card-image {
+  aspect-ratio: 1;
+  width: 100%;
+  height: auto;
+}
+
+@media (width <= 767px) {
+  .comparison-card .info-item .info-item__label {
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  .comparison-card .info-item .info-item__value {
+    font-size: 14px;
+    line-height: 20px;
+  }
 }
 
 .info-item {
@@ -2483,7 +2707,19 @@ section .section-subtitle {
   margin: 0;
 }
 
-.pricing-cards .swiper-slide {
+.swiper-wrapper {
+  align-items: stretch;
+  min-width: 100%;
+  display: flex;
+}
+
+@media (width <= 990px) {
+  .swiper-wrapper {
+    padding-bottom: 32px;
+  }
+}
+
+.swiper-wrapper .swiper-slide, .pricing-cards .swiper-slide {
   flex: 1 0 auto;
   align-self: stretch;
   height: auto;
@@ -2491,7 +2727,13 @@ section .section-subtitle {
 }
 
 .swiper-pagination-1, .swiper-pagination-2, .swiper-pagination-3 {
-  --swiper-pagination-bottom: -32px;
+  --swiper-pagination-bottom: 0;
+}
+
+@media (width >= 991px) {
+  .swiper-pagination-1, .swiper-pagination-2, .swiper-pagination-3 {
+    display: none;
+  }
 }
 
 .swiper-button-next-1, .swiper-button-next-2, .swiper-button-next-3, .swiper-button-prev-1, .swiper-button-prev-2, .swiper-button-prev-3 {

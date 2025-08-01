@@ -9,8 +9,16 @@
   background: $color-bg-primary;
   padding: $spacing-8xl 0 $spacing-2xl;
 
+  @include tablet {
+    padding: $spacing-4xl 0 0;
+  }
+
   @include mobile {
-    padding: $spacing-4xl 0 $spacing-2xl;
+    padding: $spacing-4xl 0 0;
+  }
+
+  @include mobile-sm {
+    padding: $spacing-2xl 0 0;
   }
 }
 
@@ -24,14 +32,19 @@
     grid-template-columns: 1fr;
     gap: $spacing-4xl;
   }
+
+  // @include mobile {
+  //   grid-template-columns: 1fr;
+  //   gap: $spacing-2xl;
+  // }
 }
 
 .hero-text {
   @include flex-column;
   gap: $spacing-7xl;
-  padding-bottom: $spacing-3xl;
+  // padding-bottom: $spacing-3xl;
 
-  @include mobile {
+  @include tablet {
     gap: $spacing-4xl;
   }
 }
@@ -40,20 +53,28 @@
   max-width: 558px;
   @include flex-column;
   gap: $spacing-3xl;
+
+  @include pre-desktop {
+    flex-direction: row;
+    max-width: none;
+  }
+
+  @include tablet {
+    gap: $spacing-3xl;
+  }
+
+  @include mobile {
+    flex-direction: column;
+    gap: $spacing-xl;
+  }
 }
 
 .hero-title {
   h1 {
-    @include text-heading($font-size-5xl, $font-weight-semibold);
-    line-height: $line-height-loose;
-    margin-bottom: $spacing-xs;
+    margin-bottom: $spacing-md;
 
-    @include tablet {
-      font-size: $spacing-4xl;
-    }
-
-    @include mobile {
-      font-size: $font-size-3xl;
+    @include mobile-sm {
+      margin-right: $spacing-md;
     }
   }
 
@@ -65,9 +86,24 @@
       font-size: $font-size-xl;
     }
   }
+
+  @include pre-desktop {
+    flex: 1 0 65%;
+  }
+
+  @include mobile {
+    flex: 1;
+  }
 }
 
 .hero-description {
+  @include pre-desktop {
+    padding-top: $spacing-2xl;
+  }
+
+  @include mobile {
+    padding-top: 0;
+  }
 }
 
 .hero-cta {
@@ -102,7 +138,7 @@
 .hero-form-wrapper {
   position: relative;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
 
   &::before {
@@ -118,6 +154,14 @@
     z-index: 0;
     border-radius: $border-radius-2xl;
     transform: translateY(-50%);
+
+    @media (max-width: 1650px) {
+      width: 44vw;
+    }
+
+    @include tablet {
+      height: 100%;
+    }
   }
 }
 
@@ -134,7 +178,22 @@
   width: 100%;
 
   @include tablet {
-    background: $color-bg-secondary;
-    backdrop-filter: none;
+    padding: $spacing-2xl;
+    width: 70%;
+    max-width: 600px;
+    min-height: 0;
+    // background: $color-bg-secondary;
+    // backdrop-filter: none;
+  }
+
+  @include mobile {
+    width: 100%;
+    padding: $spacing-3xl $spacing-2xl;
+  }
+}
+
+.hero-form-header {
+  h3 {
+    max-width: 550px;
   }
 }
