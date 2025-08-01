@@ -222,27 +222,6 @@
   }
 }
 
-.btn-text-content {
-  @include flex-column;
-  align-items: center;
-  gap: 0;
-  text-align: center;
-}
-
-.btn-main-text {
-  font-size: $font-size-base;
-  font-weight: $font-weight-medium;
-  line-height: $line-height-spacious;
-  color: $color-text-white;
-}
-
-.btn-sub-text {
-  font-size: $font-size-base;
-  font-weight: $font-weight-light;
-  line-height: 16px;
-  color: rgba(255, 255, 255, 0.7);
-}
-
 .guarantee-banner {
   display: flex;
   align-items: center;

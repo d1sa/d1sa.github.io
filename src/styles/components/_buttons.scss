@@ -45,9 +45,6 @@
 .btn-blue {
   background: $color-primary;
   color: $color-text-white;
-  // width: 364px;
-  // padding: $spacing-lg $spacing-2xl;
-  // border-radius: $border-radius-md;
 
   &:hover {
     background: $color-primary-hover;
@@ -73,15 +70,6 @@
   background: $color-bg-primary;
   color: $color-text-primary;
   border: 1px solid $color-border-default;
-  min-width: 180px;
-  padding: $spacing-md $spacing-2xl;
-  border-radius: $border-radius-sm;
-  font-family: $font-family-secondary;
-  font-size: $font-size-base;
-  font-weight: $font-weight-normal;
-  line-height: $line-height-spacious;
-  cursor: pointer;
-  transition: all $transition-fast;
 
   &:hover {
     background: $color-bg-secondary;
@@ -90,12 +78,74 @@
   }
 }
 
+.btn-light-blue {
+  width: 100%;
+  color: $color-primary;
+  background: $color-primary-light;
+
+  &:hover {
+    background: $color-primary-light-hover;
+  }
+}
+
+.btn-fw {
+  width: 100%;
+}
+
 // Button modifiers
 // ==========================================================================
+
+.btn-icon {
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
 .btn-xl {
   padding: $spacing-lg $spacing-2xl;
   border-radius: $border-radius-md;
-  gap: $spacing-2xl;
+  gap: $spacing-lg;
+  min-height: 72px;
+
+  .btn-icon {
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+
+    svg {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    @include mobile {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+    }
+  }
+}
+
+.btn-text-content {
+  @include flex-column;
+  align-items: center;
+  gap: 0;
+  text-align: center;
+}
+
+.btn-main-text {
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  line-height: $line-height-spacious;
+}
+
+.btn-sub-text {
+  font-size: 0.875em;
+  font-weight: $font-weight-light;
+  opacity: 0.667;
 }
 
 // Call button specific styles
@@ -126,25 +176,9 @@
   line-height: $line-height-normal;
 }
 
-// Contact phone button
-// ==========================================================================
-.contact-phone-button {
-  @include btn-base;
-
-  border: 1px solid $color-border-default;
-  border-radius: $border-radius-sm;
-  background: $color-bg-primary;
-}
-
 .phone-icon {
   @include icon-circle(
     28px,
     linear-gradient(0deg, $color-primary 0%, $color-primary 100%)
   );
 }
-
-// .phone-number {
-//   font-size: $font-size-base;
-//   font-weight: $font-weight-medium;
-//   color: $color-text-primary;
-// }

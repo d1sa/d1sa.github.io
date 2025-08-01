@@ -6,6 +6,9 @@
 @use "../mixins" as *;
 
 .pricing-section {
+  @media (max-width: $breakpoint-desktop) {
+    padding: 0 0 $spacing-4xl 0;
+  }
 }
 
 .pricing-header {
@@ -23,6 +26,10 @@
     font-weight: $font-weight-semibold;
     line-height: $line-height-loose;
     margin: 0;
+
+    @media (max-width: $breakpoint-tablet) {
+      font-size: $font-size-2xl;
+    }
   }
 
   .pricing-subtitle {
@@ -98,6 +105,19 @@
   flex: 1;
   overflow: hidden;
   position: relative;
+
+  @media (max-width: $breakpoint-tablet) {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 }
 
 .pricing-cards {
@@ -106,6 +126,7 @@
   min-width: 100%;
 }
 
+.card,
 .pricing-card {
   display: flex;
   min-width: 144px;
@@ -119,6 +140,14 @@
     width: 100%;
     border-radius: $border-radius-sm;
     background: $color-bg-secondary;
+
+    @media (max-width: $breakpoint-desktop) {
+      height: 240px;
+    }
+
+    @media (max-width: $breakpoint-mobile) {
+      height: 220px;
+    }
   }
 
   .card-header {
@@ -146,37 +175,15 @@
   .card-info {
     display: flex;
     flex-grow: 1;
-    padding: 0 0 $spacing-2xl 0;
+    // padding: 0 0 $spacing-2xl 0;
     flex-direction: column;
     align-items: flex-start;
-    gap: $spacing-2xl;
+    gap: $spacing-md;
     width: 100%;
 
     @include mobile {
       gap: $spacing-md;
       padding: 0;
-    }
-  }
-
-  .window-size {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: $spacing-xs;
-    width: 100%;
-
-    .size-label {
-      width: 100%;
-      color: $color-text-secondary;
-      font-size: $font-size-md;
-      font-weight: $font-weight-light;
-      line-height: 16px;
-      margin: 0;
-    }
-
-    .size-value {
-      width: 100%;
-      margin: 0;
     }
   }
 
@@ -239,124 +246,31 @@
     line-height: $line-height-normal;
     margin: 0;
   }
-
-  .order-button {
-    display: flex;
-    height: 52px;
-    min-width: 180px;
-    padding: $spacing-md $spacing-2xl;
-    justify-content: center;
-    align-items: center;
-    gap: $spacing-sm;
-    width: 100%;
-    border-radius: $border-radius-sm;
-    background: #ebf3ff;
-    border: none;
-    cursor: pointer;
-    transition: $transition-base;
-
-    .button-text {
-      color: $color-primary;
-      font-size: $font-size-base;
-      font-weight: $font-weight-medium;
-      line-height: $line-height-spacious;
-    }
-
-    &:hover {
-      background: rgba($color-primary, 0.2);
-    }
-  }
 }
 
-.carousel-control {
-  position: absolute;
+.comparison-card {
+  background-color: $color-bg-secondary;
+  border-radius: $border-radius-2xl;
+  padding: $spacing-2xl;
+}
+
+.info-item {
   display: flex;
-  padding: $spacing-sm;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 1000px;
-  background: $color-bg-primary;
-  box-shadow: $shadow-form;
-  border: none;
-  cursor: pointer;
-  transition: $transition-base;
-  z-index: 10;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $spacing-xs;
+  width: 100%;
 
-  &:hover {
-    background: rgba($color-primary, 0.1);
+  .info-item__label {
+    color: $color-text-secondary;
+    font-size: $font-size-md;
+    line-height: $line-height-md;
+    font-weight: $font-weight-light;
+    margin: 0;
   }
 
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    visibility: hidden;
-  }
-
-  .control-icon {
-    width: 24px;
-    height: 24px;
-  }
-
-  &.prev {
-    order: -1;
-    left: calc(-1 * $spacing-4xl - $spacing-sm);
-  }
-
-  &.next {
-    order: 1;
-    right: calc(-1 * $spacing-4xl - $spacing-sm);
-  }
-}
-
-// Responsive Design
-@media (max-width: $breakpoint-desktop) {
-  .pricing-section {
-    padding: 0 0 $spacing-4xl 0;
-  }
-
-  .pricing-card {
-    .card-image {
-      height: 240px;
-    }
-  }
-}
-
-@media (max-width: $breakpoint-tablet) {
-  .pricing-header {
-    .pricing-title {
-      font-size: $font-size-2xl;
-    }
-  }
-
-  .pricing-carousel {
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
-}
-
-@media (max-width: $breakpoint-mobile) {
-  .pricing-card {
-    width: 220px;
-
-    .card-image {
-      height: 220px;
-    }
-  }
-
-  .pricing-tabs {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: $spacing-xs;
+  .info-item__value {
+    margin: 0;
   }
 }
 
@@ -448,24 +362,3 @@
   cursor: not-allowed;
   visibility: hidden;
 }
-
-// .swiper {
-//   width: 100%;
-//   height: 100%;
-// }
-
-// .swiper-slide {
-//   text-align: center;
-//   font-size: 18px;
-//   background: #444;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// }
-
-// .swiper-slide img {
-//   display: block;
-//   width: 100%;
-//   height: 100%;
-//   object-fit: cover;
-// }

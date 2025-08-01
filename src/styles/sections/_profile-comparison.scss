@@ -5,6 +5,10 @@
 @use "../mixins" as *;
 @use "../variables" as *;
 
+.profile-comparison {
+  position: relative;
+}
+
 .profile-comparison-section {
 }
 

@@ -6,6 +6,7 @@
 @use "../variables" as *;
 
 .main-content {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: $spacing-8xl;

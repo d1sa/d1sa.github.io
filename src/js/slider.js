@@ -78,4 +78,31 @@ document.addEventListener('DOMContentLoaded', function () {
       },
     },
   });
+
+  let swiperComparison1 = new Swiper('.swiper-section-comparison-1', {
+    slidesPerView: 1,
+    spaceBetween: 24,
+    navigation: {
+      nextEl: '.swiper-button-next-comparison-1',
+      prevEl: '.swiper-button-prev-comparison-1',
+    },
+    pagination: {
+      el: '.swiper-pagination-comparison-1',
+      clickable: true,
+    },
+    breakpoints: {
+      390: {
+        slidesPerView: 2,
+        spaceBetween: 16,
+      },
+      768: {
+        slidesPerView: 3,
+        spaceBetween: 24,
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 24,
+      },
+    },
+  });
 });

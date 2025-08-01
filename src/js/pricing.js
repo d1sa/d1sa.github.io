@@ -4,10 +4,6 @@ document.addEventListener('DOMContentLoaded', function () {
     '.pricing-carousel-container'
   );
 
-  console.log('tabs');
-  console.log(tabs);
-  console.log(carouselContainers);
-
   function switchTab(tabType) {
     carouselContainers.forEach(container => {
       container.style.display = 'none';
@@ -34,4 +30,46 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   switchTab('whs');
+});
+
+function debounce(func, delay) {
+  let timeout;
+
+  return function (...args) {
+    const context = this;
+
+    clearTimeout(timeout);
+
+    timeout = setTimeout(() => {
+      func.apply(context, args);
+    }, delay);
+  };
+}
+
+document.fonts.addEventListener('loadingdone', function () {
+  const profileComparison = document.querySelector('.profile-comparison');
+  const titles = profileComparison.querySelectorAll('.card-title');
+  const headers = profileComparison.querySelectorAll('.card-header');
+
+  function getMaxHeight() {
+    let maxHeight = 0;
+
+    titles.forEach(title => {
+      maxHeight = Math.max(maxHeight, title.offsetHeight);
+    });
+
+    return maxHeight;
+  }
+
+  const maxHeight = getMaxHeight();
+  headers.forEach(h => {
+    h.style.minHeight = `${maxHeight}px`;
+  });
+
+  window.addEventListener('resize', () => {
+    const maxHeight = getMaxHeight();
+    headers.forEach(h => {
+      h.style.minHeight = `${maxHeight}px`;
+    });
+  });
 });
