@@ -187,3 +187,76 @@
     linear-gradient(0deg, $color-primary 0%, $color-primary 100%)
   );
 }
+
+.swiper-btn-prev {
+  background: $color-bg-primary;
+  color: $color-text-primary;
+  border: 1px solid $color-border-default;
+}
+
+.swiper-btn-next {
+  background: $color-bg-primary;
+  color: $color-text-primary;
+}
+
+.swiper-btn-prev,
+.swiper-btn-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  padding: $spacing-sm;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 1000px;
+  background: $color-bg-primary;
+  box-shadow: $shadow-form;
+  border: none;
+  cursor: pointer;
+  transition: $transition-base;
+  z-index: 10;
+
+  &:hover {
+    background: rgba($color-primary, 0.1);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    visibility: hidden;
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url("../img/chevron-right.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.swiper-btn-next {
+  order: 1;
+  right: calc(-1 * $spacing-4xl - $spacing-sm);
+
+  &:before {
+    background-image: url("../img/chevron-right.svg");
+  }
+}
+
+.swiper-btn-prev {
+  order: -1;
+  left: calc(-1 * $spacing-4xl - $spacing-sm);
+
+  &:before {
+    background-image: url("../img/chevron-left.svg");
+  }
+}

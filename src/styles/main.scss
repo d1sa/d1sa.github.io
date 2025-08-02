@@ -21,6 +21,7 @@
 @use "components/sections" as *;
 @use "components/toast" as *;
 @use "components/modal" as *;
+@use "components/swiper" as *;
 
 // 5. Sections
 
@@ -35,3 +36,4 @@
 @use "sections/reviews" as *;
 @use "sections/lead-form" as *;
 @use "sections/benefits" as *;
+@use "sections/our-works" as *;

@@ -105,4 +105,43 @@ document.addEventListener('DOMContentLoaded', function () {
       },
     },
   });
+
+  let ourWorks = new Swiper(".our-works-slider", {
+    slidesPerView: 1,
+    spaceBetween: 16,
+    grid: {
+      rows: 2,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-btn-next',
+      prevEl: '.swiper-btn-prev',
+    },
+    breakpoints: {
+      390: {
+        slidesPerView: 2,
+        spaceBetween: 16,
+        grid: {
+          rows: 1,
+        }
+      },
+      768: {
+        slidesPerView: 3,
+        spaceBetween: 24,
+        grid: {
+          rows: 2,
+        }
+      },
+      1024: {
+        slidesPerView: 4,
+        spaceBetween: 24,
+        grid: {
+          rows: 2,
+        }
+      },
+    },
+  });
 });
