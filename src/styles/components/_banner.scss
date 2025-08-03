@@ -1,0 +1,152 @@
+@use "../mixins" as *;
+@use "../variables" as *;
+
+.banner {
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+  padding: $spacing-lg $spacing-xl;
+  border-radius: $border-radius-md;
+  background: $color-bg-primary;
+  width: 100%;
+
+  @include tablet {
+    padding: $spacing-md $spacing-lg;
+    gap: $spacing-md;
+  }
+}
+
+.banner--info {
+  background: $color-primary-light;
+
+  .banner-title {
+    color: $color-primary;
+  }
+}
+
+.banner--white-info {
+  background: $color-bg-primary;
+
+  .banner-title {
+    color: $color-primary;
+  }
+}
+
+.banner--green-light {
+  background: $color-secondary-light;
+
+  .banner-title {
+    color: $color-secondary;
+  }
+}
+
+.banner-icon {
+  width: 28px;
+  height: 28px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  @include tablet {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.banner-content {
+  @include flex-column;
+  justify-content: center;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.banner-title {
+  @include text-body($font-size-base, $font-weight-medium);
+  margin: 0;
+}
+
+.banner-text {
+  @include text-body($font-size-base, $font-weight-light);
+  color: $color-text-primary;
+  margin: 0;
+
+  @include mobile-sm {
+    font-size: $font-size-md;
+    line-height: $line-height-md;
+  }
+}
+
+// ==========================================================================
+// Advantage Banner
+// ==========================================================================
+
+.advantage-items {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $spacing-md;
+  align-self: stretch;
+}
+
+.advantage-item {
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+  align-self: stretch;
+}
+
+.advantage-icon-complex {
+  position: relative;
+  width: 88px;
+  height: 48px;
+  flex-shrink: 0;
+
+  .icon-1 {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .icon-2 {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    top: 0;
+    left: 40px;
+  }
+}
+
+.advantage-icon {
+  display: flex;
+  padding: $spacing-sm;
+  align-items: center;
+  gap: 10px;
+  border-radius: 1000px;
+  background: $color-bg-primary;
+  flex-shrink: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+.advantage-text {
+  flex: 1;
+  font-family: $font-family-primary;
+  font-size: $font-size-base;
+  font-weight: $font-weight-light;
+  line-height: $line-height-spacious;
+  color: $color-text-primary;
+  margin: 0;
+
+  @include mobile-sm {
+    font-size: $font-size-md;
+    line-height: $line-height-md;
+  }
+}

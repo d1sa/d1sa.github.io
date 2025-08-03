@@ -172,6 +172,7 @@ var _headerJs = require("./header.js"); // Header height compensation and naviga
 var _formsJs = require("./forms.js"); // Complete forms management system (replaces modal-form + utils)
 var _pricingJs = require("./pricing.js"); // Pricing carousel and tabs
 var _sliderJs = require("./slider.js"); // Swiper slider
+var _glightboxJs = require("./glightbox.js"); // PhotoSwipe slider
 // ==========================================================================
 // Global App Initialization
 // ==========================================================================
@@ -238,7 +239,7 @@ window.OknaApp = {
     ]
 };
 
-},{"./header.js":"7clXR","./forms.js":"14dZ8","./pricing.js":"3h78u","./slider.js":"9eRXX"}],"7clXR":[function(require,module,exports,__globalThis) {
+},{"./header.js":"7clXR","./forms.js":"14dZ8","./pricing.js":"3h78u","./slider.js":"9eRXX","./glightbox.js":"2a3rW"}],"7clXR":[function(require,module,exports,__globalThis) {
 // ==========================================================================
 // Header Height Compensation
 // ==========================================================================
@@ -1205,15 +1206,16 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
-    let ourWorks = new Swiper(".our-works-slider", {
+    let ourWorks = new Swiper('.our-works-slider', {
         slidesPerView: 1,
         spaceBetween: 16,
         grid: {
-            rows: 2
+            rows: 1
         },
         pagination: {
-            el: ".swiper-pagination",
-            clickable: true
+            el: '.swiper-pagination',
+            clickable: true,
+            dynamicBullets: true
         },
         navigation: {
             nextEl: '.swiper-btn-next',
@@ -1232,6 +1234,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 spaceBetween: 24,
                 grid: {
                     rows: 2
+                },
+                pagination: {
+                    dynamicBullets: false
                 }
             },
             1024: {
@@ -1239,9 +1244,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 spaceBetween: 24,
                 grid: {
                     rows: 2
+                },
+                pagination: {
+                    dynamicBullets: false
                 }
             }
         }
+    });
+});
+
+},{}],"2a3rW":[function(require,module,exports,__globalThis) {
+document.addEventListener('DOMContentLoaded', function() {
+    const lightbox = GLightbox({
+        selector: '.glightbox',
+        touchNavigation: true,
+        loop: true
     });
 });
 

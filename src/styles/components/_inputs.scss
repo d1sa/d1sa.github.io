@@ -34,7 +34,7 @@
   }
 
   &:hover:not(:focus) {
-    border-color: $color-border-default;
+    border-color: $color-border-action;
   }
 
   // Error state
@@ -95,32 +95,15 @@
 // Input variants
 // ==========================================================================
 
-.input--phone {
+.input-phone {
 }
 
 // Large input variant
-.input--large {
+.input-xl {
   @extend .input;
   height: 72px;
   padding: $spacing-lg $spacing-xl;
   font-size: $font-size-lg;
-}
-
-// Small input variant
-.input--small {
-  @extend .input;
-  padding: $spacing-md;
-  font-size: $font-size-sm;
-}
-
-// Input with icon
-.input--with-icon {
-  @extend .input;
-  padding-left: $spacing-3xl;
-  background-image: var(--input-icon);
-  background-repeat: no-repeat;
-  background-position: $spacing-lg center;
-  background-size: 20px;
 }
 
 // Input groups
@@ -142,6 +125,15 @@
       border-bottom-right-radius: $border-radius-sm;
     }
   }
+
+  @include mobile {
+    flex-direction: column;
+    gap: $spacing-sm;
+
+    .input {
+      border-radius: $border-radius-sm;
+    }
+  }
 }
 
 // Input with button
@@ -149,12 +141,24 @@
   display: flex;
   gap: $spacing-sm;
 
+  @include mobile {
+    flex-direction: column;
+  }
+
   .input {
-    flex: 1;
+    flex: 1 1 100%;
+  }
+
+  .form-field {
+    width: 100%;
   }
 
   .btn {
     flex-shrink: 0;
+
+    @include mobile {
+      width: 100%;
+    }
   }
 }
 
@@ -185,35 +189,10 @@
   margin-top: $spacing-xs;
 }
 
-// Responsive adjustments
-// ==========================================================================
-@include mobile {
-  .input-with-button {
-    flex-direction: column;
-
-    .btn {
-      width: 100%;
-    }
-  }
-
-  .input-group {
-    flex-direction: column;
-    gap: $spacing-sm;
-
-    .input {
-      border-radius: $border-radius-sm;
-    }
-  }
-}
-
 // Legacy class compatibility
 // ==========================================================================
 .form-input {
   @extend .input;
-}
-
-.phone-input {
-  @extend .input--phone;
 }
 
 // Input container for specific layouts

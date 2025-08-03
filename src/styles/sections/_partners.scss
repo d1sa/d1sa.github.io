@@ -1,0 +1,21 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.partners-section {
+  .partners-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: $spacing-xl;
+
+    .partner-item {
+      display: grid;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @include mobile {
+      grid-template-columns: repeat(2, 1fr);
+      gap: $spacing-lg;
+    }
+  }
+}

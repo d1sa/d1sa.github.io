@@ -103,33 +103,48 @@
     gap: $spacing-md;
     justify-content: space-between;
   }
+
+  .site-info-item {
+    @include mobile {
+      font-size: $font-size-xs;
+    }
+
+    @media screen and (max-width: 390px) {
+      font-size: $font-size-xxs;
+    }
+  }
+
+  .site-info-item__text {
+    @include desktop {
+      gap: $spacing-xl;
+    }
+
+    @include tablet {
+      flex-direction: column;
+      gap: 0;
+    }
+  }
+
+  .site-info-item__icon {
+    @include mobile {
+      display: none;
+    }
+  }
 }
 
-.header-info-item {
+.site-info-item {
   display: flex;
   align-items: center;
   gap: $spacing-sm;
   font-size: $font-size-sm;
   font-weight: $font-weight-light;
   color: $color-text-primary;
-
-  @include mobile {
-    font-size: $font-size-xs;
-  }
-
-  @media screen and (max-width: 390px) {
-    font-size: $font-size-xxs;
-  }
 }
 
-.header-info-item__text {
+.site-info-item__text {
   display: flex;
   flex-direction: row;
   gap: $spacing-sm;
-
-  @include desktop {
-    gap: $spacing-xl;
-  }
 
   @include tablet {
     flex-direction: column;
@@ -137,16 +152,12 @@
   }
 }
 
-.header-info-item__icon {
+.site-info-item__icon {
   width: $spacing-lg;
   height: $spacing-lg;
-
-  @include mobile {
-    display: none;
-  }
 }
 
-.header-info-item__additional {
+.site-info-item__additional {
   color: $color-text-secondary;
 }
 
@@ -421,27 +432,31 @@
     color: $color-primary;
     background-color: $color-bg-secondary;
   }
+}
 
-  @include pre-large-desktop {
-    font-size: $font-size-lg;
-    padding: $spacing-lg $spacing-md;
-    justify-content: flex-start;
-    border-bottom: 1px solid $color-border-light;
-    border-radius: 0;
-    min-height: auto;
+.nav-and-actions-wrapper {
+  .nav-link {
+    @include pre-large-desktop {
+      font-size: $font-size-lg;
+      padding: $spacing-lg $spacing-md;
+      justify-content: flex-start;
+      border-bottom: 1px solid $color-border-light;
+      border-radius: 0;
+      min-height: auto;
 
-    &:last-child {
-      border-bottom: none;
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &:hover {
+        background-color: transparent;
+        color: $color-primary;
+        padding-left: $spacing-lg;
+      }
     }
 
-    &:hover {
-      background-color: transparent;
-      color: $color-primary;
-      padding-left: $spacing-lg;
+    @include pre-xlarge-desktop {
+      font-size: $font-size-base;
     }
-  }
-
-  @include pre-xlarge-desktop {
-    font-size: $font-size-base;
   }
 }

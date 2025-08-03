@@ -106,15 +106,16 @@ document.addEventListener('DOMContentLoaded', function () {
     },
   });
 
-  let ourWorks = new Swiper(".our-works-slider", {
+  let ourWorks = new Swiper('.our-works-slider', {
     slidesPerView: 1,
     spaceBetween: 16,
     grid: {
-      rows: 2,
+      rows: 1,
     },
     pagination: {
-      el: ".swiper-pagination",
+      el: '.swiper-pagination',
       clickable: true,
+      dynamicBullets: true,
     },
     navigation: {
       nextEl: '.swiper-btn-next',
@@ -126,21 +127,27 @@ document.addEventListener('DOMContentLoaded', function () {
         spaceBetween: 16,
         grid: {
           rows: 1,
-        }
+        },
       },
       768: {
         slidesPerView: 3,
         spaceBetween: 24,
         grid: {
           rows: 2,
-        }
+        },
+        pagination: {
+          dynamicBullets: false,
+        },
       },
       1024: {
         slidesPerView: 4,
         spaceBetween: 24,
         grid: {
           rows: 2,
-        }
+        },
+        pagination: {
+          dynamicBullets: false,
+        },
       },
     },
   });

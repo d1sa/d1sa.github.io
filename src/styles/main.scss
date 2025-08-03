@@ -22,6 +22,9 @@
 @use "components/toast" as *;
 @use "components/modal" as *;
 @use "components/swiper" as *;
+@use "components/glightbox" as *;
+@use "components/banner" as *;
+@use "components/feature-list" as *;
 
 // 5. Sections
 
@@ -37,3 +40,5 @@
 @use "sections/lead-form" as *;
 @use "sections/benefits" as *;
 @use "sections/our-works" as *;
+@use "sections/partners" as *;
+@use "sections/contacts" as *;

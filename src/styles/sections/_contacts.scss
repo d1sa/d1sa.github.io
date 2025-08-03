@@ -1,0 +1,65 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.contacts-section {
+  position: relative;
+
+  .container {
+    padding-top: $spacing-3xl;
+    padding-bottom: $spacing-3xl;
+    justify-content: flex-start;
+
+    @include mobile {
+      padding-top: 0;
+      padding-bottom: $spacing-xl;
+    }
+  }
+
+  .card {
+    position: relative;
+    display: flex;
+    padding: $spacing-3xl;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $spacing-3xl;
+    align-self: stretch;
+    border-radius: $border-radius-lg;
+    background: $color-bg-primary;
+  }
+
+  .card {
+    position: relative;
+    z-index: 1;
+    max-width: 400px;
+    box-shadow: $shadow-form;
+
+    .btn {
+      width: 100%;
+    }
+
+    @include mobile {
+      border: 1.5px solid $color-border-default;
+      max-width: 100%;
+    }
+  }
+
+  .widget-map {
+    z-index: 0;
+    background: $color-bg-secondary;
+    width: 100%;
+    height: 600px;
+    display: block;
+    position: absolute;
+    inset: 0;
+
+    iframe {
+      width: 100%;
+      height: 100%;
+    }
+
+    @include mobile {
+      position: relative;
+      height: 300px;
+    }
+  }
+}

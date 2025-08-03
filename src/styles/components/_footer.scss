@@ -9,96 +9,99 @@
   background: $color-bg-secondary;
   padding: $spacing-4xl 0;
 
-  &-row {
-    @include flex-between;
-    margin-bottom: $spacing-4xl;
-
-    @include mobile {
-      flex-direction: column;
-      gap: $spacing-xl;
-    }
-  }
-
-  &-logo {
-    width: 99px;
-  }
-
-  &-navigation {
-    display: flex;
-    gap: 45px;
-    max-width: 729px;
-    flex: 1;
-    justify-content: space-between;
-    padding: $spacing-xl 0;
-
-    @include mobile {
-      flex-direction: column;
-      gap: 15px;
-      text-align: center;
-    }
-  }
-
-  &-nav-link {
-    font-size: $font-size-lg;
-    font-weight: $font-weight-normal;
-    color: $color-text-primary;
-    text-decoration: none;
-    line-height: $line-height-comfortable;
-    transition: color $transition-base;
-
-    &:hover {
-      color: $color-primary;
-    }
-  }
-
-  &-contact-row {
-    @include flex-between;
-    margin-bottom: $spacing-4xl;
-    gap: $spacing-4xl;
-
-    @include mobile {
-      flex-direction: column;
-      gap: $spacing-xl;
-      text-align: center;
-    }
-  }
-
-  &-contact-item {
-    display: flex;
-    align-items: center;
-    gap: $spacing-sm;
-    font-size: $font-size-sm;
-    font-weight: $font-weight-light;
-    color: $color-text-primary;
-  }
-
-  &-hours {
-    font-size: $font-size-sm;
-    font-weight: $font-weight-normal;
-    color: $color-text-secondary;
-  }
-
-  &-description {
-    max-width: 740px;
-    font-size: $font-size-md;
-    font-weight: $font-weight-light;
-    line-height: $line-height-extra-spacious;
-    color: $color-text-primary;
-    text-align: center;
-    margin: 0 auto $spacing-4xl;
-  }
-
-  &-copyright {
-    font-size: $font-size-xs;
-    font-weight: $font-weight-normal;
-    line-height: $line-height-base;
-    color: $color-text-secondary;
-    text-align: center;
+  .icon {
+    width: $spacing-lg;
+    height: $spacing-lg;
+    flex-shrink: 0;
   }
 }
 
-.icon {
-  width: $spacing-lg;
-  height: $spacing-lg;
-  flex-shrink: 0;
+.footer-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: $spacing-3xl;
+
+  @include mobile {
+    flex-direction: column;
+    gap: $spacing-xl;
+    align-items: center;
+  }
+}
+
+.footer-logo {
+  width: 99px;
+}
+
+.footer-navigation {
+  flex: 1;
+  align-items: center;
+  gap: 0;
+  display: flex;
+  justify-content: flex-end;
+
+  @include mobile {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  .nav-link {
+    @include mobile {
+      width: 100%;
+      flex: 1;
+      // justify-content: flex-start;
+      // padding-left: 0;
+      // padding-right: 0;
+    }
+  }
+}
+
+.footer-nav-link {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-normal;
+  color: $color-text-primary;
+  text-decoration: none;
+  line-height: $line-height-comfortable;
+  transition: color $transition-base;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.footer-contact-row {
+  @include flex-between;
+  gap: $spacing-4xl;
+
+  @include mobile {
+    flex-direction: column;
+    gap: $spacing-xl;
+    // text-align: left;
+    // align-items: flex-start;
+  }
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-light;
+  color: $color-text-primary;
+}
+
+.footer-copyright {
+  font-size: $font-size-xs;
+  line-height: $line-height-xs;
+  font-weight: $font-weight-normal;
+  color: $color-text-secondary;
+  text-align: center;
+}
+
+.footer-description {
+  font-size: $font-size-xs;
+  line-height: $line-height-xs;
+  text-align: center;
+  margin-top: $spacing-2xl;
 }

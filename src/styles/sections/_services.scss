@@ -3,6 +3,7 @@
 // ==========================================================================
 
 @use "../variables" as *;
+@use "../mixins" as *;
 
 .services-section {
 }
@@ -10,55 +11,48 @@
 .services-grid {
   display: grid;
   height: 530px;
+  max-width: 100%;
   grid-template-rows: repeat(8, minmax(0, 1fr));
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 16px;
   border-radius: 30px;
   max-width: 1128px;
+  overflow: hidden;
 
-  @media (max-width: 1200px) {
-    max-width: 100%;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-  }
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
+  @include mobile {
     grid-template-rows: auto;
+    grid-template-columns: repeat(2, 1fr);
     height: auto;
     gap: 12px;
   }
 }
 
 .service-card {
-  background: var(--surface-secondary, #f2f5fa);
+  background: $color-bg-tertiary;
   border-radius: 12px;
-  padding: 24px;
-  font-size: 21px;
-  font-weight: 400;
-  line-height: 28px;
-  color: var(--text-text-1, #000);
   display: flex;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
 
   &:hover {
-    transform: translateY(px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transform: scale(0.98);
   }
 
-  @media (max-width: 768px) {
-    font-size: 18px;
-    line-height: 24px;
-    padding: 20px;
+  .service-card-title {
+    max-width: 320px;
+    align-self: stretch;
+  }
+
+  @include mobile {
     grid-column: 1 !important;
+    grid-area: auto !important;
     grid-row: auto !important;
     height: auto !important;
-    align-items: center !important;
+    min-height: 300px;
   }
 
-  @media (max-width: 480px) {
-    font-size: 16px;
-    line-height: 22px;
-    padding: 16px;
+  @include mobile-sm {
+    min-height: 200px;
   }
 }
 
@@ -66,13 +60,20 @@
 .service-card--large-right {
   grid-row: 1 / span 8;
   grid-column: 9 / span 4;
-  flex-direction: column;
   align-items: flex-start;
   gap: 10px;
 
-  div {
-    max-width: 320px;
-    align-self: stretch;
+  .service-card-content {
+    background: linear-gradient(
+      180deg,
+      #f2f5fa 0%,
+      rgba(242, 245, 250, 0.68) 49%,
+      rgba(242, 245, 250, 0) 100%
+    );
+  }
+
+  @include mobile {
+    order: 2;
   }
 }
 
@@ -83,9 +84,17 @@
   align-items: flex-start;
   gap: 10px;
 
-  div {
-    max-width: 320px;
-    flex: 1 0 0;
+  .service-card-content {
+    background: linear-gradient(
+      180deg,
+      #f2f5fa 0%,
+      rgba(242, 245, 250, 0.68) 49%,
+      rgba(242, 245, 250, 0) 100%
+    );
+  }
+
+  @include mobile {
+    order: 1;
   }
 }
 
@@ -96,9 +105,17 @@
   align-items: flex-start;
   gap: 10px;
 
-  div {
-    max-width: 320px;
-    flex: 1 0 0;
+  .service-card-content {
+    background: linear-gradient(
+      180deg,
+      #f2f5fa 0%,
+      rgba(242, 245, 250, 0.68) 49%,
+      rgba(242, 245, 250, 0) 100%
+    );
+  }
+
+  @include mobile {
+    order: 3;
   }
 }
 
@@ -109,8 +126,37 @@
   align-items: flex-end;
   gap: 10px;
 
-  div {
-    max-width: 320px;
-    flex: 1 0 0;
+  @include mobile {
+    order: 4;
+  }
+}
+
+.service-card-content {
+  padding: $spacing-2xl;
+  background: linear-gradient(
+    0deg,
+    #f2f5fa 0%,
+    rgba(242, 245, 250, 0.68) 49%,
+    rgba(242, 245, 250, 0) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2xl;
+  flex: 1 1 100%;
+}
+
+.service-card-title {
+  font-size: $font-size-xl;
+  line-height: $line-height-xl;
+  font-weight: 400;
+
+  @include mobile {
+    font-size: $font-size-lg;
+    line-height: $line-height-lg;
+  }
+
+  @include mobile-sm {
+    font-size: 16px;
+    line-height: 22px;
   }
 }

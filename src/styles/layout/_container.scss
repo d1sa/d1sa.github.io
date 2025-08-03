@@ -26,12 +26,24 @@
 
 .main-content section {
   > .container {
-    gap: $spacing-5xl;
     display: flex;
     flex-direction: column;
+    gap: $spacing-5xl;
 
     @include mobile {
       gap: $spacing-3xl;
+    }
+  }
+}
+
+footer {
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-3xl;
+
+    @include mobile {
+      gap: $spacing-2xl;
     }
   }
 }

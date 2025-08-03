@@ -207,56 +207,18 @@
     }
   }
 
-  .features-list {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: $spacing-sm;
-    width: 100%;
-    flex-grow: 1;
-  }
-
   .feature-item {
-    position: relative;
-    display: flex;
-    align-items: flex-start;
-    gap: $spacing-sm;
-    width: 100%;
-    padding-left: $spacing-3xl;
-
     @include mobile {
       padding-left: calc($spacing-3xl - $spacing-xs);
     }
 
     &::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      // transform: translateY(-50%);
-      width: 24px;
-      height: 24px;
-      flex-shrink: 0;
-      background-image: url("../img/icon-check-white-blue-circle.svg");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-
       @include mobile {
         left: -$spacing-xs;
       }
     }
 
-    .check-icon {
-      width: 24px;
-      height: 24px;
-      flex-shrink: 0;
-    }
-
     .feature-text {
-      flex: 1;
-      margin: 0;
-
       @include mobile {
         font-size: $font-size-md;
         line-height: $line-height-md;
@@ -295,7 +257,6 @@
 }
 
 .pricing-card {
-
   .card-image {
     height: auto;
     aspect-ratio: 1 / 1;
@@ -319,7 +280,7 @@
         font-size: $font-size-xs;
         line-height: $line-height-xs;
       }
-  
+
       .info-item__value {
         font-size: $font-size-md;
         line-height: $line-height-md;
@@ -351,6 +312,7 @@
     height: auto;
     width: 100%;
     aspect-ratio: 1 / 1;
+    background-color: $color-bg-primary;
   }
 
   // .card-image {
@@ -365,7 +327,7 @@
         font-size: $font-size-xs;
         line-height: $line-height-xs;
       }
-  
+
       .info-item__value {
         font-size: $font-size-md;
         line-height: $line-height-md;

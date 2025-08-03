@@ -61,6 +61,26 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+
+  .btn {
+    width: 100%;
+  }
+}
+
+.card-inner {
+  display: flex;
+  padding: $spacing-3xl;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $spacing-3xl;
+  align-self: stretch;
+  border-radius: $border-radius-lg;
+  background: $color-bg-primary;
+  box-shadow: $shadow-form;
+
+  @include mobile {
+    padding: $spacing-xl;
+  }
 }
 
 .form-bg {

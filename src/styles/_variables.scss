@@ -10,6 +10,8 @@ $color-primary-light: #ebf3ff;
 $color-primary-light-hover: #d4e8fb;
 $color-secondary: #2bb109;
 $color-secondary-hover: #249907;
+$color-secondary-light: #e8ffe2;
+$color-secondary-light-hover: #d4f7c9;
 $color-accent: #f60;
 $color-accent-hover: #e55a00;
 
@@ -36,7 +38,8 @@ $color-bg-overlay: rgba(255, 255, 255, 0.8);
 $color-bg-modal: #fff;
 
 $color-border-light: #eaedf2;
-$color-border-default: #bac6d9;
+$color-border-default: #d6dce6;
+$color-border-action: #bac6d9;
 $color-border-table: rgba(0, 0, 0, 0.08);
 
 $color-input-solid: #e8edf4;
@@ -141,6 +144,7 @@ $border-radius-full: 50px;
 // Shadows
 // ==========================================================================
 $shadow-form: 0px 4px 16px 0px rgba(0, 0, 0, 0.08);
+$shadow-form-hover: 0px 5px 24px 0px rgba(0, 0, 0, 0.12);
 $shadow-toast: 0 8px 32px rgba(0, 0, 0, 0.16);
 $shadow-toast-hover: 0 12px 40px rgba(0, 0, 0, 0.22);
 
