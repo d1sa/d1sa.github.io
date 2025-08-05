@@ -15,6 +15,10 @@
 
   @include mobile {
     padding: $spacing-4xl 0 0;
+    background-image: url(../img/bg-heroe-1.png?as=webp);
+    background-size: 60% auto;
+    background-position: right top;
+    background-repeat: no-repeat;
   }
 
   @include mobile-sm {
@@ -70,8 +74,26 @@
 }
 
 .hero-title {
+  @include mobile {
+    padding-right: $spacing-6xl;
+  }
+
   h1 {
     margin-bottom: $spacing-md;
+
+    span {
+      color: $color-primary;
+    }
+
+    @include tablet {
+      // color: #00a8f0;
+      margin-bottom: $spacing-sm;
+    }
+
+    @include mobile {
+      font-size: $font-size-4xl;
+      line-height: $line-height-4xl;
+    }
 
     @include mobile-sm {
       margin-right: $spacing-md;
