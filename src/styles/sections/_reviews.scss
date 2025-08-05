@@ -39,11 +39,12 @@
     aspect-ratio: 12/7;
     background: $color-bg-secondary;
     border-radius: $border-radius-md;
-    padding: $spacing-3xl;
+    // padding: $spacing-3xl;
     @include flex-column;
     gap: $spacing-lg;
     width: 100%;
     flex: 1;
+    overflow: hidden;
 
     img {
       width: 100%;
@@ -109,30 +110,58 @@
   }
 }
 
+.review-card--1 {
+  .user-avatar {
+    background: url("../img/user-1.png?as=webp") no-repeat center center;
+    background-size: cover;
+  }
+}
+
+.review-card--2 {
+  .user-avatar {
+    background: url("../img/user-2.png?as=webp") no-repeat center center;
+    background-size: cover;
+  }
+}
+
+.review-card--3 {
+  .user-avatar {
+    background: url("../img/user-3.png?as=webp") no-repeat center center;
+    background-size: cover;
+  }
+}
+
+.review-card--4 {
+  .user-avatar {
+    background: url("../img/user-4.png?as=webp") no-repeat center center;
+    background-size: cover;
+  }
+}
+
 .user-info {
   display: flex;
   align-items: center;
   gap: $spacing-md;
+}
 
-  .user-avatar {
-    @include icon-circle(40px, $color-bg-secondary);
-    flex-shrink: 0;
+.user-avatar {
+  @include icon-circle(40px, $color-bg-secondary);
+  flex-shrink: 0;
+}
+
+.user-details {
+  @include flex-column;
+  justify-content: center;
+
+  .user-label {
+    @include text-muted($font-size-md);
+    line-height: $spacing-lg;
+    margin: 0;
   }
 
-  .user-details {
-    @include flex-column;
-    justify-content: center;
-
-    .user-label {
-      @include text-muted($font-size-md);
-      line-height: $spacing-lg;
-      margin: 0;
-    }
-
-    .user-name {
-      @include text-body($font-size-base, $font-weight-semibold);
-      margin: 0;
-    }
+  .user-name {
+    @include text-body($font-size-base, $font-weight-semibold);
+    margin: 0;
   }
 }
 

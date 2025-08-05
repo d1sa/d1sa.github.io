@@ -260,11 +260,47 @@
   .card-image {
     height: auto;
     aspect-ratio: 1 / 1;
+    border-radius: 0;
   }
 
   .card-price {
     font-size: $font-size-xl;
     line-height: $line-height-xl;
+  }
+
+  .card-image--odno-stovorch {
+    background: url(../img/okna-01.png?as=webp) no-repeat center center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .card-image--dvuh-stovorch {
+    background: url(../img/okna-02.png?as=webp) no-repeat center center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .card-image--tri-stovorch {
+    background: url(../img/okna-03.png?as=webp) no-repeat center center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .card-image--balcon {
+    background: url(../img/okna-04.png?as=webp) no-repeat center center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .card-image--lodzhiya {
+    background: url(../img/okna-05.png?as=webp) no-repeat center center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   @include mobile {
@@ -311,8 +347,14 @@
   .card-image {
     height: auto;
     width: 100%;
-    aspect-ratio: 1 / 1;
-    background-color: $color-bg-primary;
+    // aspect-ratio: 1 / 1;
+    // background-color: $color-bg-primary;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 
   // .card-image {

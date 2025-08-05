@@ -39,7 +39,5 @@
     "last 2 versions",
     "not dead"
   ],
-  "dependencies": {
-    "photoswipe": "^5.4.4"
-  }
+  "dependencies": {}
 }
