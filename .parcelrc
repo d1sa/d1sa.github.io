@@ -13,5 +13,9 @@
       "@parcel/optimizer-terser"
     ]
   },
+  "reporters": [
+    "...",
+    "parcel-reporter-static-files-copy"
+  ],
   "runtimes": []
 }
