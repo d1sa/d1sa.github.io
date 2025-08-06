@@ -200,6 +200,13 @@
   width: 100%;
 }
 
+.lead-card-action {
+  @include flex-column;
+  align-items: flex-start;
+  gap: $spacing-md;
+  width: 100%;
+}
+
 .lead-card-tag {
   @include text-body($font-size-sm, $font-weight-medium);
   color: $color-primary;

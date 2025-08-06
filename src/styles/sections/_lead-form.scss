@@ -6,11 +6,11 @@
   gap: $spacing-2xl;
   padding: $spacing-4xl;
   border-radius: $border-radius-xl;
-  border: 1.5px solid $color-border-default;
+  border: 1px solid $color-border-default;
   background: $color-bg-primary;
 
   @include mobile {
-    padding: $spacing-2xl;
+    padding: $spacing-3xl $spacing-2xl;
   }
 }
 

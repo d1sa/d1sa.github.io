@@ -14,7 +14,8 @@
     "preview": "parcel preview",
     "clean": "rimraf dist .parcel-cache",
     "clean:all": "rimraf dist .parcel-cache node_modules",
-    "start": "npm run dev"
+    "start": "npm run dev",
+    "typography": "node typography-tool.js"
   },
   "keywords": [
     "oknanaveka",
@@ -25,6 +26,8 @@
   "devDependencies": {
     "@parcel/optimizer-htmlnano": "^2.15.4",
     "@parcel/optimizer-terser": "^2.15.4",
+    "@parcel/packager-raw-url": "^2.15.4",
+    "@parcel/transformer-jsonld": "^2.15.4",
     "@parcel/transformer-raw": "^2.15.4",
     "@parcel/transformer-sass": "^2.15.4",
     "cross-env": "^10.0.0",
@@ -42,5 +45,8 @@
   "staticFiles": {
     "staticPath": "robots.txt"
   },
-  "dependencies": {}
+  "dependencies": {
+    "commander": "^12.0.0",
+    "jsdom": "^24.0.0"
+  }
 }
