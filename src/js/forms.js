@@ -4,6 +4,15 @@
 
 // Import toast functions from separate module
 import { showToast, hideToast } from './toast.js';
+import {
+  initializeAnalytics,
+  collectAnalyticsInfo,
+  formatAnalyticsMessage,
+  getDeviceInfo as getDeviceInfoFromAnalytics,
+  getSessionInfo as getSessionInfoFromAnalytics,
+  getUTMParams as getUTMParamsFromAnalytics,
+  getClientIP as getClientIPFromAnalytics,
+} from './analytics.js';
 
 // ==========================================================================
 // Configuration
@@ -11,9 +20,9 @@ import { showToast, hideToast } from './toast.js';
 
 // Telegram Bot Configuration
 const TELEGRAM_CONFIG = {
-  token1: '', // тг бот токен ч1
-  token2: '', // тг бот токен ч2
-  chatId: '', // тг чат id
+  token1: '6163313249', // тг бот токен ч1
+  token2: 'AAHN-2jghEg0TpvcxXTo_gFRn1Xhv8Xm7n4', // тг бот токен ч2
+  chatId: '-4878025736', // тг чат id
   mode: 'html',
   get token() {
     return `${this.token1}:${this.token2}`;
@@ -138,6 +147,10 @@ const getFieldName = key => {
 const sendToTelegram = ({ message, formType }) => {
   const { token, chatId, mode } = TELEGRAM_CONFIG;
   const encodedMessage = encodeURI(message);
+
+  console.log(`📄 Сообщение для отправки:`);
+  console.log(encodedMessage);
+
   const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&parse_mode=${mode}&text=${encodedMessage}`;
 
   fetch(url)
@@ -288,51 +301,17 @@ const buildTelegramMessage = async (formData, formType) => {
   }
 
   // Add technical information for modal forms
-  message += `\n🏷️ Форма:
-    \n<b>${formType.formLocation ? `${formType.formLocation}` : ''}</b>`;
-
+  message += `\n🏷️ Форма:\n<b>${
+    formType.formLocation ? `${formType.formLocation}` : ''
+  }</b>`;
   if (formType.type === FORM_TYPES.modal && formType.triggerSource) {
     message += `\n<i>${formType.buttonType}: "${formType.triggerSource}"</i>`;
     message += `\n<i>Секция: "${formType.triggerSection}"</i>`;
   }
 
-  // Add analytics information
-  const deviceInfo = getDeviceInfo();
-  const sessionInfo = getSessionInfo();
-  const utmParams = getUTMParams();
-  const clientIP = await getClientIP();
-
-  // Add UTM parameters if present
-  if (Object.keys(utmParams).length > 0) {
-    message += `\n\n<b>📈 UTM метки:</b>`;
-
-    Object.entries(utmParams).forEach(([key, value]) => {
-      // Универсальный шаблон: убираем utm_ и делаем первую букву заглавной
-      const utmName = key
-        .replace('utm_', '')
-        .replace(/\b\w/g, l => l.toUpperCase());
-      message += `\n${utmName}: <b>${value}</b>`;
-    });
-  }
-
-  message += `\n\n<b>📊 Аналитика:</b>`;
-  message += `\n🕐 Время: <b>${new Date().toLocaleString('ru-RU')}</b>`;
-  message += `\n💻 Устройство: <b>${
-    deviceInfo.isMobile
-      ? 'Мобильное'
-      : deviceInfo.isTablet
-      ? 'Планшет'
-      : 'Десктоп'
-  }</b>`;
-  message += `\n📱 Модель: <b>${deviceInfo.deviceModel}</b>`;
-  message += `\n🌐 Браузер: <b>${deviceInfo.browser}</b>`;
-  message += `\n💻 ОС: <b>${deviceInfo.osVersion}</b>`;
-  message += `\n📱 Разрешение: <b>${deviceInfo.screenResolution}</b>`;
-  message += `\n🌍 Язык: <b>${deviceInfo.language}</b>`;
-  message += `\n⏱️ Время на сайте: <b>${sessionInfo.timeOnSite}</b>`;
-  message += `\n👥 Посещений: <b>${sessionInfo.visitCount}</b>`;
-  message += `\n🔗 Источник: <b>${sessionInfo.referrer}</b>`;
-  message += `\n🌐 IP: <b>${clientIP}</b>`;
+  // Add analytics information (from analytics module)
+  const analytics = await collectAnalyticsInfo();
+  message += formatAnalyticsMessage(analytics);
 
   message += `\n\n<i>Информация подготовлена <b>${CRMName}</b></i>`;
 
@@ -691,9 +670,14 @@ const initializeModalForm = () => {
         ? 'Основная кнопка'
         : 'Кнопка';
 
-      // Определяем секцию
+      // Определяем секцию или шапку
       const section = findParentSection(trigger);
-      const sectionTitle = getSectionTitle(section);
+      const headerContainer = trigger.closest('.header');
+      const sectionTitle = section
+        ? getSectionTitle(section)
+        : headerContainer
+        ? 'Шапка сайта'
+        : 'Неизвестная секция';
 
       // Обновляем информацию о триггере
       formType.buttonType = `${buttonType}`;
@@ -757,311 +741,12 @@ const getSectionTitle = section => {
 };
 
 // ==========================================================================
-// User Analytics & Tracking
+// Analytics helpers moved to `src/js/analytics.js`
 // ==========================================================================
 
-/**
- * Get client IP address
- * @returns {Promise<string>} - Client IP
- */
-const getClientIP = async () => {
-  try {
-    const response = await fetch('https://api.ipify.org?format=json');
-    const data = await response.json();
-    return data.ip;
-  } catch (error) {
-    return 'Не определен';
-  }
-};
-
-/**
- * Get UTM parameters from URL
- * @returns {Object} - UTM parameters
- */
-const getUTMParams = () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const utmParams = {};
-
-  // Получаем все параметры URL
-  for (let [key, value] of urlParams.entries()) {
-    // Проверяем, что параметр начинается с utm_
-    if (key.startsWith('utm_')) {
-      utmParams[key] = value;
-    }
-  }
-
-  return utmParams;
-};
-
-/**
- * Get user device information
- * @returns {Object} - Device info
- */
-const getDeviceInfo = () => {
-  const userAgent = navigator.userAgent;
-  const isMobile =
-    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      userAgent
-    );
-  const isTablet = /iPad|Android(?=.*\bMobile\b)(?=.*\bSafari\b)/i.test(
-    userAgent
-  );
-
-  // Определяем конкретную модель устройства
-  let deviceModel = 'Неизвестное устройство';
-
-  // iPhone detection
-  if (/iPhone/i.test(userAgent)) {
-    const iphoneMatch = userAgent.match(/iPhone\s+OS\s+(\d+)_(\d+)/);
-    if (iphoneMatch) {
-      const majorVersion = parseInt(iphoneMatch[1]);
-      const minorVersion = parseInt(iphoneMatch[2]);
-
-      // Определяем примерную модель iPhone по версии iOS
-      if (majorVersion >= 17) deviceModel = 'iPhone 15/15 Pro';
-      else if (majorVersion >= 16) deviceModel = 'iPhone 14/14 Pro';
-      else if (majorVersion >= 15) deviceModel = 'iPhone 13/13 Pro';
-      else if (majorVersion >= 14) deviceModel = 'iPhone 12/12 Pro';
-      else if (majorVersion >= 13) deviceModel = 'iPhone 11/11 Pro';
-      else deviceModel = 'iPhone (старая модель)';
-    } else {
-      deviceModel = 'iPhone';
-    }
-  }
-  // iPad detection
-  else if (/iPad/i.test(userAgent)) {
-    deviceModel = 'iPad';
-  }
-  // Android detection
-  else if (/Android/i.test(userAgent)) {
-    const androidMatch = userAgent.match(/Android\s+(\d+\.\d+)/);
-    let brand = 'Android';
-
-    // Определяем бренд устройства
-    if (/Samsung/i.test(userAgent)) brand = 'Samsung';
-    else if (/Xiaomi/i.test(userAgent)) brand = 'Xiaomi';
-    else if (/Huawei/i.test(userAgent)) brand = 'Huawei';
-    else if (/OnePlus/i.test(userAgent)) brand = 'OnePlus';
-    else if (/Google/i.test(userAgent)) brand = 'Google Pixel';
-    else if (/OPPO/i.test(userAgent)) brand = 'OPPO';
-    else if (/Vivo/i.test(userAgent)) brand = 'Vivo';
-    else if (/Realme/i.test(userAgent)) brand = 'Realme';
-    else if (/Redmi/i.test(userAgent)) brand = 'Redmi';
-    else if (/POCO/i.test(userAgent)) brand = 'POCO';
-
-    if (androidMatch) {
-      const version = parseFloat(androidMatch[1]);
-      if (version >= 14) deviceModel = `${brand} (Android ${version})`;
-      else if (version >= 12) deviceModel = `${brand} (Android ${version})`;
-      else deviceModel = `${brand} (Android ${version})`;
-    } else {
-      deviceModel = `${brand} устройство`;
-    }
-  }
-  // Desktop detection
-  else if (/Windows/i.test(userAgent)) {
-    deviceModel = 'Windows PC';
-  } else if (/Macintosh/i.test(userAgent)) {
-    deviceModel = 'Mac';
-  } else if (/Linux/i.test(userAgent)) {
-    deviceModel = 'Linux PC';
-  }
-
-  // Определяем браузер
-  let browser = 'Неизвестный браузер';
-  if (/YaBrowser/i.test(userAgent) || /Yowser/i.test(userAgent))
-    browser = 'Yandex Browser';
-  else if (/Chrome/i.test(userAgent) && !/Edge/i.test(userAgent))
-    browser = 'Chrome';
-  else if (/Firefox/i.test(userAgent)) browser = 'Firefox';
-  else if (/Safari/i.test(userAgent) && !/Chrome/i.test(userAgent))
-    browser = 'Safari';
-  else if (/Edge/i.test(userAgent)) browser = 'Edge';
-  else if (/Opera/i.test(userAgent)) browser = 'Opera';
-
-  // Определяем версию операционной системы
-  let osVersion = 'Неизвестная ОС';
-
-  // Windows
-  if (/Windows NT/i.test(userAgent)) {
-    const windowsMatch = userAgent.match(/Windows NT (\d+\.\d+)/);
-    if (windowsMatch) {
-      const version = parseFloat(windowsMatch[1]);
-      if (version >= 10.0) osVersion = 'Windows 11/10';
-      else if (version >= 6.3) osVersion = 'Windows 8.1';
-      else if (version >= 6.2) osVersion = 'Windows 8';
-      else if (version >= 6.1) osVersion = 'Windows 7';
-      else if (version >= 6.0) osVersion = 'Windows Vista';
-      else osVersion = 'Windows (старая версия)';
-    } else {
-      osVersion = 'Windows';
-    }
-  }
-  // macOS
-  else if (/Macintosh/i.test(userAgent)) {
-    const macMatch = userAgent.match(/Mac OS X (\d+[._]\d+)/);
-    if (macMatch) {
-      const version = macMatch[1].replace('_', '.');
-      const versionNum = parseFloat(version);
-      if (versionNum >= 14.0) osVersion = 'macOS Sonoma (14+)';
-      else if (versionNum >= 13.0) osVersion = 'macOS Ventura (13+)';
-      else if (versionNum >= 12.0) osVersion = 'macOS Monterey (12+)';
-      else if (versionNum >= 11.0) osVersion = 'macOS Big Sur (11+)';
-      else if (versionNum >= 10.15) osVersion = 'macOS Catalina (10.15)';
-      else if (versionNum >= 10.14) osVersion = 'macOS Mojave (10.14)';
-      else osVersion = 'macOS (старая версия)';
-    } else {
-      osVersion = 'macOS';
-    }
-  }
-  // iOS
-  else if (/iPhone|iPad|iPod/i.test(userAgent)) {
-    const iosMatch = userAgent.match(/OS (\d+)_(\d+)/);
-    if (iosMatch) {
-      const majorVersion = parseInt(iosMatch[1]);
-      const minorVersion = parseInt(iosMatch[2]);
-      if (majorVersion >= 17) osVersion = 'iOS 17+';
-      else if (majorVersion >= 16) osVersion = 'iOS 16+';
-      else if (majorVersion >= 15) osVersion = 'iOS 15+';
-      else if (majorVersion >= 14) osVersion = 'iOS 14+';
-      else if (majorVersion >= 13) osVersion = 'iOS 13+';
-      else osVersion = 'iOS (старая версия)';
-    } else {
-      osVersion = 'iOS';
-    }
-  }
-  // Android
-  else if (/Android/i.test(userAgent)) {
-    const androidMatch = userAgent.match(/Android (\d+\.\d+)/);
-    if (androidMatch) {
-      const version = parseFloat(androidMatch[1]);
-      if (version >= 14) osVersion = 'Android 14+';
-      else if (version >= 13) osVersion = 'Android 13+';
-      else if (version >= 12) osVersion = 'Android 12+';
-      else if (version >= 11) osVersion = 'Android 11+';
-      else if (version >= 10) osVersion = 'Android 10+';
-      else if (version >= 9) osVersion = 'Android 9+';
-      else osVersion = 'Android (старая версия)';
-    } else {
-      osVersion = 'Android';
-    }
-  }
-  // Linux
-  else if (/Linux/i.test(userAgent)) {
-    osVersion = 'Linux';
-  }
-
-  return {
-    isMobile,
-    isTablet,
-    isDesktop: !isMobile && !isTablet,
-    deviceModel,
-    browser,
-    osVersion,
-    userAgent: userAgent.substring(0, 100) + '...', // Truncate for readability
-    screenResolution: `${screen.width}x${screen.height}`,
-    language: navigator.language,
-    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-  };
-};
-
-/**
- * Get session information
- * @returns {Object} - Session info
- */
-const getSessionInfo = () => {
-  const sessionStart = sessionStorage.getItem('sessionStartTime');
-  const lastActivity = sessionStorage.getItem('lastActivityTime');
-
-  // Рассчитываем время на сайте
-  let timeOnSite = 0;
-
-  if (sessionStart) {
-    const startTime = parseInt(sessionStart);
-    const currentTime = Date.now();
-
-    // Если есть время последней активности, используем его для более точного расчета
-    if (lastActivity) {
-      const lastActivityTime = parseInt(lastActivity);
-      const totalTime = Math.floor((currentTime - startTime) / 1000);
-      const activeTime = Math.floor((lastActivityTime - startTime) / 1000);
-
-      // Используем активное время, но не меньше 0
-      timeOnSite = Math.max(activeTime, 0);
-    } else {
-      // Fallback к простому расчету
-      timeOnSite = Math.floor((currentTime - startTime) / 1000);
-    }
-  }
-
-  const visitCount = parseInt(localStorage.getItem('visitCount') || '1');
-  const lastVisit = localStorage.getItem('lastVisit');
-
-  return {
-    timeOnSite: `${Math.floor(timeOnSite / 60)}м ${timeOnSite % 60}с`,
-    visitCount,
-    lastVisit: lastVisit
-      ? new Date(parseInt(lastVisit)).toLocaleDateString('ru-RU')
-      : 'Первое посещение',
-    currentPage: window.location.pathname,
-    referrer: document.referrer || 'Прямой переход',
-  };
-};
-
-/**
- * Initialize session tracking
- */
-const initializeSessionTracking = () => {
-  // Set session start time if not exists
-  if (!sessionStorage.getItem('sessionStartTime')) {
-    sessionStorage.setItem('sessionStartTime', Date.now().toString());
-  }
-
-  // Update last activity time
-  sessionStorage.setItem('lastActivityTime', Date.now().toString());
-
-  // Update visit count
-  const visitCount = parseInt(localStorage.getItem('visitCount') || '0') + 1;
-  localStorage.setItem('visitCount', visitCount.toString());
-  localStorage.setItem('lastVisit', Date.now().toString());
-
-  // Track page views
-  const viewedPages = JSON.parse(sessionStorage.getItem('viewedPages') || '[]');
-  const currentPage = window.location.pathname;
-  if (!viewedPages.includes(currentPage)) {
-    viewedPages.push(currentPage);
-    sessionStorage.setItem('viewedPages', JSON.stringify(viewedPages));
-  }
-
-  // Setup activity tracking
-  setupActivityTracking();
-};
-
-/**
- * Setup activity tracking to update last activity time
- */
-const setupActivityTracking = () => {
-  // Update last activity time on user interactions
-  const updateActivity = () => {
-    sessionStorage.setItem('lastActivityTime', Date.now().toString());
-  };
-
-  // Track various user activities
-  const events = [
-    'mousedown',
-    'mousemove',
-    'keypress',
-    'scroll',
-    'touchstart',
-    'click',
-  ];
-  events.forEach(event => {
-    document.addEventListener(event, updateActivity, { passive: true });
-  });
-
-  // Update activity time before page unload
-  window.addEventListener('beforeunload', updateActivity);
-};
+// ==========================================================================
+// Forms System Initialization
+// ==========================================================================
 
 /**
  * Initialize all form systems
@@ -1076,8 +761,8 @@ export function initializeForms() {
     }`
   );
 
-  // Initialize session tracking
-  initializeSessionTracking();
+  // Initialize analytics (session tracking, activity listeners)
+  initializeAnalytics();
 
   // Initialize modal system
   initializeModalForm();
@@ -1098,7 +783,7 @@ export function initializeForms() {
   });
 
   console.log(`✅ Registered forms`);
-  console.log(`📊 Session tracking initialized`);
+  console.log(`📊 Analytics initialized`);
 }
 
 // Auto-initialize when DOM is ready
