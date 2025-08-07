@@ -156,3 +156,44 @@ document.addEventListener('DOMContentLoaded', function () {
     trapFocus(navWrapper);
   }
 });
+
+// ==========================================================================
+// Smooth Scroll with Header Offset
+// ==========================================================================
+
+/**
+ * Инициализация плавного скролла с учетом отступа от хедера
+ * Учитывает, что padding-top уже добавлен к body для компенсации высоты хедера
+ */
+document.addEventListener('DOMContentLoaded', function () {
+  function initializeSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const target = document.querySelector(targetId);
+
+        if (target) {
+          // Определяем размер экрана для адаптивных отступов
+          const isMobile = window.innerWidth < 768;
+
+          // Адаптивные отступы: больше для десктопа, меньше для мобильного
+          const additionalOffset = isMobile ? 32 : 48; // 16px для мобильного, 32px для десктопа
+
+          // Вычисляем позицию для скролла
+          // Учитываем, что padding-top уже добавлен к body
+          const targetPosition = target.offsetTop - additionalOffset;
+
+          // Плавный скролл с учетом отступа
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth',
+          });
+        }
+      });
+    });
+  }
+
+  // Инициализируем плавный скролл
+  initializeSmoothScroll();
+});

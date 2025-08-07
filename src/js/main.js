@@ -31,27 +31,6 @@ function initializeApp() {
 
   // Add any global initialization logic here
   // For example: analytics, global event listeners, etc.
-
-  // Global smooth scroll for anchor links
-  initializeSmoothScroll();
-}
-
-/**
- * Initialize smooth scrolling for anchor links
- */
-function initializeSmoothScroll() {
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-        });
-      }
-    });
-  });
 }
 
 // Initialize app when DOM is ready

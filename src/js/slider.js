@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   let ourWorks = new Swiper('.our-works-slider', {
     slidesPerView: 1,
-    spaceBetween: 16,
+    spaceBetween: 12,
     grid: {
       rows: 1,
     },
@@ -122,9 +122,9 @@ document.addEventListener('DOMContentLoaded', function () {
       prevEl: '.swiper-btn-prev',
     },
     breakpoints: {
-      390: {
-        slidesPerView: 2,
-        spaceBetween: 16,
+      375: {
+        slidesPerView: 1,
+        spaceBetween: 12,
         grid: {
           rows: 1,
         },

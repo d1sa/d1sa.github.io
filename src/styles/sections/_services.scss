@@ -28,6 +28,7 @@
 }
 
 .service-card {
+  color: $color-text-primary;
   background: $color-bg-tertiary;
   border-radius: 12px;
   display: flex;
@@ -36,6 +37,7 @@
   cursor: pointer;
 
   &:hover {
+    color: $color-text-primary;
     transform: scale(0.98);
   }
 

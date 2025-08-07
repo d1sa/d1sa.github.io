@@ -20,11 +20,10 @@ section {
   .section-tag {
     align-self: stretch;
     color: $color-primary;
-    font-family: $font-family-primary;
     font-size: $font-size-sm;
     font-weight: $font-weight-medium;
-    line-height: 16px;
-    letter-spacing: 1.3px;
+    line-height: $line-height-sm;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
   }
 
@@ -37,10 +36,25 @@ section {
     width: 100%;
     margin: 0;
 
+    span {
+      color: $color-primary;
+    }
+
     @include mobile {
       font-size: $font-size-3xl;
       line-height: $line-height-3xl;
     }
+  }
+
+  .section-title--caption {
+    align-self: stretch;
+    color: $color-text-secondary;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    line-height: $line-height-sm;
+    text-transform: uppercase;
+    margin: 0;
+    letter-spacing: 0.15em;
   }
 
   .section-title-sm {
@@ -57,7 +71,6 @@ section {
   .section-subtitle {
     align-self: stretch;
     color: $color-text-primary;
-    font-family: $font-family-primary;
     font-size: $font-size-base;
     font-weight: $font-weight-light;
     line-height: $line-height-spacious;
