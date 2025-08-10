@@ -5,6 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Окна на&nbsp;века - Пластиковые окна в Калуге недорого</title>
 
+    <style>
+      @import './styles/main.critical.scss';
+    </style>
+
+    <!-- <link rel="stylesheet" href="./styles/critical.scss" /> -->
+
+    <link
+      rel="preload"
+      href="./styles/main.scss"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript><link rel="stylesheet" href="./styles/main.scss" /></noscript>
+
+    <link
+      rel="preload"
+      href="./js/swiperjs/swiper-bundle.min.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript
+      ><link rel="stylesheet" href="./js/swiperjs/swiper-bundle.min.css"
+    /></noscript>
+
+    <link
+      rel="preload"
+      href="./font/Geologica.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <link
+      rel="preload"
+      href="./img/main-image.png?as=webp&width=871"
+      as="image"
+      type="image/webp"
+      fetchpriority="high"
+    />
+
+    <!-- DNS prefetch для внешних ресурсов -->
+    <link rel="dns-prefetch" href="//yandex.ru" />
+
+    <!-- Preconnect для критических доменов -->
+    <link rel="preconnect" href="https://yandex.ru" />
+
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -84,9 +130,6 @@
         ]
       }
     </script>
-
-    <link rel="stylesheet" href="./styles/main.scss" />
-    <link rel="stylesheet" href="./js/swiperjs/swiper-bundle.min.css" />
   </head>
   <body>
     <header class="header">
@@ -98,6 +141,8 @@
                 class="site-info-item__icon"
                 src="../src/img/map-marker-fill.svg"
                 alt="Адрес: г. Калуга, ул. Дзержинского 1/46"
+                width="16"
+                height="16"
               />
               <div class="site-info-item__text">
                 <span>г. Калуга, ул. Дзержинского 1/46</span>
@@ -115,6 +160,8 @@
                   <img
                     src="../src/img/phone-blue-circle-fill.svg"
                     alt="Окна на&nbsp;века. Калуга. телефон"
+                    width="28"
+                    height="28"
                   />
                 </div>
                 <span class="phone-number">+7 (4842) 23-00-15</span>
@@ -130,6 +177,9 @@
               <img
                 src="../src/img/logo-okna.svg"
                 alt="Окна на&nbsp;века. Калуга"
+                width="99"
+                height="60"
+                fetchpriority="high"
               />
             </a>
             <div class="header-actions-mobile">
@@ -170,6 +220,8 @@
                     <img
                       src="../src/img/phone-blue-circle-fill.svg"
                       alt="Окна на&nbsp;века. Калуга. телефон"
+                      width="28"
+                      height="28"
                     />
                   </div>
                   <span class="phone-number">+7 (4842) 23-00-15</span>
@@ -204,23 +256,17 @@
                 </p>
               </div>
               <div class="hero-cta">
-                <a class="btn btn-blue btn-xl" href="tel:+74842230015">
-                  <svg
-                    class="call-icon"
-                    width="36"
-                    height="36"
-                    viewBox="0 0 36 36"
-                    fill="none"
-                  >
-                    <path
-                      d="M31.9952 28.5525C31.8068 29.397 31.3398 30.1536 30.6692 30.7005C29.9367 31.4435 29.0637 32.0335 28.1012 32.4362C27.1386 32.839 26.1056 33.0464 25.0622 33.0465H24.5747C22.3848 32.9276 20.2405 32.3733 18.2672 31.416H18.2522C17.7947 31.203 17.3222 30.99 16.8647 30.7305C14.5613 29.439 12.4486 27.8336 10.5872 25.9605C8.17157 23.6915 6.18924 21.0016 4.73723 18.0225C3.96556 16.3898 3.45049 14.6478 3.21023 12.858C2.85692 10.9845 3.06945 9.04822 3.82073 7.29597C4.29502 6.50544 4.8743 5.78286 5.54273 5.14797C5.8435 4.80785 6.21122 4.53344 6.6229 4.34193C7.03457 4.15042 7.48133 4.04592 7.93523 4.03497C8.42889 4.08953 8.90678 4.2416 9.34118 4.48236C9.77558 4.72312 10.1578 5.04777 10.4657 5.43747C11.1512 6.18297 11.9882 6.95997 12.6752 7.67697L13.6202 8.60697C14.1752 9.09897 14.5187 9.78597 14.5802 10.527C14.5802 11.2065 14.3297 11.862 13.8782 12.3705C13.5858 12.7261 13.2754 13.0666 12.9482 13.3905L12.6437 13.71C12.4667 13.875 12.3317 14.079 12.2477 14.3055C12.1727 14.5285 12.1427 14.757 12.1577 14.991C12.3992 15.6375 12.7787 16.2255 13.2677 16.713C14.0312 17.748 14.7932 18.648 15.5702 19.623C16.9757 21.2546 18.6436 22.6401 20.5052 23.7225C20.6957 23.862 20.9147 23.955 21.1472 23.9955C21.3482 24.0105 21.5522 23.9805 21.7412 23.9055C22.2737 23.592 22.7462 23.19 23.1422 22.716C23.6748 22.0638 24.4393 21.6434 25.2752 21.543C26.0797 21.554 26.847 21.883 27.4097 22.458C27.7142 22.716 28.0487 23.067 28.3697 23.403L28.8257 23.874L29.2982 24.3315L30.1067 25.1535C30.5887 25.5815 31.0407 26.039 31.4627 26.526C31.8857 27.111 32.0762 27.8355 31.9952 28.5525ZM26.5262 18.114C26.2241 18.1109 25.9351 17.9894 25.7215 17.7757C25.5078 17.5621 25.3864 17.2731 25.3832 16.971C25.3848 16.1081 25.216 15.2535 24.8866 14.456C24.5571 13.6586 24.0734 12.934 23.4633 12.3239C22.8532 11.7138 22.1286 11.2301 21.3312 10.9006C20.5337 10.5712 19.6791 10.4024 18.8162 10.404C18.5131 10.404 18.2224 10.2836 18.008 10.0692C17.7937 9.85484 17.6732 9.56412 17.6732 9.26097C17.6732 8.95783 17.7937 8.6671 18.008 8.45275C18.2224 8.2384 18.5131 8.11797 18.8162 8.11797C19.9793 8.1162 21.1313 8.34397 22.2062 8.78825C23.2811 9.23252 24.2578 9.88456 25.0802 10.707C25.9026 11.5294 26.5547 12.5061 26.999 13.581C27.4432 14.6559 27.671 15.8079 27.6692 16.971C27.6696 17.1212 27.6403 17.27 27.583 17.4088C27.5257 17.5477 27.4416 17.6739 27.3353 17.7801C27.2291 17.8863 27.103 17.9705 26.9641 18.0278C26.8253 18.0851 26.6764 18.1144 26.5262 18.114Z"
-                      fill="white"
-                    ></path>
-                    <path
-                      d="M31.8136 17.58C31.5117 17.5769 31.223 17.4557 31.0094 17.2423C30.7958 17.029 30.6742 16.7404 30.6706 16.4385C30.673 14.9684 30.3855 13.5122 29.8245 12.1533C29.2634 10.7944 28.44 9.55944 27.4012 8.51912C26.3624 7.4788 25.1287 6.65352 23.7706 6.09051C22.4126 5.5275 20.9568 5.23781 19.4866 5.23801C19.3332 5.24357 19.1801 5.21815 19.0367 5.16325C18.8933 5.10835 18.7623 5.02511 18.6518 4.91849C18.5412 4.81187 18.4533 4.68407 18.3933 4.54271C18.3332 4.40136 18.3022 4.24934 18.3022 4.09576C18.3022 3.94217 18.3332 3.79016 18.3933 3.64881C18.4533 3.50745 18.5412 3.37965 18.6518 3.27303C18.7623 3.16641 18.8933 3.08317 19.0367 3.02827C19.1801 2.97337 19.3332 2.94795 19.4866 2.95351C21.2568 2.95351 23.0096 3.30242 24.6449 3.98028C26.2801 4.65815 27.7657 5.65169 29.0167 6.90408C30.2677 8.15648 31.2596 9.64317 31.9356 11.2792C32.6117 12.9151 32.9586 14.6683 32.9566 16.4385C32.957 16.5887 32.9277 16.7375 32.8704 16.8764C32.8131 17.0152 32.729 17.1414 32.6228 17.2476C32.5165 17.3538 32.3904 17.438 32.2515 17.4953C32.1127 17.5526 31.9639 17.5804 31.8136 17.58Z"
-                      fill="white"
-                    ></path>
-                  </svg>
+                <a class="btn btn-blue btn-xl btn-call" href="tel:+74842230015">
+                  <div class="btn-icon">
+                    <img
+                      src="/src/img/phone-call-white-fill.svg"
+                      alt="Рассчитать стоимость. Звоните!"
+                      width="36"
+                      height="36"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
                   <div class="call-text">
                     <span class="call-caption"
                       >Рассчитать стоимость. Звоните!</span
@@ -233,11 +279,6 @@
             </div>
             <div class="hero-form">
               <div class="hero-form-wrapper">
-                <!-- <img
-                  src="../src/img/main-image.png?as=webp"
-                  alt="Пластиковые окна в Калуге недорого — установка под ключ"
-                  class="form-bg"
-                /> -->
                 <div class="hero-form-card">
                   <div class="hero-form-header">
                     <div class="form-tag">
@@ -307,6 +348,10 @@
                   <img
                     src="./img/icon-s2-01.svg"
                     alt="Бесплатный замер по Калуге"
+                    width="32"
+                    height="32"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <p>Бесплатный замер по&nbsp;Калуге</p>
@@ -316,6 +361,10 @@
                   <img
                     src="./img/icon-s2-02.svg"
                     alt="Гарантия на окна и монтаж"
+                    width="32"
+                    height="32"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <p>Гарантия на&nbsp;окна и&nbsp;монтаж</p>
@@ -325,6 +374,10 @@
                   <img
                     src="./img/icon-s2-03.svg"
                     alt="Установка пластиковых окон за 1 день"
+                    width="32"
+                    height="32"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <p>Установка пластиковых окон за&nbsp;1 день</p>
@@ -334,6 +387,10 @@
                   <img
                     src="./img/icon-s2-04.svg"
                     alt="Остекление и отделка с бережным подходом к интерьеру"
+                    width="32"
+                    height="32"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <p>Остекление и&nbsp;отделка с&nbsp;бережным подходом</p>
@@ -357,6 +414,15 @@
                   Установка пластиковых окон VEKA, Rehau, KBE
                 </div>
               </div>
+              <img
+                src="./img/section-uslugi-02.png?as=webp&width=400"
+                alt="Установка пластиковых окон VEKA, Rehau, KBE"
+                width="380"
+                height="550"
+                loading="lazy"
+                decoding="async"
+                class="service-card-image"
+              />
             </a>
             <a
               href="#balkony-i-lodzhii"
@@ -367,6 +433,15 @@
                   Остекление балконов и&nbsp;лоджий в&nbsp;Калуге под&nbsp;ключ
                 </div>
               </div>
+              <img
+                src="./img/section-uslugi-01.png?as=webp&width=750"
+                alt="Остекление балконов и&nbsp;лоджий в&nbsp;Калуге под&nbsp;ключ"
+                width="750"
+                height="260"
+                loading="lazy"
+                decoding="async"
+                class="service-card-image"
+              />
             </a>
             <a
               href="#uteplenie-lodzhiy"
@@ -377,6 +452,15 @@
                   Утепление лоджий в&nbsp;новостройках Калуги
                 </div>
               </div>
+              <img
+                src="./img/section-uslugi-03.png?as=webp&width=400"
+                alt="Утепление лоджий в&nbsp;новостройках Калуги"
+                width="370"
+                height="260"
+                loading="lazy"
+                decoding="async"
+                class="service-card-image"
+              />
             </a>
             <a
               href="#otdelka-balconov"
@@ -387,6 +471,15 @@
                   Отделка балкона под&nbsp;ключ с&nbsp;подбором дизайна
                 </div>
               </div>
+              <img
+                src="./img/section-uslugi-04.png?as=webp&width=400"
+                alt="Отделка балкона под&nbsp;ключ с&nbsp;подбором дизайна"
+                width="370"
+                height="260"
+                loading="lazy"
+                decoding="async"
+                class="service-card-image"
+              />
             </a>
           </div>
         </div>
@@ -409,8 +502,11 @@
                   <div class="card comparison-card">
                     <div class="card-image">
                       <img
-                        src="./img/prifil-01.png?as=webp"
+                        src="./img/prifil-01.png?as=webp&width=520"
                         alt="WHS - оптимальное решение для балконов и лоджий"
+                        width="312"
+                        height="307"
+                        decoding="async"
                       />
                     </div>
                     <div class="card-header">
@@ -454,8 +550,12 @@
                   <div class="card comparison-card">
                     <div class="card-image">
                       <img
-                        src="./img/prifil-02.png?as=webp"
+                        src="./img/prifil-02.png?as=webp&width=520"
                         alt="VEKA - баланс цены и качества для квартир"
+                        width="312"
+                        height="307"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
                     <div class="card-header">
@@ -498,8 +598,12 @@
                   <div class="card comparison-card">
                     <div class="card-image">
                       <img
-                        src="./img/prifil-03.png?as=webp"
+                        src="./img/prifil-03.png?as=webp&width=520"
                         alt="Rehau - премиум решение для коттеджей"
+                        width="312"
+                        height="307"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
                     <div class="card-header">
@@ -553,6 +657,10 @@
                 <img
                   src="../src/img/phone-blue-circle-fill.svg"
                   alt="Окна на&nbsp;века. Калуга. телефон"
+                  width="32"
+                  height="32"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div class="btn-text-content">
@@ -1132,6 +1240,10 @@
                   <img
                     src="/src/img/key-green-line.svg"
                     alt="Полный цикл работ под ключ"
+                    width="28"
+                    height="28"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div class="banner-content">
@@ -1147,11 +1259,19 @@
                     src="/src/img/icon-rub-green-circle.svg"
                     alt="Бесплатный выезд специалиста"
                     class="icon-1"
+                    width="48"
+                    height="48"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <img
                     src="/src/img/icon-zamer-primary-circle-check.svg"
                     alt="Выезд специалиста на замер"
                     class="icon-2"
+                    width="48"
+                    height="48"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <p class="advantage-text">
@@ -1209,8 +1329,12 @@
             <div class="glazing-item">
               <div class="glazing-image">
                 <img
-                  src="./img/razdvig-profil-1.jpg?as=webp"
+                  src="./img/razdvig-profil-1.jpg?as=webp&width=624"
                   alt="Холодное остекление алюминиевым профилем от 22 000 ₽"
+                  width="624"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div class="glazing-content">
@@ -1234,8 +1358,12 @@
             <div class="glazing-item reverse">
               <div class="glazing-image">
                 <img
-                  src="./img/razdvig-profil-2.jpg?as=webp"
+                  src="./img/razdvig-profil-2.jpg?as=webp&width=624"
                   alt="Тёплое остекление ПВХ Rehau и Veka от 26 000 ₽"
+                  width="624"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div class="glazing-content">
@@ -1263,8 +1391,12 @@
           <div class="glazing-lead-card">
             <div class="lead-card-image">
               <img
-                src="./img/cta-bg-image-2.png?as=webp"
+                src="./img/cta-bg-image-2.jpg?as=webp&width=525"
                 alt="Остекление балконов под ключ в Калуге"
+                width="525"
+                height="626"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div class="lead-card-content">
@@ -1285,6 +1417,10 @@
                     <img
                       src="/src/img/phone-call-white-fill.svg"
                       alt="Заказать консультацию бесплатно"
+                      width="32"
+                      height="32"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                   <div class="btn-text-content">
@@ -1294,7 +1430,14 @@
                 </a>
                 <div class="banner banner--white-info">
                   <div class="banner-icon">
-                    <img src="/src/img/guarantee-solid.svg" alt="Гарантия" />
+                    <img
+                      src="/src/img/guarantee-solid.svg"
+                      alt="Гарантия"
+                      width="28"
+                      height="28"
+                      loading="lazy"
+                      decoding="async"
+                    />
                   </div>
                   <div class="banner-content">
                     <div class="banner-title">
@@ -1340,26 +1483,42 @@
           <div class="images-grid">
             <div class="image-item">
               <img
-                src="/src/img/otdelka-balkony-01.webp"
+                src="/src/img/otdelka-balkony-01.webp?as=webp&width=300"
                 alt="Отделка балконов и лоджий с утеплением под ключ в Калуге"
+                width="267"
+                height="356"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div class="image-item">
               <img
-                src="/src/img/otdelka-balkony-02.png?as=webp"
+                src="/src/img/otdelka-balkony-02.png?as=webp&width=300"
                 alt="Отделка балконов и лоджий с утеплением под ключ в Калуге"
+                width="267"
+                height="356"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div class="image-item">
               <img
-                src="/src/img/otdelka-balkony-03.webp"
+                src="/src/img/otdelka-balkony-03.webp?as=webp&width=300"
                 alt="Отделка балконов и лоджий с утеплением под ключ в Калуге"
+                width="267"
+                height="356"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div class="image-item">
               <img
-                src="/src/img/otdelka-balkony-04.webp"
+                src="/src/img/otdelka-balkony-04.webp?as=webp&width=300"
                 alt="Отделка балконов и лоджий с утеплением под ключ в Калуге"
+                width="267"
+                height="356"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>
@@ -1373,8 +1532,11 @@
                 <div class="advantage-icon">
                   <img
                     src="/src/img/icon-s3-01.svg"
-                    alt="Современные материалы&nbsp;— пеноплекс, минвата,
-                  фольгированный утеплитель"
+                    alt="Современные материалы — пеноплекс, минвата, фольгированный утеплитель"
+                    width="32"
+                    height="32"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <p>
@@ -1389,6 +1551,10 @@
                     src="/src/img/icon-s3-02.svg"
                     alt="Обшивку вагонкой, ПВХ&nbsp;панелями, укладываем ламинат
                   или&nbsp;линолеум"
+                    width="32"
+                    height="32"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <p>
@@ -1402,6 +1568,10 @@
                     src="/src/img/icon-s3-03.svg"
                     alt="Отделка балконов выполняется по&nbsp;индивидуальному
                   дизайну"
+                    width="32"
+                    height="32"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <p>
@@ -1415,6 +1585,10 @@
                   <img
                     src="/src/img/icon-s3-04.svg"
                     alt="Утеплить лоджию в&nbsp;новостройке"
+                    width="32"
+                    height="32"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <p>
@@ -1433,6 +1607,10 @@
                 <img
                   src="/src/img/phone-call-fill.svg"
                   alt="Заказать утепление"
+                  width="32"
+                  height="32"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               Заказать утепление
@@ -1481,6 +1659,10 @@
                     <img
                       src="/src/img/message-dots-white-fill.svg"
                       alt="Уточнить стоимость"
+                      width="32"
+                      height="32"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 </a>
@@ -1490,6 +1672,10 @@
                       <img
                         src="/src/img/icon-layers-line.svg"
                         alt="Варианты отделки — под дерево, ламинат, кварцвинил"
+                        width="32"
+                        height="32"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
                     <p class="advantage-text">
@@ -1501,6 +1687,10 @@
                       <img
                         src="/src/img/icon-maximize-square-line.svg"
                         alt="Варианты отделки — под дерево, ламинат, кварцвинил"
+                        width="32"
+                        height="32"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
                     <p class="advantage-text">
@@ -1526,6 +1716,10 @@
                     <img
                       src="/src/img/message-dots-white-fill.svg"
                       alt="Уточнить стоимость"
+                      width="32"
+                      height="32"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 </a>
@@ -1587,6 +1781,10 @@
                   <img
                     src="/src/img/phone-call-white-fill.svg"
                     alt="Заказать утепление"
+                    width="32"
+                    height="32"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <span class="btn-main-text">Заказать утепление</span>
@@ -1596,6 +1794,10 @@
                   <img
                     src="/src/img/key-fill.svg"
                     alt="Остекление веранд, террас в Калуге"
+                    width="32"
+                    height="32"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div class="banner-content">
@@ -1609,26 +1811,42 @@
             <div class="images-grid-4">
               <div class="image-item">
                 <img
-                  src="/src/img/veramdy-01.png?as=webp&amp;width=800"
+                  src="/src/img/veramdy-01.png?as=webp&amp;width=250"
                   alt="Остекление веранд, террас в Калуге"
+                  width="223"
+                  height="298"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div class="image-item">
                 <img
-                  src="/src/img/veramdy-02.png?as=webp&amp;width=800"
+                  src="/src/img/veramdy-02.png?as=webp&amp;width=250"
                   alt="Остекление веранд, террас в Калуге"
+                  width="223"
+                  height="298"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div class="image-item">
                 <img
-                  src="/src/img/veramdy-03.png?as=webp&amp;width=800"
+                  src="/src/img/veramdy-03.png?as=webp&amp;width=250"
                   alt="Остекление веранд, террас в Калуге"
+                  width="223"
+                  height="298"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div class="image-item">
                 <img
-                  src="/src/img/veramdy-04.png?as=webp&amp;width=800"
+                  src="/src/img/veramdy-04.png?as=webp&amp;width=250"
                   alt="Остекление веранд, террас в Калуге"
+                  width="223"
+                  height="298"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             </div>
@@ -1647,7 +1865,14 @@
             <!-- Review Card 1 -->
             <div class="review-card review-card--1">
               <div class="review-image">
-                <img src="./img/review-1.webp" alt="Заказчик Сергей Рыжов" />
+                <img
+                  src="./img/review-1.jpg?as=webp&width=552"
+                  alt="Заказчик Сергей Рыжов"
+                  width="552"
+                  height="322"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
               <div class="review-bar">
                 <div class="user-info">
@@ -1660,7 +1885,14 @@
                 <div class="review-meta">
                   <div class="meta-item">
                     <div class="meta-icon">
-                      <img src="/src/img/icon-review-wallet.svg" alt="Бюджет" />
+                      <img
+                        src="/src/img/icon-review-wallet.svg"
+                        alt="Бюджет"
+                        width="20"
+                        height="20"
+                        loading="lazy"
+                        decoding="async"
+                      />
                     </div>
                     <div class="meta-details">
                       <div class="meta-label">Бюджет</div>
@@ -1672,6 +1904,10 @@
                       <img
                         src="/src/img/icon-review-calendar.svg"
                         alt="Срок возведения"
+                        width="20"
+                        height="20"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
                     <div class="meta-details">
@@ -1698,7 +1934,14 @@
             <!-- Review Card 2 -->
             <div class="review-card review-card--2">
               <div class="review-image">
-                <img src="./img/review-2.webp" alt="Заказчик Ольга Шагалина" />
+                <img
+                  src="./img/review-2.jpg?as=webp&width=552"
+                  alt="Заказчик Ольга Шагалина"
+                  width="552"
+                  height="322"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
               <div class="review-bar">
                 <div class="user-info">
@@ -1711,7 +1954,14 @@
                 <div class="review-meta">
                   <div class="meta-item">
                     <div class="meta-icon">
-                      <img src="/src/img/icon-review-wallet.svg" alt="Бюджет" />
+                      <img
+                        src="/src/img/icon-review-wallet.svg"
+                        alt="Бюджет"
+                        width="20"
+                        height="20"
+                        loading="lazy"
+                        decoding="async"
+                      />
                     </div>
                     <div class="meta-details">
                       <div class="meta-label">Бюджет</div>
@@ -1723,6 +1973,10 @@
                       <img
                         src="/src/img/icon-review-calendar.svg"
                         alt="Срок возведения"
+                        width="20"
+                        height="20"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
                     <div class="meta-details">
@@ -1749,7 +2003,14 @@
             <!-- Review Card 3 -->
             <div class="review-card review-card--3">
               <div class="review-image">
-                <img src="./img/review-3.webp" alt="Заказчик Ирина Панова" />
+                <img
+                  src="./img/review-3.jpg?as=webp&width=552"
+                  alt="Заказчик Ирина Панова"
+                  width="552"
+                  height="322"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
               <div class="review-bar">
                 <div class="user-info">
@@ -1762,7 +2023,14 @@
                 <div class="review-meta">
                   <div class="meta-item">
                     <div class="meta-icon">
-                      <img src="/src/img/icon-review-wallet.svg" alt="Бюджет" />
+                      <img
+                        src="/src/img/icon-review-wallet.svg"
+                        alt="Бюджет"
+                        width="20"
+                        height="20"
+                        loading="lazy"
+                        decoding="async"
+                      />
                     </div>
                     <div class="meta-details">
                       <div class="meta-label">Бюджет</div>
@@ -1774,6 +2042,10 @@
                       <img
                         src="/src/img/icon-review-calendar.svg"
                         alt="Срок возведения"
+                        width="20"
+                        height="20"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
                     <div class="meta-details">
@@ -1799,7 +2071,14 @@
             <!-- Review Card 4 -->
             <div class="review-card review-card--4">
               <div class="review-image">
-                <img src="./img/review-4.webp" alt="Заказчик Дмитрий Юрьевич" />
+                <img
+                  src="./img/review-4.jpg?as=webp&width=552"
+                  alt="Заказчик Дмитрий Юрьевич"
+                  width="552"
+                  height="322"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
               <div class="review-bar">
                 <div class="user-info">
@@ -1812,7 +2091,14 @@
                 <div class="review-meta">
                   <div class="meta-item">
                     <div class="meta-icon">
-                      <img src="/src/img/icon-review-wallet.svg" alt="Бюджет" />
+                      <img
+                        src="/src/img/icon-review-wallet.svg"
+                        alt="Бюджет"
+                        width="20"
+                        height="20"
+                        loading="lazy"
+                        decoding="async"
+                      />
                     </div>
                     <div class="meta-details">
                       <div class="meta-label">Бюджет</div>
@@ -1824,6 +2110,10 @@
                       <img
                         src="/src/img/icon-review-calendar.svg"
                         alt="Срок возведения"
+                        width="20"
+                        height="20"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
                     <div class="meta-details">
@@ -1868,8 +2158,10 @@
                         <img
                           src="./img/carousel-our-works/work-01.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -1883,8 +2175,10 @@
                         <img
                           src="./img/carousel-our-works/work-02.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -1898,8 +2192,10 @@
                         <img
                           src="./img/carousel-our-works/work-03.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -1913,8 +2209,10 @@
                         <img
                           src="./img/carousel-our-works/work-04.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -1928,8 +2226,10 @@
                         <img
                           src="./img/carousel-our-works/work-05.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -1943,8 +2243,10 @@
                         <img
                           src="./img/carousel-our-works/work-06.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -1958,8 +2260,10 @@
                         <img
                           src="./img/carousel-our-works/work-07.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -1973,8 +2277,10 @@
                         <img
                           src="./img/carousel-our-works/work-08.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -1988,8 +2294,10 @@
                         <img
                           src="./img/carousel-our-works/work-09.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2003,8 +2311,10 @@
                         <img
                           src="./img/carousel-our-works/work-10.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2018,8 +2328,10 @@
                         <img
                           src="./img/carousel-our-works/work-11.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2033,8 +2345,10 @@
                         <img
                           src="./img/carousel-our-works/work-12.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2048,8 +2362,10 @@
                         <img
                           src="./img/carousel-our-works/work-13.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2063,8 +2379,10 @@
                         <img
                           src="./img/carousel-our-works/work-14.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2078,8 +2396,10 @@
                         <img
                           src="./img/carousel-our-works/work-15.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2093,8 +2413,10 @@
                         <img
                           src="./img/carousel-our-works/work-16.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2108,8 +2430,10 @@
                         <img
                           src="./img/carousel-our-works/work-17.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2123,8 +2447,10 @@
                         <img
                           src="./img/carousel-our-works/work-18.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2138,8 +2464,10 @@
                         <img
                           src="./img/carousel-our-works/work-19.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2153,8 +2481,10 @@
                         <img
                           src="./img/carousel-our-works/work-20.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2168,8 +2498,10 @@
                         <img
                           src="./img/carousel-our-works/work-21.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2183,8 +2515,10 @@
                         <img
                           src="./img/carousel-our-works/work-22.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2198,8 +2532,10 @@
                         <img
                           src="./img/carousel-our-works/work-23.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2213,8 +2549,10 @@
                         <img
                           src="./img/carousel-our-works/work-24.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2228,8 +2566,10 @@
                         <img
                           src="./img/carousel-our-works/work-25.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2243,8 +2583,10 @@
                         <img
                           src="./img/carousel-our-works/work-26.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2258,8 +2600,10 @@
                         <img
                           src="./img/carousel-our-works/work-27.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2273,8 +2617,10 @@
                         <img
                           src="./img/carousel-our-works/work-28.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2288,8 +2634,10 @@
                         <img
                           src="./img/carousel-our-works/work-29.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2303,8 +2651,10 @@
                         <img
                           src="./img/carousel-our-works/work-30.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2318,8 +2668,10 @@
                         <img
                           src="./img/carousel-our-works/work-31.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2333,8 +2685,10 @@
                         <img
                           src="./img/carousel-our-works/work-32.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2348,8 +2702,10 @@
                         <img
                           src="./img/carousel-our-works/work-33.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2363,8 +2719,10 @@
                         <img
                           src="./img/carousel-our-works/work-34.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2378,8 +2736,10 @@
                         <img
                           src="./img/carousel-our-works/work-35.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2393,8 +2753,10 @@
                         <img
                           src="./img/carousel-our-works/work-36.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2408,8 +2770,10 @@
                         <img
                           src="./img/carousel-our-works/work-37.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2423,8 +2787,10 @@
                         <img
                           src="./img/carousel-our-works/work-38.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2438,8 +2804,10 @@
                         <img
                           src="./img/carousel-our-works/work-39.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2453,8 +2821,10 @@
                         <img
                           src="./img/carousel-our-works/work-40.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2468,8 +2838,10 @@
                         <img
                           src="./img/carousel-our-works/work-41.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2483,8 +2855,10 @@
                         <img
                           src="./img/carousel-our-works/work-42.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2498,8 +2872,10 @@
                         <img
                           src="./img/carousel-our-works/work-43.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2513,8 +2889,10 @@
                         <img
                           src="./img/carousel-our-works/work-44.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2528,8 +2906,10 @@
                         <img
                           src="./img/carousel-our-works/work-45.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2543,8 +2923,10 @@
                         <img
                           src="./img/carousel-our-works/work-46.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2558,8 +2940,10 @@
                         <img
                           src="./img/carousel-our-works/work-47.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2573,8 +2957,10 @@
                         <img
                           src="./img/carousel-our-works/work-48.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2588,8 +2974,10 @@
                         <img
                           src="./img/carousel-our-works/work-49.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2603,8 +2991,10 @@
                         <img
                           src="./img/carousel-our-works/work-50.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2618,8 +3008,10 @@
                         <img
                           src="./img/carousel-our-works/work-51.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2633,8 +3025,10 @@
                         <img
                           src="./img/carousel-our-works/work-52.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2648,8 +3042,10 @@
                         <img
                           src="./img/carousel-our-works/work-53.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2663,8 +3059,10 @@
                         <img
                           src="./img/carousel-our-works/work-54.jpg?as=webp&width=320"
                           width="320"
-                          height="320"
+                          height="427"
                           alt="Наши работы"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </a>
                     </div>
@@ -2753,19 +3151,6 @@
           </div>
         </div>
       </section>
-      <!-- <section class="gallery-section">
-        <div class="container">
-          <div class="">
-            <a
-              href="./img/balkon-01.png?as=webp"
-              class="glightbox"
-              data-gallery="gallery1"
-            >
-              <img src="./img/dastavka-01.png?as=webp" alt="image" />
-            </a>
-          </div>
-        </div>
-      </section> -->
       <section class="benefits-section">
         <div class="container">
           <div class="section-header">
@@ -2777,7 +3162,14 @@
           <div class="benefits-grid">
             <div class="benefit benefit--vertical">
               <div class="benefit-icon">
-                <img alt="" src="./img/airline-passenger-care.svg" />
+                <img
+                  alt="Индивидуальный подход к&nbsp;каждому клиенту"
+                  src="./img/airline-passenger-care.svg"
+                  loading="lazy"
+                  decoding="async"
+                  width="32"
+                  height="32"
+                />
               </div>
               <div class="benefit-content">
                 <h4 class="benefit-content__title">Клиент всегда прав</h4>
@@ -2788,7 +3180,14 @@
             </div>
             <div class="benefit benefit--vertical">
               <div class="benefit-icon">
-                <img alt="" src="./img/money.svg" />
+                <img
+                  alt="Честные условия оплаты"
+                  src="./img/money.svg"
+                  loading="lazy"
+                  decoding="async"
+                  width="32"
+                  height="32"
+                />
               </div>
               <div class="benefit-content">
                 <h4 class="benefit-content__title">Честные условия оплаты</h4>
@@ -2800,7 +3199,14 @@
             </div>
             <div class="benefit benefit--vertical">
               <div class="benefit-icon">
-                <img alt="" src="./img/network-enterprise.svg" />
+                <img
+                  alt="Более 10&nbsp;лет на&nbsp;рынке"
+                  src="./img/network-enterprise.svg"
+                  loading="lazy"
+                  decoding="async"
+                  width="32"
+                  height="32"
+                />
               </div>
               <div class="benefit-content">
                 <h4 class="benefit-content__title">
@@ -2814,7 +3220,14 @@
             </div>
             <div class="benefit benefit--vertical">
               <div class="benefit-icon">
-                <img alt="" src="./img/location-person.svg" />
+                <img
+                  alt="Обширная география обслуживания"
+                  src="./img/location-person.svg"
+                  loading="lazy"
+                  decoding="async"
+                  width="32"
+                  height="32"
+                />
               </div>
               <div class="benefit-content">
                 <h4 class="benefit-content__title">
@@ -2828,7 +3241,14 @@
             </div>
             <div class="benefit benefit--vertical">
               <div class="benefit-icon">
-                <img alt="" src="./img/ordinal.svg" />
+                <img
+                  alt="Профессиональный подход"
+                  src="./img/ordinal.svg"
+                  loading="lazy"
+                  decoding="async"
+                  width="32"
+                  height="32"
+                />
               </div>
               <div class="benefit-content">
                 <h4 class="benefit-content__title">Профессиональный подход</h4>
@@ -2840,7 +3260,14 @@
             </div>
             <div class="benefit benefit--vertical">
               <div class="benefit-icon">
-                <img alt="" src="./img/timer.svg" />
+                <img
+                  alt="Минимальный срок монтажа"
+                  src="./img/timer.svg"
+                  loading="lazy"
+                  decoding="async"
+                  width="32"
+                  height="32"
+                />
               </div>
               <div class="benefit-content">
                 <h4 class="benefit-content__title">Минимальный срок монтажа</h4>
@@ -2863,34 +3290,84 @@
           </div>
           <div class="partners-grid">
             <div class="partner-item">
-              <img src="/src/img/partner-1.jpg?as=webp" alt="Партнер 1" />
+              <img
+                src="/src/img/partner-1.jpg?as=webp"
+                alt="Партнер 1"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div class="partner-item">
-              <img src="/src/img/partner-2.jpg?as=webp" alt="Партнер 2" />
+              <img
+                src="/src/img/partner-2.jpg?as=webp"
+                alt="Партнер 2"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div class="partner-item">
-              <img src="/src/img/partner-3.jpg?as=webp" alt="Партнер 3" />
+              <img
+                src="/src/img/partner-3.jpg?as=webp"
+                alt="Партнер 3"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div class="partner-item">
-              <img src="/src/img/partner-4.jpg?as=webp" alt="Партнер 4" />
+              <img
+                src="/src/img/partner-4.jpg?as=webp"
+                alt="Партнер 4"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div class="partner-item">
-              <img src="/src/img/partner-5.jpg?as=webp" alt="Партнер 5" />
+              <img
+                src="/src/img/partner-5.jpg?as=webp"
+                alt="Партнер 5"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div class="partner-item">
-              <img src="/src/img/partner-6.jpg?as=webp" alt="Партнер 6" />
+              <img
+                src="/src/img/partner-6.jpg?as=webp"
+                alt="Партнер 6"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div class="partner-item">
-              <img src="/src/img/partner-7.jpg?as=webp" alt="Партнер 7" />
+              <img
+                src="/src/img/partner-7.jpg?as=webp"
+                alt="Партнер 7"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div class="partner-item">
-              <img src="/src/img/partner-8.jpg?as=webp" alt="Партнер 8" />
+              <img
+                src="/src/img/partner-8.jpg?as=webp"
+                alt="Партнер 8"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div class="partner-item">
-              <img src="/src/img/partner-9.jpg?as=webp" alt="Партнер 9" />
+              <img
+                src="/src/img/partner-9.jpg?as=webp"
+                alt="Партнер 9"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div class="partner-item">
-              <img src="/src/img/partner-10.jpg?as=webp" alt="Партнер 10" />
+              <img
+                src="/src/img/partner-10.jpg?as=webp"
+                alt="Партнер 10"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           </div>
         </div>
@@ -2928,6 +3405,10 @@
                 <img
                   src="/src/img/phone-call-white-fill.svg"
                   alt="Заказать утепление"
+                  loading="lazy"
+                  decoding="async"
+                  width="24"
+                  height="24"
                 />
               </div>
             </a>
@@ -2962,6 +3443,8 @@
             <img
               src="../src/img/logo-okna.svg"
               alt="Окна на&nbsp;века. Калуга"
+              loading="lazy"
+              decoding="async"
             />
           </div>
           <nav class="footer-navigation">
@@ -2979,6 +3462,10 @@
               class="site-info-item__icon"
               src="../src/img/map-marker-fill.svg"
               alt="Адрес: г. Калуга, ул. Дзержинского 1/46"
+              loading="lazy"
+              decoding="async"
+              width="16"
+              height="16"
             />
             <div class="site-info-item__text">
               <span>г. Калуга, ул. Дзержинского 1/46</span>
@@ -2992,6 +3479,10 @@
               class="site-info-item__icon"
               src="../src/img/phone-call-fill.svg"
               alt="Телефон: +7 (4842) 23-00-15"
+              loading="lazy"
+              decoding="async"
+              width="16"
+              height="16"
             />
             <span>+7 (4842) 23-00-15</span>
           </a>
@@ -3000,6 +3491,10 @@
               class="site-info-item__icon"
               src="../src/img/email-opened-fill.svg"
               alt="Email"
+              loading="lazy"
+              decoding="async"
+              width="16"
+              height="16"
             />
             <span>okna_na_veka@bk.ru</span>
           </a>
@@ -3012,8 +3507,18 @@
         <p class="footer-copyright">"Окна на&nbsp;века" © 2025</p>
       </div>
     </footer>
-    <script src="./js/swiperjs/swiper-bundle.min.js"></script>
-    <script src="./js/glightbox/glightbox.min.js"></script>
-    <script type="module" src="./js/main.js"></script>
+
+    <script>
+      const header = document.querySelector('.header');
+      if (header) {
+        const headerHeight = Math.round(header.offsetHeight);
+        if (headerHeight > 0) {
+          document.body.style.paddingTop = headerHeight + 'px';
+        }
+      }
+    </script>
+    <script src="./js/swiperjs/swiper-bundle.min.js" defer></script>
+    <script src="./js/glightbox/glightbox.min.js" defer></script>
+    <script type="module" src="./js/main.js" defer></script>
   </body>
 </html>

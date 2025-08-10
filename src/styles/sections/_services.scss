@@ -28,6 +28,7 @@
 }
 
 .service-card {
+  position: relative;
   color: $color-text-primary;
   background: $color-bg-tertiary;
   border-radius: 12px;
@@ -200,30 +201,47 @@
   }
 }
 
-.service-card--bg-1 {
-  background: url(../img/section-uslugi-01.png?as=webp) no-repeat center center;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+.service-card-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
 }
 
-.service-card--bg-2 {
-  background: url(../img/section-uslugi-02.png?as=webp) no-repeat center center;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.service-card--bg-3 {
-  background: url(../img/section-uslugi-03.png?as=webp) no-repeat center center;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
+.service-card--bg-1,
+.service-card--bg-2,
+.service-card--bg-3,
 .service-card--bg-4 {
-  background: url(../img/section-uslugi-04.png?as=webp) no-repeat center center;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: transparent;
 }
+
+// .service-card--bg-1 {
+//   background: url(../img/section-uslugi-01.png?as=webp) no-repeat center center;
+//   background-size: cover;
+//   background-position: center;
+//   background-repeat: no-repeat;
+// }
+
+// .service-card--bg-2 {
+//   background: url(../img/section-uslugi-02.png?as=webp) no-repeat center center;
+//   background-size: cover;
+//   background-position: center;
+//   background-repeat: no-repeat;
+// }
+
+// .service-card--bg-3 {
+//   background: url(../img/section-uslugi-03.png?as=webp) no-repeat center center;
+//   background-size: cover;
+//   background-position: center;
+//   background-repeat: no-repeat;
+// }
+
+// .service-card--bg-4 {
+//   background: url(../img/section-uslugi-04.png?as=webp) no-repeat center center;
+//   background-size: cover;
+//   background-position: center;
+//   background-repeat: no-repeat;
+// }

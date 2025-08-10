@@ -321,22 +321,66 @@ export const getDeviceInfo = () => {
  * Get session information
  * @returns {Object} - Session info
  */
-export const getSessionInfo = () => {
-  const sessionStart = sessionStorage.getItem('sessionStartTime');
-  const lastActivity = sessionStorage.getItem('lastActivityTime');
-
-  let timeOnSite = 0;
-  if (sessionStart) {
-    const startTime = parseInt(sessionStart);
-    const currentTime = Date.now();
-    if (lastActivity) {
-      const lastActivityTime = parseInt(lastActivity);
-      const activeTime = Math.floor((lastActivityTime - startTime) / 1000);
-      timeOnSite = Math.max(activeTime, 0);
-    } else {
-      timeOnSite = Math.floor((currentTime - startTime) / 1000);
+// ----------------------------------------------------------------------------
+// Persistence helpers (handle iOS tab discard / reload)
+// ----------------------------------------------------------------------------
+const getOrInitTabId = () => {
+  try {
+    if (!window.name || !window.name.startsWith('tab:')) {
+      window.name = `tab:${Math.random().toString(36).slice(2)}-${Date.now()}`;
     }
+    return window.name;
+  } catch (_) {
+    return 'tab:unknown';
   }
+};
+
+const getAccActivePersistKey = () => `accActiveMs:${getOrInitTabId()}`;
+
+const readPersistedAccActiveMs = () => {
+  try {
+    const key = getAccActivePersistKey();
+    const value = localStorage.getItem(key);
+    if (value != null) return parseInt(value) || 0;
+    // Legacy/global fallback
+    const legacy = localStorage.getItem('accActiveMsPersist');
+    return legacy != null ? parseInt(legacy) || 0 : 0;
+  } catch (_) {
+    return 0;
+  }
+};
+
+const writePersistedAccActiveMs = ms => {
+  try {
+    const normalized = Math.max(0, ms | 0);
+    localStorage.setItem(getAccActivePersistKey(), String(normalized));
+    // Keep a global backup to survive even if tab id changes
+    localStorage.setItem('accActiveMsPersist', String(normalized));
+  } catch (_) {}
+};
+
+export const getSessionInfo = () => {
+  // Read accumulated active time (in ms) and estimate up to idle threshold
+  const IDLE_THRESHOLD_MS = 30000; // 30s of inactivity switches to idle
+  // Fallback to localStorage backup in case iOS discarded the page (sessionStorage lost)
+  const accumulatedActiveMs = parseInt(
+    sessionStorage.getItem('accActiveMs') ||
+      (typeof readPersistedAccActiveMs === 'function'
+        ? String(readPersistedAccActiveMs())
+        : '0') ||
+      '0'
+  );
+  const lastEventTs = parseInt(sessionStorage.getItem('lastEventTs') || '0');
+  const isIdle = sessionStorage.getItem('isIdle') === '1';
+
+  let activeMs = accumulatedActiveMs;
+  if (!isIdle && lastEventTs) {
+    // Add recent activity since last event, capped by idle threshold
+    const delta = Date.now() - lastEventTs;
+    activeMs += Math.max(0, Math.min(delta, IDLE_THRESHOLD_MS));
+  }
+
+  const timeOnSite = Math.max(Math.floor(activeMs / 1000), 0);
 
   const visitCount = parseInt(localStorage.getItem('visitCount') || '1');
   const lastVisit = localStorage.getItem('lastVisit');
@@ -355,16 +399,107 @@ export const getSessionInfo = () => {
 /**
  * Initialize session tracking and activity listeners
  */
+// ----------------------------------------------------------------------------
+// Active time tracking (pure time on site)
+// ----------------------------------------------------------------------------
+const IDLE_THRESHOLD_MS = 30000; // 30 seconds of inactivity -> idle
+let __idleTimerId = null;
+
+const scheduleIdleTimer = () => {
+  if (__idleTimerId) clearTimeout(__idleTimerId);
+  __idleTimerId = setTimeout(() => {
+    try {
+      const last = parseInt(sessionStorage.getItem('lastEventTs') || '0');
+      if (!last) {
+        sessionStorage.setItem('isIdle', '1');
+        sessionStorage.setItem('lastEventTs', Date.now().toString());
+        // persist current accumulated value
+        const acc = parseInt(sessionStorage.getItem('accActiveMs') || '0');
+        writePersistedAccActiveMs(acc);
+        return;
+      }
+      const now = Date.now();
+      const delta = now - last;
+      const addMs = Math.max(0, Math.min(delta, IDLE_THRESHOLD_MS));
+      const acc = parseInt(sessionStorage.getItem('accActiveMs') || '0');
+      const newAcc = acc + addMs;
+      sessionStorage.setItem('accActiveMs', String(newAcc));
+      writePersistedAccActiveMs(newAcc);
+      sessionStorage.setItem('isIdle', '1');
+      sessionStorage.setItem('lastEventTs', String(now));
+    } catch (_) {}
+  }, IDLE_THRESHOLD_MS);
+};
+
+const handleActivity = () => {
+  try {
+    const now = Date.now();
+    const last = parseInt(sessionStorage.getItem('lastEventTs') || String(now));
+    const wasIdle = sessionStorage.getItem('isIdle') === '1';
+
+    if (!wasIdle) {
+      const delta = now - last;
+      if (delta > 0) {
+        const acc = parseInt(sessionStorage.getItem('accActiveMs') || '0');
+        const addMs = Math.max(0, Math.min(delta, IDLE_THRESHOLD_MS));
+        const newAcc = acc + addMs;
+        sessionStorage.setItem('accActiveMs', String(newAcc));
+        writePersistedAccActiveMs(newAcc);
+      }
+    } else {
+      // Transition from idle to active
+      sessionStorage.setItem('isIdle', '0');
+    }
+
+    sessionStorage.setItem('lastEventTs', String(now));
+  } catch (_) {}
+
+  scheduleIdleTimer();
+};
+
+const forceFlushActiveTime = () => {
+  try {
+    const isIdle = sessionStorage.getItem('isIdle') === '1';
+    const last = parseInt(sessionStorage.getItem('lastEventTs') || '0');
+    if (!isIdle && last) {
+      const now = Date.now();
+      const delta = now - last;
+      const addMs = Math.max(0, Math.min(delta, IDLE_THRESHOLD_MS));
+      const acc = parseInt(sessionStorage.getItem('accActiveMs') || '0');
+      const newAcc = acc + addMs;
+      sessionStorage.setItem('accActiveMs', String(newAcc));
+      writePersistedAccActiveMs(newAcc);
+      sessionStorage.setItem('lastEventTs', String(now));
+    }
+  } catch (_) {}
+};
+
 export const initializeAnalytics = () => {
+  // Ensure tab id exists early and preload persisted acc time if sessionStorage was wiped
+  const persistedAcc = readPersistedAccActiveMs();
+
+  // Core session info
   if (!sessionStorage.getItem('sessionStartTime')) {
     sessionStorage.setItem('sessionStartTime', Date.now().toString());
   }
-  sessionStorage.setItem('lastActivityTime', Date.now().toString());
+  if (!sessionStorage.getItem('accActiveMs')) {
+    sessionStorage.setItem('accActiveMs', String(persistedAcc));
+  }
+  sessionStorage.setItem('lastEventTs', Date.now().toString());
+  sessionStorage.setItem('isIdle', '0');
+  // Persist immediately to align storages
+  try {
+    writePersistedAccActiveMs(
+      parseInt(sessionStorage.getItem('accActiveMs') || '0')
+    );
+  } catch (_) {}
 
+  // Visit stats
   const visitCount = parseInt(localStorage.getItem('visitCount') || '0') + 1;
   localStorage.setItem('visitCount', visitCount.toString());
   localStorage.setItem('lastVisit', Date.now().toString());
 
+  // Unique pages in this session
   const viewedPages = JSON.parse(sessionStorage.getItem('viewedPages') || '[]');
   const currentPage = window.location.pathname;
   if (!viewedPages.includes(currentPage)) {
@@ -372,21 +507,99 @@ export const initializeAnalytics = () => {
     sessionStorage.setItem('viewedPages', JSON.stringify(viewedPages));
   }
 
-  const updateActivity = () => {
-    sessionStorage.setItem('lastActivityTime', Date.now().toString());
-  };
-  const events = [
-    'mousedown',
+  // Activity listeners (pure time tracking)
+  const activityEvents = [
+    'pointerdown',
+    'pointerup',
     'mousemove',
-    'keypress',
+    'keydown',
     'scroll',
     'touchstart',
     'click',
+    'wheel',
   ];
-  events.forEach(event => {
-    document.addEventListener(event, updateActivity, { passive: true });
+  activityEvents.forEach(evt => {
+    document.addEventListener(evt, handleActivity, { passive: true });
   });
-  window.addEventListener('beforeunload', updateActivity);
+
+  // Visibility/focus handling
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      // Go idle immediately and flush up to threshold since last event
+      if (__idleTimerId) clearTimeout(__idleTimerId);
+      try {
+        const last = parseInt(sessionStorage.getItem('lastEventTs') || '0');
+        const now = Date.now();
+        if (last) {
+          const delta = now - last;
+          const addMs = Math.max(0, Math.min(delta, IDLE_THRESHOLD_MS));
+          const acc = parseInt(sessionStorage.getItem('accActiveMs') || '0');
+          const newAcc = acc + addMs;
+          sessionStorage.setItem('accActiveMs', String(newAcc));
+          writePersistedAccActiveMs(newAcc);
+        }
+        sessionStorage.setItem('isIdle', '1');
+        sessionStorage.setItem('lastEventTs', String(Date.now()));
+      } catch (_) {}
+    } else {
+      handleActivity();
+    }
+  });
+
+  window.addEventListener('blur', () => {
+    if (__idleTimerId) clearTimeout(__idleTimerId);
+    try {
+      const last = parseInt(sessionStorage.getItem('lastEventTs') || '0');
+      const now = Date.now();
+      if (last) {
+        const delta = now - last;
+        const addMs = Math.max(0, Math.min(delta, IDLE_THRESHOLD_MS));
+        const acc = parseInt(sessionStorage.getItem('accActiveMs') || '0');
+        const newAcc = acc + addMs;
+        sessionStorage.setItem('accActiveMs', String(newAcc));
+        writePersistedAccActiveMs(newAcc);
+      }
+      sessionStorage.setItem('isIdle', '1');
+      sessionStorage.setItem('lastEventTs', String(Date.now()));
+    } catch (_) {}
+  });
+
+  window.addEventListener('focus', () => handleActivity());
+
+  // Flush active time when leaving
+  window.addEventListener('beforeunload', () => {
+    forceFlushActiveTime();
+  });
+
+  // iOS Safari often fires pagehide/pageshow and can discard bfcache/state
+  window.addEventListener('pagehide', () => {
+    try {
+      forceFlushActiveTime();
+      const acc = parseInt(sessionStorage.getItem('accActiveMs') || '0');
+      writePersistedAccActiveMs(acc);
+    } catch (_) {}
+  });
+
+  window.addEventListener('pageshow', evt => {
+    try {
+      // If the page was restored from BFCache, keep going; if it was a new load after discard, restore acc time
+      if (evt.persisted) {
+        // Just resume timers
+        handleActivity();
+      } else {
+        // New context; restore from persistence
+        const restored = readPersistedAccActiveMs();
+        const current = parseInt(sessionStorage.getItem('accActiveMs') || '0');
+        if (restored > current) {
+          sessionStorage.setItem('accActiveMs', String(restored));
+        }
+        handleActivity();
+      }
+    } catch (_) {}
+  });
+
+  // Start idle timer
+  scheduleIdleTimer();
 };
 
 /**

@@ -2,6 +2,8 @@
 // Main JavaScript Entry Point
 // ==========================================================================
 
+// import './criticalStyles.js';
+
 /**
  * Single entry point for all JavaScript functionality
  * All modules are imported here to maintain clean dependency management

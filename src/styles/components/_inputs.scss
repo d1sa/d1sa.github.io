@@ -27,10 +27,13 @@
     font-weight: $font-weight-light;
   }
 
-  &:focus {
+  &:focus,
+  &:focus-visible {
     border-color: $color-primary;
     background: $color-bg-primary;
     box-shadow: 0 0 0 3px rgba(38, 140, 235, 0.1);
+    outline: none;
+    outline-offset: 0;
   }
 
   &:hover:not(:focus) {

@@ -7,7 +7,7 @@
 
 .lead-collection-section {
   background-color: $color-bg-secondary;
-  background-image: url("/src/img/cta-bg-image-1.png");
+  background-image: url("/src/img/cta-bg-image-1.png?as=webp&width=650");
   background-size: auto 80%;
   background-position: left 20% bottom 0;
   background-repeat: no-repeat;
@@ -34,6 +34,7 @@
     padding-bottom: 300px;
     background-size: auto 300px;
     background-position: center bottom;
+    background-image: none;
   }
 }
 

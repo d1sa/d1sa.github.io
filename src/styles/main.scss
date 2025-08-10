@@ -10,15 +10,15 @@
 @use "typography" as *;
 
 // 3. Layout
-@use "layout/container" as *;
+// @use "layout/container" as *;
 
 // 4. Components
-@use "components/buttons" as *;
-@use "components/forms" as *;
-@use "components/inputs" as *;
-@use "components/header" as *;
+// @use "components/buttons" as *;
+// @use "components/forms" as *;
+// @use "components/header" as *;
+// @use "components/inputs" as *;
+// @use "components/sections" as *;
 @use "components/footer" as *;
-@use "components/sections" as *;
 @use "components/toast" as *;
 @use "components/modal" as *;
 @use "components/swiper" as *;
@@ -28,7 +28,7 @@
 
 // 5. Sections
 
-@use "sections/hero" as *;
+// @use "sections/hero" as *;
 @use "sections/advantages" as *;
 @use "sections/profile-comparison" as *;
 @use "sections/services" as *;

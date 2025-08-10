@@ -1,0 +1,15 @@
+// Критические стили для первого экрана
+@use "mixins" as *;
+@use "variables" as *;
+@use "reset" as *;
+@use "typography" as *;
+
+@use "layout/container" as *;
+
+@use "components/buttons" as *;
+@use "components/forms" as *;
+@use "components/inputs" as *;
+@use "components/header" as *;
+@use "components/sections" as *;
+
+@use "sections/hero" as *;

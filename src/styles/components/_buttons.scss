@@ -158,6 +158,19 @@
   }
 }
 
+.btn-call {
+  .btn-icon {
+    width: 36px;
+    height: 36px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}
+
 .btn-text-content {
   @include flex-column;
   align-items: center;

@@ -46,6 +46,7 @@
 .hero-text {
   @include flex-column;
   gap: $spacing-7xl;
+  justify-content: center;
   // padding-bottom: $spacing-3xl;
 
   @include tablet {
@@ -192,8 +193,10 @@
     left: 0;
     min-width: 100%;
     width: 34vw;
-    height: calc(100% + $spacing-5xl);
-    background: url(../img/main-image.png) no-repeat center center;
+    // height: calc(100% + $spacing-5xl);
+    height: 100%;
+    background: url(../img/main-image.png?as=webp&width=871) no-repeat center
+      center;
     background-size: cover;
     z-index: 0;
     border-radius: $border-radius-2xl;
