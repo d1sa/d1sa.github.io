@@ -3,6 +3,7 @@
 // ==========================================================================
 
 @use "../variables" as *;
+@use "../mixins" as *;
 
 // Toast container positioned at top center
 .toast-container {
@@ -19,8 +20,8 @@
   width: 100%;
   padding: 0 $spacing-xl;
 
-  @media (max-width: $breakpoint-mobile) {
-    padding: 0 $spacing-lg;
+  @include mobile {
+    padding: 0 $spacing-sm;
     max-width: calc(100vw - #{$spacing-3xl});
   }
 }
@@ -85,6 +86,19 @@
   // Success type (green)
   &.toast-success {
     background: $color-success-toast;
+    margin-left: -$spacing-sm;
+    margin-right: -$spacing-sm;
+    width: auto;
+    max-width: 200%;
+    border-radius: $border-radius-2xl - 4px;
+
+    .toast-content {
+      padding: $spacing-3xl $spacing-2xl;
+
+      @include mobile {
+        padding: $spacing-2xl $spacing-2xl;
+      }
+    }
 
     .toast-message {
       color: $color-text-white;
@@ -92,6 +106,11 @@
 
     .toast-icon {
       color: $color-text-white;
+
+      svg {
+        width: $spacing-2xl + $spacing-xs;
+        height: $spacing-2xl + $spacing-xs;
+      }
     }
 
     button.toast-close {
@@ -142,7 +161,7 @@
   position: relative;
   min-height: $toast-min-height;
 
-  @media (max-width: $breakpoint-mobile) {
+  @include mobile {
     padding: $spacing-md $spacing-lg;
     gap: $spacing-sm;
   }
@@ -170,7 +189,7 @@
   word-break: break-word;
   padding-right: $spacing-2xl;
 
-  @media (max-width: $breakpoint-mobile) {
+  @include mobile {
     font-size: $font-size-sm;
   }
 }
@@ -208,7 +227,7 @@
     height: $spacing-md;
   }
 
-  @media (max-width: $breakpoint-mobile) {
+  @include mobile {
     width: $spacing-xl;
     height: $spacing-xl;
     top: $spacing-sm;

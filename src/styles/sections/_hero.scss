@@ -15,7 +15,7 @@
 
   @include mobile {
     padding: $spacing-4xl 0 0;
-    background-image: url(../img/bg-heroe-1.png?as=webp);
+    background-image: url(../img/bg-heroe-1.png?as=webp&width=480);
     background-size: 60% auto;
     background-position: right top;
     background-repeat: no-repeat;

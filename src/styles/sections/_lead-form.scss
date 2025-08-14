@@ -4,13 +4,26 @@
 .lead-form-card {
   @include flex-column;
   gap: $spacing-2xl;
-  padding: $spacing-4xl;
-  border-radius: $border-radius-xl;
-  border: 1px solid $color-border-default;
-  background: $color-bg-primary;
+  padding: $spacing-8xl $spacing-4xl;
+  border-radius: $border-radius-2xl;
+  border: 0;
+  background-color: $color-bg-primary;
+  background: url(../img/main-image.png?as=webp&width=871) no-repeat center
+    center;
+  background-size: cover;
 
   @include mobile {
     padding: $spacing-3xl $spacing-2xl;
+  }
+
+  .form-fields-row {
+    @include mobile {
+      gap: $spacing-sm;
+
+      .btn {
+        margin-top: $spacing-2xl;
+      }
+    }
   }
 }
 
@@ -23,22 +36,4 @@
 .lead-form {
   @include flex-column;
   gap: $spacing-xl;
-}
-
-.form-disclaimer {
-  text-align: center;
-  @include text-muted($font-size-xs);
-  font-weight: $font-weight-normal;
-  line-height: $line-height-base;
-  margin: 0;
-
-  a {
-    color: $color-primary;
-    text-decoration: none;
-    transition: $transition-base;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
 }

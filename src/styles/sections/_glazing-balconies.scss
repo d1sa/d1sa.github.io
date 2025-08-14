@@ -8,6 +8,14 @@
 .glazing-balconies-section {
 }
 
+.glazing-lead-card-section {
+  @include mobile {
+    .container {
+      padding: 0;
+    }
+  }
+}
+
 .glazing {
   @include flex-column;
   gap: $spacing-5xl;
@@ -133,7 +141,7 @@
   align-items: stretch;
   gap: $spacing-5xl;
   padding: $spacing-lg;
-  border-radius: $border-radius-xl;
+  border-radius: $border-radius-2xl;
   background: #ebf3ff;
 
   @include tablet {
@@ -143,6 +151,7 @@
   @include mobile {
     flex-direction: column;
     gap: $spacing-3xl;
+    padding: $spacing-xl;
   }
 }
 

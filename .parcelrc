@@ -3,19 +3,9 @@
   "transformers": {
     "*.{woff,woff2,ttf,otf}": [
       "@parcel/transformer-raw"
-    ]
-  },
-  "optimizers": {
-    "*.html": [
-      "@parcel/optimizer-htmlnano"
     ],
     "*.js": [
-      "@parcel/optimizer-terser"
+      "..."
     ]
-  },
-  "reporters": [
-    "...",
-    "parcel-reporter-static-files-copy"
-  ],
-  "runtimes": []
+  }
 }

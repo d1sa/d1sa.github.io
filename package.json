@@ -5,17 +5,9 @@
   "source": "src/index.html",
   "scripts": {
     "dev": "parcel --port 3000",
-    "dev:log": "parcel --port 3000 --log-level verbose",
-    "dev:clean": "npm run clean && npm run dev",
     "build": "rimraf dist && parcel build",
-    "build:dev": "rimraf dist && cross-env PARCEL_MINIFY=false parcel build",
-    "build:clean": "npm run clean && npm run build",
-    "build:force": "rimraf dist .parcel-cache && parcel build",
-    "preview": "parcel preview",
     "clean": "rimraf dist .parcel-cache",
-    "clean:all": "rimraf dist .parcel-cache node_modules",
-    "start": "npm run dev",
-    "typography": "node typography-tool.js"
+    "start": "npm run dev"
   },
   "keywords": [
     "oknanaveka",
@@ -23,7 +15,9 @@
   ],
   "author": "Denis Tockiy",
   "license": "MIT",
+  "dependencies": {},
   "devDependencies": {
+    "@parcel/optimizer-data-url": "^2.15.4",
     "@parcel/optimizer-htmlnano": "^2.15.4",
     "@parcel/optimizer-terser": "^2.15.4",
     "@parcel/packager-raw-url": "^2.15.4",
@@ -45,9 +39,5 @@
   ],
   "staticFiles": {
     "staticPath": "robots.txt"
-  },
-  "dependencies": {
-    "commander": "^12.0.0",
-    "jsdom": "^24.0.0"
   }
 }

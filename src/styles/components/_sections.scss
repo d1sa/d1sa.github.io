@@ -5,6 +5,23 @@ section {
   overflow-x: hidden;
   overflow-y: hidden;
 
+  &.section-color-bg {
+    background-color: $color-primary-light;
+    margin-top: $spacing-4xl;
+    margin-bottom: $spacing-4xl;
+    border-radius: $border-radius-3xl;
+
+    .banner--info {
+      background-color: $color-primary-light-hover;
+    }
+
+    @include mobile {
+      margin-top: $spacing-xl;
+      margin-bottom: $spacing-xl;
+      border-radius: $border-radius-2xl;
+    }
+  }
+
   .section-header {
     display: flex;
     flex-direction: column;

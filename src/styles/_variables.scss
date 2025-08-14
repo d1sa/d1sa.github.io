@@ -11,7 +11,7 @@ $color-primary-light-hover: #d4e8fb;
 $color-secondary: #2bb109;
 $color-secondary-hover: #249907;
 $color-secondary-light: #e8ffe2;
-$color-secondary-light-hover: #d4f7c9;
+$color-secondary-light-hover: #d7ffcd;
 $color-accent: #f60;
 $color-accent-hover: #e55a00;
 
@@ -35,6 +35,10 @@ $color-bg-primary: #fff;
 $color-bg-secondary: #f2f5fa;
 $color-bg-tertiary: #ebf3ff;
 $color-bg-overlay: rgba(255, 255, 255, 0.8);
+$color-bg-secondary-transparent: rgba(205, 216, 232, 0.2);
+$color-bg-secondary-transparent-2: rgba(205, 216, 232, 0.28);
+$color-bg-white-transparent: rgba(255, 255, 255, 0.48);
+$color-bg-white-transparent-2: rgba(255, 255, 255, 0.96);
 $color-bg-modal: #fff;
 
 $color-border-light: #eaedf2;
@@ -91,6 +95,7 @@ $line-height-spacious: 1.5;
 $line-height-extra-spacious: 1.71;
 
 $line-height-base: 20px;
+$line-height-xxs: 12px;
 $line-height-xs: 14px;
 $line-height-sm: 16px;
 $line-height-md: 20px;
@@ -114,7 +119,14 @@ $spacing-4xl: 40px;
 $spacing-5xl: 48px;
 $spacing-6xl: 56px;
 $spacing-7xl: 64px;
-$spacing-8xl: 96px;
+$spacing-8xl: 72px;
+$spacing-9xl: 96px;
+
+// callback button
+$callback-button-size: 80px;
+$callback-button-size-outline: 112px;
+$callback-button-size-mobile: 72px;
+$callback-button-size-outline-mobile: 88px;
 
 // Layout
 // ==========================================================================
@@ -136,7 +148,7 @@ $grid-gutter: 24px;
 $border-radius-sm: 12px;
 $border-radius-md: 16px;
 $border-radius-lg: 20px;
-$border-radius-xl: 30px;
+$border-radius-xl: 24px;
 $border-radius-2xl: 32px;
 $border-radius-3xl: 40px;
 $border-radius-full: 50px;
@@ -145,6 +157,8 @@ $border-radius-full: 50px;
 // ==========================================================================
 $shadow-form: 0px 4px 16px 0px rgba(0, 0, 0, 0.08);
 $shadow-form-hover: 0px 5px 24px 0px rgba(0, 0, 0, 0.12);
+$shadow-card: 0px 6px 24px 0px rgba(0, 0, 0, 0.08);
+$shadow-card-hover: 0px 8px 24px 0px rgba(0, 0, 0, 0.12);
 $shadow-toast: 0 8px 32px rgba(0, 0, 0, 0.16);
 $shadow-toast-hover: 0 12px 40px rgba(0, 0, 0, 0.22);
 
@@ -152,7 +166,8 @@ $shadow-toast-hover: 0 12px 40px rgba(0, 0, 0, 0.22);
 // ==========================================================================
 $transition-fast: 0.2s ease;
 $transition-base: 0.3s ease;
-$transition-bounce: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+$transition-bounce: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+$transition-bounce-2: 0.6s cubic-bezier(0.47, 1.64, 0.41, 0.8);
 $transition-smooth: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
 // Breakpoints

@@ -7,7 +7,7 @@
 
 .contact-form {
   @include flex-column;
-  gap: $spacing-3xl;
+  gap: $spacing-2xl;
   flex: 1;
   justify-content: flex-end;
 
@@ -23,7 +23,7 @@
 
 .form-fields {
   @include flex-column;
-  gap: $spacing-md;
+  gap: $spacing-sm;
 }
 
 .form-fields-row {
@@ -41,16 +41,30 @@
 
 // Form input styles are now in _inputs.scss
 
+// .form-disclaimer {
+//   font-size: $font-size-xs;
+//   font-weight: $font-weight-normal;
+//   line-height: $line-height-xxs;
+//   color: $color-text-light;
+//   text-align: center;
+// }
+
 .form-disclaimer {
   font-size: $font-size-xs;
-  font-weight: $font-weight-normal;
-  line-height: $line-height-base;
-  color: $color-text-light;
+  font-weight: $font-weight-light;
+  line-height: $line-height-xs;
+  color: $color-text-secondary;
   text-align: center;
+  margin: 0;
 
-  span {
-    color: $color-text-light;
-    text-decoration: underline;
+  a {
+    color: $color-primary;
+    text-decoration: none;
+    transition: $transition-base;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 
@@ -140,4 +154,8 @@
     color: $color-success;
     line-height: $line-height-tight;
   }
+}
+
+.form-tag--success-modal {
+  margin-top: $spacing-md;
 }

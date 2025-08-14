@@ -10,8 +10,10 @@
     justify-content: flex-start;
 
     @include mobile {
-      padding-top: 0;
-      padding-bottom: $spacing-xl;
+      padding-left: $spacing-md;
+      padding-right: $spacing-md;
+      padding-top: $spacing-xl;
+      padding-bottom: $spacing-3xl;
     }
   }
 
@@ -38,8 +40,10 @@
     }
 
     @include mobile {
-      border: 1.5px solid $color-border-default;
+      // border: 1.5px solid $color-border-default;
       max-width: 100%;
+
+      box-shadow: $shadow-card;
     }
   }
 
@@ -61,5 +65,11 @@
       position: relative;
       height: 300px;
     }
+  }
+}
+
+.delivery-section {
+  @include mobile {
+    margin-bottom: -$spacing-xl;
   }
 }

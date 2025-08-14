@@ -22,7 +22,7 @@
   transition: all $transition-base;
   text-decoration: none;
   min-width: 180px;
-  min-height: 52px;
+  min-height: $spacing-6xl;
   user-select: none;
 }
 
@@ -130,7 +130,7 @@
   padding: $spacing-lg $spacing-2xl;
   border-radius: $border-radius-md;
   gap: $spacing-lg;
-  min-height: 72px;
+  min-height: $spacing-8xl;
 
   .btn-icon {
     display: flex;

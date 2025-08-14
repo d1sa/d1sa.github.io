@@ -35,14 +35,17 @@
   border-radius: $border-radius-2xl;
   gap: $spacing-3xl;
   max-width: 500px;
-  width: 90%;
+  // width: 90%;
   max-height: 90vh;
   overflow-y: auto;
   transform: scale(0.8);
-  transition: transform 0.3s ease;
+  opacity: 0;
+  transition: $transition-base;
 
   .modal-form.show & {
     transform: scale(1);
+    opacity: 1;
+    transition: $transition-base;
   }
 
   // Modal uses the same form-content styles as regular forms
@@ -55,11 +58,17 @@
 // Modal close button (X)
 .modal-close-icon {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 30px;
-  height: 30px;
+  top: $spacing-md;
+  right: $spacing-md;
+  width: $spacing-4xl;
+  height: $spacing-4xl;
   cursor: pointer;
+  background-color: transparent;
+  border-radius: 1000px;
+  border: 0;
+  outline: none;
+  transition: $transition-base;
+  backdrop-filter: blur(10px);
   z-index: 10;
 
   &::before,
@@ -68,10 +77,11 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 20px;
+    width: $spacing-xl;
     height: 2px;
     background: $color-text-secondary;
     transform: translate(-50%, -50%) rotate(45deg);
+    transition: $transition-base;
   }
 
   &::after {
@@ -79,6 +89,8 @@
   }
 
   &:hover {
+    background-color: $color-bg-secondary-transparent-2;
+
     &::before,
     &::after {
       background: $color-text-primary;
@@ -162,5 +174,376 @@
 
   .modal-form .form-content {
     padding: $spacing-3xl $spacing-2xl;
+  }
+}
+
+.modal-callback-form,
+.modal-gift-form {
+  &.modal-form {
+    left: 0;
+    top: auto;
+    bottom: 0;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    padding: 0;
+    padding-left: 80px;
+    padding-bottom: 80px;
+    overflow: inherit;
+    animation: none;
+    z-index: 2000;
+
+    &.hide {
+      // opacity: 0;
+      // visibility: hidden;
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &.show {
+    .modal-container {
+      visibility: visible;
+      opacity: 1;
+      transform: translateX(0);
+      transition: $transition-base;
+      max-width: 500px;
+    }
+  }
+
+  .modal-container {
+    position: fixed;
+    bottom: $spacing-8xl;
+    left: $spacing-8xl;
+    // max-width: 500px - $spacing-4xl;
+    padding-left: $spacing-4xl;
+    box-shadow: 0 8px 40px rgb(0, 0, 0, 0.16);
+    opacity: 0;
+    transform: translateX(-60px);
+    transition: $transition-base;
+    animation: none;
+    visibility: hidden;
+
+    @include mobile {
+      max-width: 100%;
+      left: 0;
+      bottom: $callback-button-size-mobile + $spacing-2xl;
+      padding-left: 0;
+    }
+
+    > svg {
+      position: absolute;
+      left: 0;
+      top: 0;
+      transform: translate(-45%, -22%);
+    }
+
+    small {
+      color: rgba(0, 0, 0, 0.45);
+    }
+  }
+}
+
+.btn-callback {
+  position: absolute;
+  bottom: $spacing-7xl;
+  left: $spacing-7xl;
+  @include flex-center;
+  width: $callback-button-size;
+  height: $callback-button-size;
+  border-radius: 50%;
+  z-index: 10;
+  transform: translateY(0px);
+  cursor: pointer;
+  outline: none;
+
+  @include mobile {
+    bottom: $spacing-5xl;
+    left: $spacing-2xl;
+    width: $callback-button-size-mobile;
+    height: $callback-button-size-mobile;
+  }
+
+  img {
+    position: relative;
+    z-index: 10;
+    width: $spacing-4xl;
+    height: $spacing-4xl;
+    object-fit: contain;
+
+    @include mobile {
+      width: $spacing-3xl;
+      height: $spacing-3xl;
+    }
+  }
+
+  &:before {
+    width: $callback-button-size;
+    height: $callback-button-size;
+    border-radius: 50%;
+    background: $color-primary;
+    box-shadow: 10px 14px 24px rgba(0, 0, 0, 0.25);
+
+    @include mobile {
+      width: $callback-button-size-mobile;
+      height: $callback-button-size-mobile;
+    }
+  }
+
+  &:after {
+    width: $callback-button-size-outline;
+    height: $callback-button-size-outline;
+    background: $color-primary;
+    opacity: 0.12;
+
+    @include mobile {
+      width: $callback-button-size-outline-mobile;
+      height: $callback-button-size-outline-mobile;
+    }
+  }
+
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    border-radius: 50%;
+    transition: $transition-base;
+    -webkit-animation: 2s ease-in 1s infinite alternate pulse;
+    animation: 2s ease-in 1s infinite alternate pulse;
+  }
+
+  &:hover {
+    &:before {
+      transform: translate(-50%, -50%) scale(1.05);
+      -webkit-animation: none;
+      animation: none;
+      background: $color-primary-hover;
+    }
+
+    &:after {
+      transform: translate(-50%, -50%) scale(1.2);
+      -webkit-animation: none;
+      animation: none;
+      background: $color-primary-hover;
+    }
+  }
+
+  &:active {
+    &:before,
+    &:after {
+      transform: translate(-50%, -50%) scale(0.95);
+    }
+  }
+}
+
+/**
+ * Gift Form
+ */
+.btn-gift {
+  &.hide {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+.modal-gift-form {
+  &.modal-form {
+    bottom: 0;
+    right: 0;
+    left: auto;
+    top: auto;
+    overflow: visible;
+    width: auto;
+    height: auto;
+    display: block;
+    padding: 0 $spacing-md $spacing-xl 0;
+    z-index: 2100;
+  }
+
+  .modal-container {
+    padding-left: initial;
+    right: 0;
+    left: auto;
+    box-shadow: 0 8px 40px rgb(0, 0, 0, 0.16);
+    background: linear-gradient(
+      122deg,
+      #ffd4d7 7.8%,
+      #e4d4ff 58.31%,
+      #d4ddff 89.29%
+    );
+    border-color: #e4d4ff;
+    transform: translateX(60px);
+  }
+
+  .modal-close-icon {
+    background-color: transparent;
+
+    &:hover {
+      background-color: $color-bg-white-transparent-2;
+    }
+  }
+}
+
+.btn-gift {
+  display: block;
+  width: 132px;
+  height: 132px;
+  background-image: url("../img/gift/gift.png");
+  background-size: 132px;
+  background-repeat: no-repeat;
+  outline: none !important;
+  border: 0;
+  background-color: transparent;
+  transition: $transition-base;
+  animation: 10s infinite b-stay;
+  transform: scale(1);
+  cursor: pointer;
+  /* -webkit-transform-origin: top center;
+  transform-origin: top center;
+  -webkit-animation-name: swing;
+  animation-name: swing; */
+
+  label {
+    display: inline-block;
+    background-color: $color-accent;
+    color: $color-text-white;
+    border-radius: 20px;
+    font-size: 12px;
+    padding: 5px 6px;
+    box-shadow: 0 2px 4px #00448c3d;
+    cursor: pointer;
+  }
+
+  &:hover {
+    /* transform: scale(0.8); */
+    animation: 8s infinite b-stay, 0.3s 1 forwards b-hover;
+  }
+
+  &:active {
+    /* transform: scale(0.9); */
+    /* animation-play-state: paused, paused; */
+  }
+}
+
+.modal-gift-form.show .btn-gift {
+  animation: 8s infinite b-stay, 0.3s 1 forwards b-open;
+  /* animation-play-state: paused, paused; */
+}
+
+@-webkit-keyframes pulse {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1.15);
+  }
+}
+@keyframes pulse {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1.15);
+  }
+}
+
+@-webkit-keyframes b-open {
+  100% {
+    transform: scale(0.92);
+  }
+}
+@keyframes b-open {
+  100% {
+    transform: scale(0.92);
+  }
+}
+
+@-webkit-keyframes b-hover {
+  100% {
+    transform: scale(1.08);
+  }
+}
+@keyframes b-hover {
+  100% {
+    transform: scale(1.08);
+  }
+}
+
+@-webkit-keyframes b-stay {
+  20% {
+    transform: scale(1.05);
+  }
+  50% {
+    transform: scale(1);
+  }
+  70% {
+    transform: scale(1.05);
+  }
+}
+@keyframes b-stay {
+  20% {
+    transform: scale(1.05);
+  }
+  50% {
+    transform: scale(1);
+  }
+  70% {
+    transform: scale(1.05);
+  }
+}
+
+@-webkit-keyframes swing {
+  20% {
+    -webkit-transform: rotate3d(0, 0, 1, 15deg);
+    transform: rotate3d(0, 0, 1, 15deg);
+  }
+
+  40% {
+    -webkit-transform: rotate3d(0, 0, 1, -10deg);
+    transform: rotate3d(0, 0, 1, -10deg);
+  }
+
+  60% {
+    -webkit-transform: rotate3d(0, 0, 1, 5deg);
+    transform: rotate3d(0, 0, 1, 5deg);
+  }
+
+  80% {
+    -webkit-transform: rotate3d(0, 0, 1, -5deg);
+    transform: rotate3d(0, 0, 1, -5deg);
+  }
+
+  to {
+    -webkit-transform: rotate3d(0, 0, 1, 0deg);
+    transform: rotate3d(0, 0, 1, 0deg);
+  }
+}
+@keyframes swing {
+  20% {
+    -webkit-transform: rotate3d(0, 0, 1, 15deg);
+    transform: rotate3d(0, 0, 1, 15deg);
+  }
+
+  40% {
+    -webkit-transform: rotate3d(0, 0, 1, -10deg);
+    transform: rotate3d(0, 0, 1, -10deg);
+  }
+
+  60% {
+    -webkit-transform: rotate3d(0, 0, 1, 5deg);
+    transform: rotate3d(0, 0, 1, 5deg);
+  }
+
+  80% {
+    -webkit-transform: rotate3d(0, 0, 1, -5deg);
+    transform: rotate3d(0, 0, 1, -5deg);
+  }
+
+  to {
+    -webkit-transform: rotate3d(0, 0, 1, 0deg);
+    transform: rotate3d(0, 0, 1, 0deg);
   }
 }

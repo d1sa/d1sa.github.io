@@ -9,7 +9,8 @@
 // ==========================================================================
 .input {
   width: 100%;
-  padding: $spacing-lg;
+  padding: $spacing-md $spacing-lg;
+  min-height: $spacing-6xl;
   border: 2px solid $color-bg-primary;
   border-radius: $border-radius-sm;
   background: $color-bg-primary;
@@ -104,7 +105,7 @@
 // Large input variant
 .input-xl {
   @extend .input;
-  height: 72px;
+  min-height: $spacing-8xl;
   padding: $spacing-lg $spacing-xl;
   font-size: $font-size-lg;
 }
