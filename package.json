@@ -5,9 +5,10 @@
   "source": "src/index.html",
   "scripts": {
     "dev": "parcel --port 3000",
-    "build": "rimraf dist && parcel build",
+    "build": "rimraf dist && parcel build && npm run copy-static",
     "clean": "rimraf dist .parcel-cache",
-    "start": "npm run dev"
+    "start": "npm run dev",
+    "copy-static": "copyfiles -u 0 robots.txt sitemap.xml policy.pdf .htaccess logo.png dist/"
   },
   "keywords": [
     "oknanaveka",
@@ -15,7 +16,6 @@
   ],
   "author": "Denis Tockiy",
   "license": "MIT",
-  "dependencies": {},
   "devDependencies": {
     "@parcel/optimizer-data-url": "^2.15.4",
     "@parcel/optimizer-htmlnano": "^2.15.4",
@@ -25,6 +25,7 @@
     "@parcel/transformer-jsonld": "^2.15.4",
     "@parcel/transformer-raw": "^2.15.4",
     "@parcel/transformer-sass": "^2.15.4",
+    "copyfiles": "^2.4.1",
     "cross-env": "^10.0.0",
     "parcel": "^2.15.4",
     "parcel-reporter-static-files-copy": "^1.5.3",
@@ -38,6 +39,11 @@
     "not dead"
   ],
   "staticFiles": {
-    "staticPath": "robots.txt"
+    "staticPath": [
+      "robots.txt",
+      "sitemap.xml",
+      "policy.pdf",
+      "logo.png"
+    ]
   }
 }

@@ -1,17 +1,43 @@
 User-agent: *
-Disallow: /
+Allow: /
+Allow: /images/
+Allow: /img/
+
+# Запрещаем технические директории
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /.git/
+Disallow: /.parcel-cache/
+Disallow: /build/
+Disallow: /dist/
+
+# Запрещаем служебные файлы
+Disallow: /*.json$
+Disallow: /*.map$
+Disallow: /package.json
+Disallow: /package-lock.json
+
+Clean-param: type&added&block&pos&device&utm_referer&utm_ya_campaign&yabizcmpgn&utm_candidate&etext
+
+Sitemap: https://oknanaveka40.ru/sitemap.xml
+
+
+###
+
+# User-agent: *
+# Disallow: /
 
 # Запрет индексации всех файлов и директорий
-User-agent: Googlebot
-Disallow: /
+# User-agent: Googlebot
+# Disallow: /
 
-User-agent: Bingbot
-Disallow: /
+# User-agent: Bingbot
+# Disallow: /
 
-User-agent: Yandex
-Disallow: /
+# User-agent: Yandex
+# Disallow: /
 
-User-agent: DuckDuckBot
-Disallow: /
+# User-agent: DuckDuckBot
+# Disallow: /
 
-Crawl-delay: 86400
+# Crawl-delay: 86400

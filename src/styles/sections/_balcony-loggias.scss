@@ -165,12 +165,13 @@
 
 .image-item {
   flex: 1;
-  height: 100%;
   border-radius: $border-radius-md;
   background: $color-bg-secondary;
   border-radius: $border-radius-md;
   aspect-ratio: 9/12;
   overflow: hidden;
+  width: 100%;
+  height: auto;
 
   img {
     width: 100%;

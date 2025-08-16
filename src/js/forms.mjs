@@ -12,9 +12,9 @@ import {
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 const TELEGRAM_CONFIG = {
-  t1: '6163313249',
-  t2: 'AAHN-2jghEg0TpvcxXTo_gFRn1Xhv8Xm7n4',
-  chatId: '-4878025736',
+  t1: '6368637668',
+  t2: 'AAGa4ngnyHcZrLVwRCIMB3XFlE1dFzCPv_0',
+  chatId: '-1001961313866',
   mode: 'html',
   get token() {
     return `${this.t1}:${this.t2}`;
@@ -89,11 +89,15 @@ const FORM_TYPES = {
 // ==========================================================================
 
 /**
- * Phone number formatting with live input mask
+ * Phone input mask
+ * 79991234567 → +7 (999) 123-45-67
  */
 const formatPhoneInput = e => {
   const val = e.target.value;
+  // Очищаем номер от всех символов кроме цифр
   const digits = val.replace(/\D/g, '');
+
+  // Используем регулярное выражение для извлечения кода оператора и номера
   const match = digits.match(/(7|8)?(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
 
   let result = '+7 ';
@@ -121,7 +125,29 @@ const formatPhoneInput = e => {
 };
 
 /**
- * Validate Russian phone number
+ * Format phone number
+ * +7 (999) 123-45-67 → +79991234567
+ * 7 (999) 123-45-67 → +79991234567
+ * etc
+ */
+const formatPhoneForMessage = phone => {
+  // Очищаем номер от всех символов кроме цифр
+  const digits = phone.replace(/\D/g, '');
+
+  // Используем логику для формата +7
+  if (digits.startsWith('7') || digits.startsWith('8')) {
+    return '+7' + digits.substring(1);
+  } else if (digits.startsWith('9') && digits.length === 10) {
+    return '+7' + digits;
+  } else if (phone.startsWith('+7')) {
+    return phone;
+  } else {
+    return '+7' + digits;
+  }
+};
+
+/**
+ * Validate phone number
  */
 const validatePhone = phone => {
   // Очищаем номер от всех символов кроме цифр
@@ -135,7 +161,6 @@ const validatePhone = phone => {
     return false;
   }
 
-  // Извлекаем код оператора (первые 3 цифры после 7 или 8)
   let operatorCode;
   if (digits.startsWith('7') || digits.startsWith('8')) {
     operatorCode = digits.substring(1, 4);
@@ -317,18 +342,26 @@ const validateFormData = formData => {
  * Prepare Telegram message from form data
  */
 const prepareTelegramMessage = async (formData, formType) => {
-  let message = `<b>📋 Заявка с ${window.location.hostname}</b>\n`;
+  let message = `Заявка с <b>${window.location.hostname}</b>\n\n`;
 
   for (let [key, value] of formData.entries()) {
     if (key === 'g-recaptcha-response') continue;
 
+    const fieldName = getFieldName(key);
     const trimmedValue = value.trim();
+
     if (trimmedValue) {
-      message += `${getFieldName(key)}: <b>${trimmedValue}</b>\n`;
+      // Специальная обработка для поля телефона
+      if (key === 'tel') {
+        const formattedPhone = formatPhoneForMessage(trimmedValue);
+        message += `${fieldName}: <b>${formattedPhone}</b>\n`;
+      } else {
+        message += `${fieldName}: <b>${trimmedValue}</b>\n`;
+      }
     }
   }
 
-  message += `\n🏷️ Форма:\n<b>${
+  message += `\n<i>Форма:</i>\n<b>${
     formType.formLocation ? `${formType.formLocation}` : ''
   }</b>`;
 
@@ -337,8 +370,8 @@ const prepareTelegramMessage = async (formData, formType) => {
     message += `\n<i>Секция: "${formType.triggerSection}"</i>`;
   }
 
-  const analytics = await collectAnalyticsInfo();
-  message += formatAnalyticsMessage(analytics);
+  // const analytics = await collectAnalyticsInfo();
+  // message += formatAnalyticsMessage(analytics);
 
   // message += `\n\n<i>Информация подготовлена <b>${CRMName}</b></i>`;
   return message;
@@ -563,7 +596,7 @@ const createModalForm = formType => {
           <button type='submit' class='btn btn-orange'>Отправить</button>
           <p class='form-disclaimer'>
             Отправляя данные через форму вы даете согласие на обработку своих 
-            <a href="/#">персональных данных</a>
+            <a href="/policy.pdf" target="_blank" rel="noopener noreferrer">персональных данных</a>
           </p>
         </form>
       </div>
@@ -586,7 +619,7 @@ const createModalForm = formType => {
               Да, перезвоните мне
             </button>
             <p class='form-disclaimer'>
-              Отправляя данные через форму вы&nbsp;даете <a href="#">согласие на&nbsp;обработку своих персональных данных</a>
+              Отправляя данные через форму вы&nbsp;даете <a href="/policy.pdf" target="_blank" rel="noopener noreferrer">согласие на&nbsp;обработку своих персональных данных</a>
             </p>
           </form> 
         </div>
@@ -614,7 +647,7 @@ const createModalForm = formType => {
               Да, перезвоните мне
             </button>
             <p class='form-disclaimer'>
-              Отправляя данные через форму вы&nbsp;даете <a href="#">согласие на&nbsp;обработку своих персональных данных</a>
+              Отправляя данные через форму вы&nbsp;даете <a href="/policy.pdf" target="_blank" rel="noopener noreferrer">согласие на&nbsp;обработку своих персональных данных</a>
             </p>
           </form>
         </div>
@@ -838,7 +871,7 @@ export function initializeForms() {
     }`
   );
 
-  initializeAnalytics();
+  // initializeAnalytics();
 
   initializeModalForm(FORM_TYPES.modal, {
     formLocation: 'Модальная форма (всплывающая)',

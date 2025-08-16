@@ -633,23 +633,23 @@ export const formatAnalyticsMessage = ({
     });
   }
 
-  res += `\n\n<b>📊 Информация о посетителе:</b>`;
-  res += `\n🕐 Время отправки: <b>${new Date().toLocaleString('ru-RU')}</b>`;
-  res += `\n💻 Устройство: <b>${
+  res += `\n\n<i>Информация о посетителе:</i>`;
+  res += `\nВремя отправки: ${new Date().toLocaleString('ru-RU')}; `;
+  res += `Устройство: ${
     deviceInfo.isMobile
       ? 'Мобильное'
       : deviceInfo.isTablet
       ? 'Планшет'
       : 'Десктоп'
-  }</b>`;
-  res += `\n📱 Модель: <b>${deviceInfo.deviceModel}</b>`;
-  res += `\n🌐 Браузер: <b>${deviceInfo.browser}</b>`;
-  res += `\n💻 ОС: <b>${deviceInfo.osVersion}</b>`;
-  res += `\n📱 Разрешение: <b>${deviceInfo.screenResolution}</b>`;
-  res += `\n🌍 Язык: <b>${deviceInfo.language}</b>`;
-  res += `\n⏱️ Время на сайте: <b>${sessionInfo.timeOnSite}</b>`;
-  res += `\n👥 Посещений: <b>${sessionInfo.visitCount}</b>`;
-  res += `\n🔗 Источник: <b>${sessionInfo.referrer}</b>`;
-  res += `\n🌐 IP: <b>${clientIP}</b>`;
+  }; `;
+  res += `Модель: ${deviceInfo.deviceModel}; `;
+  res += `Браузер: ${deviceInfo.browser}; `;
+  res += `ОС: ${deviceInfo.osVersion}; `;
+  res += `Разрешение: ${deviceInfo.screenResolution}; `;
+  res += `Язык: ${deviceInfo.language}; `;
+  res += `⏱️ Время на сайте: <b>${sessionInfo.timeOnSite}</b>; `;
+  res += `👥 Посещений: <b>${sessionInfo.visitCount}</b>; `;
+  res += `🔗 Источник: <b>${sessionInfo.referrer}</b>; `;
+  res += `IP: ${clientIP};`;
   return res;
 };
