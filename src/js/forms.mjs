@@ -194,13 +194,13 @@ const getFieldName = key => {
  */
 const sendToTelegram = ({ message, formType }) => {
   const { token, chatId, mode } = TELEGRAM_CONFIG;
-  const encodedMessage = encodeURI(message);
+  const encodedMessage = encodeURIComponent(message);
   const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&parse_mode=${mode}&text=${encodedMessage}`;
 
   fetch(url)
     .then(res => res.json())
     .then(res => {
-      console.log('Telegram API response:', res);
+      // console.log('Telegram API response:', res);
 
       if (res.ok) {
         handleSubmissionSuccess(formType);
