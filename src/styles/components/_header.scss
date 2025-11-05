@@ -29,8 +29,8 @@
   }
 
   @include pre-xlarge-desktop {
-    .contact-phone-button,
-    .btn {
+    // .contact-phone-button,
+    .btn.btn-green {
       padding: $spacing-md $spacing-lg;
       font-size: $font-size-md;
     }
@@ -70,7 +70,7 @@
 
 .header-top {
   border-bottom: 1px solid $color-border-light;
-  padding: $spacing-sm 0;
+  padding: $spacing-xs 0 $spacing-sm;
   flex: 1;
   width: 100%;
 
@@ -92,6 +92,7 @@
   @include flex-start;
   gap: $spacing-2xl;
   padding-left: 172px;
+  justify-content: space-between;
 
   @include pre-xlarge-desktop {
     padding-left: 144px;
@@ -102,6 +103,10 @@
     flex-wrap: wrap;
     gap: $spacing-md;
     justify-content: space-between;
+  }
+
+  @include mobile {
+    gap: $spacing-xs;
   }
 
   .site-info-item {
@@ -122,6 +127,15 @@
     @include tablet {
       flex-direction: column;
       gap: 0;
+    }
+
+    @include mobile {
+      flex-direction: row;
+      gap: $spacing-sm;
+
+      @media screen and (max-width: 390px) {
+        gap: $spacing-xs;
+      }
     }
   }
 
@@ -162,7 +176,7 @@
 }
 
 .header-main {
-  padding: $spacing-xl 0;
+  padding: $spacing-md 0;
   flex: 1;
   width: 100%;
 
@@ -220,11 +234,6 @@
     gap: $spacing-lg;
     width: 100%;
 
-    .contact-phone-button {
-      justify-content: center;
-      width: 100%;
-    }
-
     .btn {
       width: 100%;
       justify-content: center;
@@ -242,18 +251,9 @@
   }
 
   @include mobile {
-    .contact-phone-button {
-      padding: 0;
-      font-size: $font-size-sm;
-      min-width: 0;
-      border: 0;
-      background-color: transparent;
-      min-height: $spacing-4xl;
-
-      .phone-icon {
-        width: $spacing-2xl;
-        height: $spacing-2xl;
-      }
+    .phone-icon {
+      width: 36px;
+      height: 36px;
     }
 
     .btn {
@@ -262,9 +262,9 @@
   }
 
   @media screen and (max-width: 390px) {
-    .contact-phone-button {
-      min-height: 0;
-    }
+    // .contact-phone-button {
+    //   min-height: 0;
+    // }
 
     .btn {
       min-height: $spacing-4xl;
@@ -274,6 +274,21 @@
       font-size: $font-size-xs;
     }
   }
+}
+
+.phone-numbers-wrapper {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+
+
+  // @include mobile {
+  //   .phone-icon {
+  //     width: 36px;
+  //     height: 36px;
+  //   }
+  // }
+
 }
 
 // Logo

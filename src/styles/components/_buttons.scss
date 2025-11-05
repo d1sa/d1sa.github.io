@@ -158,6 +158,24 @@
   }
 }
 
+.btn-rounded {
+  border-radius: 1000px;
+}
+
+.btn-sm {
+  padding: $spacing-xs $spacing-sm;
+  min-width: 0;
+  min-height: 36px;
+
+  @include pre-xlarge-desktop {
+    font-size: $font-size-md;
+  }
+
+  @include mobile-sm {
+    font-size: $font-size-sm;
+  }
+}
+
 .btn-call {
   .btn-icon {
     width: 36px;
